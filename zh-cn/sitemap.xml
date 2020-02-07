@@ -1,0 +1,60 @@
+<?xml-stylesheet type="text/xsl" href="http://blog.qianmarv.xyz/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://blog.qianmarv.xyz/about/</loc>
+    <lastmod>2020-02-06T21:38:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.qianmarv.xyz/categories/</loc>
+    <lastmod>2018-01-10T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.qianmarv.xyz/categories/efficiency/</loc>
+    <lastmod>2018-01-10T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.qianmarv.xyz/tags/emacs/</loc>
+    <lastmod>2018-01-10T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.qianmarv.xyz/post/</loc>
+    <lastmod>2018-01-10T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.qianmarv.xyz/</loc>
+    <lastmod>2020-02-06T21:38:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.qianmarv.xyz/post/orgmode-desktop-notifier/</loc>
+    <lastmod>2018-01-10T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.qianmarv.xyz/tags/</loc>
+    <lastmod>2018-01-10T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>
