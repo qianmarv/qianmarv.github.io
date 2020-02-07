@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>qianmarv&#39;s personal blog</title>
+    <title>知行合一</title>
     <link>http://blog.qianmarv.xyz/</link>
-    <description>Recent content on qianmarv&#39;s personal blog</description>
+    <description>Recent content on 知行合一</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 10 Jan 2018 00:00:00 +0800</lastBuildDate>
@@ -99,6 +99,1294 @@ org-pomodoro的提醒改为桌面提醒。&lt;/p&gt;
               (lambda ()
                 (qianmarv-org/show-alarm &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;Pomodoro Killed - One does not simply kill a pomodoro!&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;)))
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>通过 Hexo &#43; Git Page 搭建静态博客</title>
+      <link>http://blog.qianmarv.xyz/post/setup-blog-with-hexo/</link>
+      <pubDate>Wed, 30 Dec 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/setup-blog-with-hexo/</guid>
+      
+        <description>&lt;p&gt;介绍如何通过 Hexo + Git Page 搭建静态博客。&lt;/p&gt;
+&lt;h2 id=&#34;环境&#34;&gt;环境&lt;/h2&gt;
+&lt;p&gt;本地环境：WIN8
+Cygwin64,
+Git: 2.5.3
+Hexo: Latest
+服务器环境：Github Page&lt;/p&gt;
+&lt;h2 id=&#34;过程&#34;&gt;过程&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;安装 nodejs
+&lt;a href=&#34;https://nodejs.org/en/&#34;&gt;https://nodejs.org/en/&lt;/a&gt;
+貌似被墙了，真是悲剧。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装 hexo
+&lt;a href=&#34;https://hexo.io/&#34;&gt;https://hexo.io/&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;        npm install hexo-cli -g
+        hexo init blog
+        cd blog
+        npm install
+        hexo server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;到目前位置，已经可以运行了,浏览器打开：&lt;a href=&#34;http://localhost:4000&#34;&gt;http://localhost:4000&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;设置主题
+&lt;a href=&#34;https://hexo.io/themes/&#34;&gt;https://hexo.io/themes/&lt;/a&gt;
+我选的是这个主题：&lt;a href=&#34;https://github.com/tufu9441/maupassant-hexo&#34;&gt;maupassant&lt;/a&gt;， 可以在&lt;a href=&#34;https://www.haomwei.com/&#34;&gt;这里&lt;/a&gt; 预览。
+如何配置，在主题的 github 页面已经说的很清楚了。
+配置完毕，可以通过 hexo server 来预览效果。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注册 github page 的 repository
+官方教程：&lt;a href=&#34;https://pages.github.com/&#34;&gt;https://pages.github.com/&lt;/a&gt;
+这个应该非常简单，只要注意一点注册的代码仓库（repository）必须是&lt;!-- raw HTML omitted --&gt;.github.io，
+比如我的账户是 qianmarv，那么我注册的名字一定要叫 &lt;strong&gt;qianmarv.github.io&lt;/strong&gt; ，其他就没问题了&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如何部署
+&lt;a href=&#34;https://hexo.io/docs/deployment.html&#34;&gt;官方说明&lt;/a&gt; ，简单的说一下的话就是两步：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;安装插件&lt;a href=&#34;https://github.com/hexojs/hexo-deployer-git&#34;&gt;hexo-deployer-git&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改设定_config.yml&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;deploy:
+type: git
+repo: &lt;!-- raw HTML omitted --&gt;
+branch: [branch]
+message: [message]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;可能存在的问题，如果是用 ssh 的方式应该不会有太大问题，如果是用 https 的方式，在我这边就发现了一个问题：
+hexo deploy 提交部署提示输入用户名，回车后就卡在那里了，不知道别人会不会也有同样的问题，总之就是密码提示出不来。&lt;/p&gt;
+&lt;p&gt;最后通过 git 的 store 方式明文存放用户名和密码来解决，当然这个文件是通过文件权限来控制安全的，如果电脑只是本人使用应该还是安全的。
+具体来说两步：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;执行：git config credential.helper &amp;lsquo;store [options]&amp;rsquo;&lt;/li&gt;
+&lt;li&gt;在命令行手动 push 一次，命令行提示用户名和密码没有问题，输入后，用户名和密码就被记录下来了，下次就不需要在输了&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;参考：&lt;a href=&#34;https://blog.sleeplessbeastie.eu/2012/08/12/git-how-to-avoid-typing-your-password-repeatedly/&#34;&gt;Git - How to avoid typing your password repeatedly&lt;/a&gt;
+&lt;a href=&#34;https://git-scm.com/docs/git-credential-store&#34;&gt;Git credential-store&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;剩下的问题&#34;&gt;剩下的问题&lt;/h2&gt;
+&lt;h3 id=&#34;博客从-org-到-hexo-的流程&#34;&gt;&lt;!-- raw HTML omitted --&gt;TODO&lt;!-- raw HTML omitted --&gt; 博客从 ORG 到 HEXO 的流程&lt;/h3&gt;
+&lt;h3 id=&#34;博客的迁移&#34;&gt;&lt;!-- raw HTML omitted --&gt;TODO&lt;!-- raw HTML omitted --&gt; 博客的迁移&lt;/h3&gt;
+&lt;h3 id=&#34;主题的定制化&#34;&gt;&lt;!-- raw HTML omitted --&gt;TODO&lt;!-- raw HTML omitted --&gt; 主题的定制化&lt;/h3&gt;
+&lt;h3 id=&#34;域名设置&#34;&gt;&lt;!-- raw HTML omitted --&gt;TODO&lt;!-- raw HTML omitted --&gt; 域名设置&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;http://wiki.jikexueyuan.com/project/github-pages-basics/cname-file.html&#34;&gt;http://wiki.jikexueyuan.com/project/github-pages-basics/cname-file.html&lt;/a&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>UI5入门系列之四：更好的入门系列-官方Walkthrough</title>
+      <link>http://blog.qianmarv.xyz/post/openui5-starter4/</link>
+      <pubDate>Tue, 17 Nov 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/openui5-starter4/</guid>
+      
+        <description>&lt;p&gt;在UI5 SDK中的EXPLORER里面有着各种控件的用法，所以在这里也没有必要再来一遍，还是看官方的用法更地道。&lt;/p&gt;
+&lt;p&gt;看一下基于最新的库所推荐的项目结构。&lt;/p&gt;
+
+&lt;link rel=&#34;stylesheet&#34; href=&#34;http://blog.qianmarv.xyz/css/hugo-easy-gallery.css&#34; /&gt;
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;http://blog.qianmarv.xyz/ox-hugo/App_overview.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;http://blog.qianmarv.xyz/ox-hugo/App_overview.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;另外，我觉得对于初学者来说是一个非常好的消息，就是UI5版本从1.28更新到1.30以及更高之后，Tutorial系列有了重大更新，之前的Get Started-&amp;gt;Tutorials-&amp;gt;Application Best Practice现在改为Tutorial-&amp;gt;Walkthrough，跟随着Walkthrough把所有的步骤走完，基本上UI5就算可以入门了，每一个步骤在EXPLORED中可以看到效果，并且可以下载到完整的代码，所以基于这个原因，我觉得我之前写的入门系列基本上可以不用再看了，跟着这个Walkthrough走就足够了。&lt;/p&gt;
+&lt;p&gt;链接贴在这里：&lt;a href=&#34;https://openui5.hana.ondemand.com/#docs/guide/3da5f4be63264db99f2e5b04c5e853db.html&#34;&gt;https://openui5.hana.ondemand.com/#docs/guide/3da5f4be63264db99f2e5b04c5e853db.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;除了Walkthrough之外，1.30及更高版本的更新还增加了不少其他的改动，这里列举一下我觉得比较重要的部分，这些内容在做Walkthrough的过程应该也都会感受到。&lt;/p&gt;
+&lt;h2 id=&#34;项目目录结构&#34;&gt;项目目录结构&lt;/h2&gt;
+&lt;p&gt;在之前的版本中，官方的最佳实践或者样例代码一般都是把视图文件和控制器文件放到一个目录中，显然，这种组织代码的方式对于管理稍大型的应用就会显得比较混乱，但是官方之前对于如何组织代码并未给出明确的方式，而在1.30版本更新之后，在文档中专门有一篇来介绍目录结构。这里我就大致的介绍一下。&lt;/p&gt;
+&lt;p&gt;三个主要的目录是root, webapp以及test目录。&lt;/p&gt;
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;http://blog.qianmarv.xyz/ox-hugo/three_main_folders.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;http://blog.qianmarv.xyz/ox-hugo/three_main_folders.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;root&lt;/strong&gt; 目录 &lt;!-- raw HTML omitted --&gt;
+顾名思义，是整个项目的根目录，目录名可以是任意的项目名称，在这个目录之下包含的文件应该是你写的APP的代码以外的一些辅助文件，比如工程文件或者是一些说明性的文件，如果这些文件比较多，也可以在这之下再创建一个目录来管理。比如可以把所有的文档文件都放在doc目录中等等。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;webapp&lt;/strong&gt; 目录 &lt;!-- raw HTML omitted --&gt;
+这个目录包含的是应用的所有代码文件，比如视图文件，处理逻辑的js文件，本地化资源文件i18n文件，模型文件（可选），以及测试相关的文件（放到单独的test目录中）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;test&lt;/strong&gt; 目录 &lt;!-- raw HTML omitted --&gt;
+这个目录应该用来存放测试相关的文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;具体细节还是看官方的介绍吧：&lt;a href=&#34;https://openui5.hana.ondemand.com/#docs/guide/003f755d46d34dd1bbce9ffe08c8d46a.html&#34;&gt;https://openui5.hana.ondemand.com/#docs/guide/003f755d46d34dd1bbce9ffe08c8d46a.html&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;应用描述符文件&#34;&gt;应用描述符文件&lt;/h2&gt;
+&lt;p&gt;在1.28及之前，单独的一个应用可以被包到Component中，可以通过Component的metadata来描述一些应用的信息，比如依赖的库，资源文件（css、i18n）等等，或者应用公共的一些配置信息，都放到Component.js中。
+从1.30开始，UI5引入了应用描述符文件manifest.json，官方是这么说的：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The descriptor for applications, components, and libraries is inspired by the Web Application Manifest concept introduced by the W3C. The descriptor provides a central, machine-readable and easy-to-access location for storing metadata associated with an application, an application component, or a library.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们可以把应用的一些配置信息都放到这个manifest.json里面，UI5提供了API来检索相应的配置信息，同时，当我们需要把这个app放到Fiori Launchpad的时候，一些相应的配置信息也会被Fiori Launchpad读到。&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;UI5的Developer Guide的可读性越来越强，所以建议如果想要真正掌握UI5还是要静下心来花点时间把Guide都过一遍，不过惭愧的是我自己都没有完完整整的看过，都是碰到哪里不明白了再去查找，好在1.30之后，增加了搜索的功能，可以快速的定位到自己感兴趣的部分。&lt;/p&gt;
+&lt;p&gt;至于这个UI5学习入门系列，就像最开始说的，我觉得基于现在官方Guide足够强大已经没有再自己造车轮的必要了。如果要进一步的深入的学习，JavsScript的深入理解是必不可少的，同时要看到SAP现在也是在积极的拥抱开源，在UI5库中用到不少开源的库，所以对于这些库我们也需要做深入的了解，然后在这个基础之上我们再去理解UI5的架构，那时才能做到举重若轻。&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>UI5入门系列之三：MVC （下） - 视图与控制器</title>
+      <link>http://blog.qianmarv.xyz/post/openui5-starter3-part2/</link>
+      <pubDate>Tue, 15 Sep 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/openui5-starter3-part2/</guid>
+      
+        <description>&lt;p&gt;继续来学习UI5的MVC模型吧，这次我们来探讨视图与控制器。&lt;/p&gt;
+&lt;h2 id=&#34;视图&#34;&gt;视图&lt;/h2&gt;
+&lt;p&gt;在MVC中，视图用来定义和渲染UI。在UI5中，视图的类型是可以自定义的，除了以下预定义的四种视图类型之外，你也可以定制自己的视图类型。
+预定的四种视图类型如下：&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XML view&lt;/li&gt;
+&lt;li&gt;JSON view&lt;/li&gt;
+&lt;li&gt;JS view&lt;/li&gt;
+&lt;li&gt;HTML view&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果你想定义自己的视图类型，可以通过扩展 &lt;code&gt;sap.ui.core.mvc.View&lt;/code&gt; 这个基类来实现。&lt;/p&gt;
+&lt;h3 id=&#34;视图的加载&#34;&gt;视图的加载&lt;/h3&gt;
+&lt;p&gt;视图可以通过异步或者同步的方式加载，默认是同步的方式。视图的工厂函数通过同步的方式请求并传入视图定义的源代码并返回一个视图的实例。但是这种方式会导致在加载视图的时候UI界面卡住，而且也有可能会导致视图在初始化期间一些函数不能够被正常调用。
+所以，为了避免这种情况，可以通过异步（asynchronous）的方式来加载视图，所有的视图类型都支持异步的方式。&lt;/p&gt;
+&lt;p&gt;以下是一个同步加载视图，视图实例被创建之后放到id为uiArea的DOM元素中，随后视图会被渲染。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oView&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;xmlview&lt;/span&gt;({ &lt;span style=&#34;color:#a6e22e&#34;&gt;viewName&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;“&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;sample&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;view&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;”&lt;/span&gt; });
+&lt;span style=&#34;color:#75715e&#34;&gt;// the instance is available now
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;oView&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;placeAt&lt;/span&gt;(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;“&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;uiArea&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;”&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;以下的代码片段是一个异步模式加载视图的例子，请求视图工厂函数创建视图实例，但是此时由于这个请求是一个异步的模式，视图实例还没有ready，所以我们不能马上用 &lt;code&gt;placeAt&lt;/code&gt; 来把它放到DOM元素中，我们必须等待View.prototype.loaded()执行完毕之后发出的Promise之后，在 &lt;code&gt;then()&lt;/code&gt; 中才能真正操作已经实例化完毕的视图。
+如果对于 &lt;code&gt;jQuery&lt;/code&gt; 的递延、回调等等异步概念不太了解的，可以阅读这篇文章&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;，如果英文不错的可以直接看jQuery的官方API&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;视图的实例化&#34;&gt;视图的实例化&lt;/h3&gt;
+&lt;p&gt;其实前面也已经提到了，UI5通过 &lt;code&gt;sap.ui.view&lt;/code&gt; 这个工厂函数来实例化视图。&lt;!-- raw HTML omitted --&gt;
+这个工厂函数可以接受如下参数：&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;type&lt;/code&gt; : &lt;!-- raw HTML omitted --&gt;
+类型可以是预定义的 &lt;code&gt;JSON&lt;/code&gt;, &lt;code&gt;JS&lt;/code&gt;, &lt;code&gt;XML&lt;/code&gt;, 或者 &lt;code&gt;HTML&lt;/code&gt; ， 这些类型都被定义成了枚举类型，所以在引用的时候可以直接用 &lt;code&gt;sap.ui.core.mvc.ViewType&lt;/code&gt; 下面的这四个类型的大写字符串就可以，比如 &lt;code&gt;sap.ui.core.mvc.ViewType.XML&lt;/code&gt; 就是代表XML视图，当然直接用字符串 &amp;ldquo;XML&amp;rdquo; 也是可以的，规范化起见最好还是使用枚举类型而不是直接使用字符串字面量。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;viewName&lt;/code&gt; : &lt;!-- raw HTML omitted --&gt;
+视图的名字，工厂函数通过这个名字去找到视图的源码。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;viewContent&lt;/code&gt; : &lt;!-- raw HTML omitted --&gt;
+仅仅和XML视图以及JSON视图相关，如果一个视图很简单（比如就一两个控件），可以通过这个属性来定义视图的内容，当 &lt;code&gt;viewName&lt;/code&gt; 和 &lt;code&gt;viewContent&lt;/code&gt; 同时定义的话，只有viewName会起作用，而viewContent会被忽略。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Controller&lt;/code&gt; :&lt;!-- raw HTML omitted --&gt;
+可以是任意控制器的实例，如果这里给定了控制器，则视图中定义的控制器会被覆盖。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;viewData&lt;/code&gt; : &lt;!-- raw HTML omitted --&gt;
+仅JS视图可以使用这个属性，viewData可以用来保存一些用户自定义的数据，并且在整个视图及对应的控制器的生命周期中这些数据都是可用的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;预定义的视图类型&#34;&gt;预定义的视图类型&lt;/h3&gt;
+&lt;h4 id=&#34;js-view&#34;&gt;JS View&lt;/h4&gt;
+&lt;p&gt;定一个JS view文件只需要把文件名命为类似xxx.view.js的形式就可以了，其中xxx就是视图的名字，在实例化视图的时候，这个名字就是需要传给工厂函数的viewName，当然，记得加上命名空间。&lt;/p&gt;
+&lt;p&gt;我们需要实现以下两个方法来完成JS视图的定义：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;getControllerName()&lt;/code&gt; : &lt;!-- raw HTML omitted --&gt;
+指定属于该视图的控制器，如果该方法没有实现，或者返回空，则这个视图就没有控制器&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;createContent()&lt;/code&gt; : &lt;!-- raw HTML omitted --&gt;
+当对应的控制器被初始化之后，这个方法会被而且仅会被调用一次来初始化UI。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;   &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;jsview&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.hcm.Address&amp;#34;&lt;/span&gt;, {  &lt;span style=&#34;color:#75715e&#34;&gt;// this View file is called Address.view.js
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+   &lt;span style=&#34;color:#a6e22e&#34;&gt;getControllerName&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.hcm.Address&amp;#34;&lt;/span&gt;;     &lt;span style=&#34;color:#75715e&#34;&gt;// the Controller lives in Address.controller.js
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;   },
+
+   &lt;span style=&#34;color:#a6e22e&#34;&gt;createContent&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;oController&lt;/span&gt;) {
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oButton&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;commons&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Button&lt;/span&gt;({&lt;span style=&#34;color:#a6e22e&#34;&gt;text&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello JS View&amp;#34;&lt;/span&gt;});
+      &lt;span style=&#34;color:#a6e22e&#34;&gt;oButton&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;attachPress&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;oController&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;handleButtonClicked&lt;/span&gt;);
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oButton&lt;/span&gt;;
+   }
+
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里要提到一个要注意的地方，就是当我们在JS view中定义一个控件的时候，有时候我们需要同时定义一个id以方便之后引用，这时需要注意的是，我们不能直接给一个字符串字面量，我们通过类的实例方法 &lt;code&gt;View.createId(&#39;idstring&#39;)&lt;/code&gt; 来实现，通过这种方式返回的id会在我们定义的idstring之前加上所在的类实例id作为前缀以保证唯一性。
+但是如果是申明式的视图类型，就无需使用这个createId方法了，视图解析器会自动来帮我们做这个事情。&lt;/p&gt;
+&lt;h4 id=&#34;xml-view&#34;&gt;XML View&lt;/h4&gt;
+&lt;p&gt;XML view文件以xxx.view.xml作为文件名。一个XML view定义的示例如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;mvc:View&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;controllerName=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.hcm.Address&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.commons&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns:mvc=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.core.mvc&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+   &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;Panel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;Image&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;http://www.sap.com/global/ui/images/global/sap-logo.png&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&amp;gt;&lt;/span&gt;
+      &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;Button&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;text=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Press Me!&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&amp;gt;&lt;/span&gt;
+   &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/Panel&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/mvc:View&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;XML view中需要注意的一个问题是命名空间，在XML中定义任何一个控件的时候，都需要加上命名空间。&lt;/p&gt;
+&lt;h4 id=&#34;json-view&#34;&gt;JSON View&lt;/h4&gt;
+&lt;p&gt;JSON view以xxx.view.json作为文件名。一个JSON view定义的示例如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;{
+   &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Type&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.core.mvc.JSONView&amp;#34;&lt;/span&gt;,
+   &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;controllerName&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.hcm.Address&amp;#34;&lt;/span&gt;,
+   &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; [{
+      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Type&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.commons.Image&amp;#34;&lt;/span&gt;,
+      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;MyImage&amp;#34;&lt;/span&gt;,
+      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;src&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;http://www.sap.com/global/ui/images/global/sap-logo.png&amp;#34;&lt;/span&gt;
+   },
+   {
+      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Type&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.commons.Button&amp;#34;&lt;/span&gt;,
+      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;MyButton&amp;#34;&lt;/span&gt;,
+      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Press Me&amp;#34;&lt;/span&gt;
+
+   }]
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在JSON view中可以使用字符串、布尔值以及null。&lt;/p&gt;
+&lt;h4 id=&#34;html-view&#34;&gt;HTML View&lt;/h4&gt;
+&lt;p&gt;HTML view就是通过HTML标签来定义的视图，文件名类似 xxx.view.html。样例如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-HTML&#34; data-lang=&#34;HTML&#34;&gt;  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;template&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data-controller-name&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;example.mvc.test&amp;#34;&lt;/span&gt;&amp;gt;
+   Hello
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;Title&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;Embedded HTML&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;test test2 test3&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.commons.Panel&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;myPanel&amp;#34;&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;test test2 test3&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.commons.Button&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Button1&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data-text&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello World&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data-press&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;doIt&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.commons.Button&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Button2&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data-text&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.core.mvc.HTMLView&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;MyHTMLView&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data-view-name&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;example.mvc.test2&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.core.mvc.JSView&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;MyJSView&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data-view-name&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;example.mvc.test2&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.core.mvc.JSONView&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;MyJSONView&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data-view-name&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;example.mvc.test2&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.core.mvc.XMLView&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;MyXMLView&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;data-view-name&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;example.mvc.test2&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;所有视图相关的属性都可以通过用data-&lt;!-- raw HTML omitted --&gt;的方式在tag &lt;!-- raw HTML omitted --&gt;中定义。&lt;/p&gt;
+&lt;h2 id=&#34;控制器&#34;&gt;控制器&lt;/h2&gt;
+&lt;p&gt;控制器用来定义业务或者页面的逻辑。控制器文件必须命名为xxx.controller.js。定义一个控制器的样例如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;controller&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.hcm.Address&amp;#34;&lt;/span&gt;, {
+   &lt;span style=&#34;color:#75715e&#34;&gt;// controller logic goes here
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;生命周期--lifecyle-hooks&#34;&gt;生命周期 (Lifecyle Hooks)&lt;/h3&gt;
+&lt;p&gt;对于视图的不同生命周期状态，在控制器中有对应的钩子 （Hooks） 可以让我们对应于不同的状态实现一些特定的功能。
+UI5提供了下面这些Hooks：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;onInit()&lt;/code&gt; &lt;!-- raw HTML omitted --&gt;
+视图被实例化时，当所有的控件已经被创建完成的时候被触发。&lt;!-- raw HTML omitted --&gt;
+可以在视图显示之前做一些修改，或者做一些其他的一次性初始化工作。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;onExit()&lt;/code&gt; &lt;!-- raw HTML omitted --&gt;
+当视图被销毁的时候被触发。&lt;!-- raw HTML omitted --&gt;
+一般可以用来释放资源或者最终确定一些活动的状态。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;onAfterRendering()&lt;/code&gt; &lt;!-- raw HTML omitted --&gt;
+当视图被完全渲染的时候被触发。&lt;!-- raw HTML omitted --&gt;
+此时视图已经出现在DOM中了，可以用来操作DOM元素，修改一些HTML。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;onBeforeRendering()&lt;/code&gt; &lt;!-- raw HTML omitted --&gt;
+当视图被重新渲染的时候被调用，注意在视图第一次渲染的时候是不会被调用的。&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;MVC是UI5的基础开发模型，不管你有没有去刻意的了解它，但是只要你开发UI5，你肯定已经在使用它了。我个人觉得M和C应该还是比较容易理解的，按照API去定义或者用系统生成的文件框架基本上都不会有什么问题。
+而问题一般都会出现在V，因为UI5里的控件太多，我们不可能掌握所有控件的用法，即使对于一些熟悉的控件，也没有机会在所有四种预定义的视图模型中都去实践一遍用法，所以很多时候，我们不知道一个控件该怎么用。
+这个时候，UI5的帮助文档中的Explorer会是我们的好朋友，里面列了绝大多数常用控件的用法示例。但也有问题，这就是Explorer中基本上所有的视图都是用的XML类型定义的，所以我们还需要掌握API的阅读方法，如何转换成对应于不同视图的用法，这就需要
+多多实践了。&lt;/p&gt;
+&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.cnblogs.com/yangjunhua/p/3508502.html&#34;&gt;jQuery回调、递延对象总结（上篇）—— jQuery.Callbacks&lt;/a&gt; &lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;https://api.jquery.com/category/deferred-object/&#34;&gt;Category: Deferred Object&lt;/a&gt; &lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>UI5入门系列之三：MVC （上） - 模型</title>
+      <link>http://blog.qianmarv.xyz/post/openui5-starter3-part1/</link>
+      <pubDate>Fri, 04 Sep 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/openui5-starter3-part1/</guid>
+      
+        <description>&lt;p&gt;这次我们来一起学习MVC，这个专题分为两个小节，本次主要是总览以及模型，下一次着重会介绍视图以及控制器，因为控制器其实没有太多可以讲的，所以和视图合并在一块。&lt;/p&gt;
+&lt;h2 id=&#34;model-view-controller-mvc-的基本概念&#34;&gt;Model View Controller （MVC）的基本概念&lt;/h2&gt;
+&lt;p&gt;MVC，对于大多数人说，这是一个讲烂了的概念。不过，既然这是一个入门系列，还是要稍微讲一讲。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;M 代表Model - 模型 &lt;!-- raw HTML omitted --&gt;
+一般用来管理数据层，比如绑定后台数据。&lt;/li&gt;
+&lt;li&gt;V 代表View - 视图 &lt;!-- raw HTML omitted --&gt;
+一般用来处理展示层，比如具体前端UI的展示。&lt;/li&gt;
+&lt;li&gt;C 代表Controller - 控制器 &lt;!-- raw HTML omitted --&gt;
+一般用来处理逻辑，可是页面逻辑也可以是协调处理数据的逻辑&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不同的程序设计语言，只要涉及到有前端交互的，一般都会有MVC的概念，这个概念是相通的，但是具体
+到细节层面还是会有差别，所以下面的内容都是针对UI5的MVC而言。&lt;/p&gt;
+
+&lt;link rel=&#34;stylesheet&#34; href=&#34;http://blog.qianmarv.xyz/css/hugo-easy-gallery.css&#34; /&gt;
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;http://blog.qianmarv.xyz/ox-hugo/starter_3_1.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;http://blog.qianmarv.xyz/ox-hugo/starter_3_1.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;MVC最主要的目的是把展示与逻辑、数据分离开来，使得程序更容易阅读、容易理解，从而也更可以维护，
+同时，也增加了可扩展性。&lt;/p&gt;
+&lt;p&gt;视图和控制器一般是1:1对应的，但是也可以创建一个没有视图的控制器，这样的控制器叫做应用控制器， &lt;code&gt;Application Controller&lt;/code&gt; ；同时，也可以创建一个没有控制器的视图。&lt;/p&gt;
+&lt;h2 id=&#34;ui5中的模型概念&#34;&gt;UI5中的模型概念&lt;/h2&gt;
+&lt;p&gt;前面讲到，模型的主要作用是提供数据，比如如何从后台数据库获取数据，如何更新后台数据等等。&lt;/p&gt;
+&lt;p&gt;UI5提供了以下预定义的模型：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;JSON 模型：&lt;!-- raw HTML omitted --&gt;
+属于客户端(client-side model)模型，所以比较适合小型数据集，JSON模型支持双向绑定。 &lt;!-- raw HTML omitted --&gt;
+类名：&lt;a href=&#34;https://openui5.hana.ondemand.com/docs/api/symbols/sap.ui.model.json.JSONModel.html&#34;&gt;sap.ui.model.json.JSONModel&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;XML模型： &lt;!-- raw HTML omitted --&gt;
+同样属于客户端模型。&lt;!-- raw HTML omitted --&gt;
+类名：&lt;a href=&#34;https://openui5.hana.ondemand.com/#docs/api/symbols/sap.ui.model.xml.XMLModel.html&#34;&gt;sap.ui.model.xml.XMLModel&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Resource模型： &lt;!-- raw HTML omitted --&gt;
+这个比较特殊，它是通过资源包(Resource Bundle)的方式来处理数据，一般我们可以用它来做多语言处理。 &lt;!-- raw HTML omitted --&gt;
+类名：&lt;a href=&#34;https://openui5.hana.ondemand.com/#docs/api/symbols/sap.ui.model.resource.ResourceModel.html&#34;&gt;sap.ui.model.resource.ResourceModel&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;OData模型： &lt;!-- raw HTML omitted --&gt;
+属于服务端模型(server-side model)，所以必须提供服务端OData的资源URL来绑定到对应的UI5控件。 &lt;!-- raw HTML omitted --&gt;
+类名：&lt;a href=&#34;https://openui5.hana.ondemand.com/#docs/api/symbols/sap.ui.model.odata.ODataModel.html&#34;&gt;sap.ui.model.odata.ODataModel&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;绑定模式&#34;&gt;绑定模式&lt;/h3&gt;
+&lt;p&gt;这里有一个绑定模式(Binding Model)的概念，绑定模式定了数据资源是如何被绑定的，UI5里面绑定模式有三种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;One Way: 从模型到视图的单向绑定。
+我们可以简单的认为单向绑定是一种只读的绑定，如果视图里面的某个字段的值变更了，不会对模型造成影响。如果想要更新数据，就必须要通过控制器来手动控制更新数据到模型，然后这个模型所绑定到视图的所有字段都会自动更新一次。 &lt;!-- raw HTML omitted --&gt;
+&lt;code&gt;View(UI: input box value)&lt;/code&gt; &amp;ndash;manually update&amp;ndash;&amp;gt; &lt;code&gt;Model&lt;/code&gt; &amp;ndash;automatically&amp;ndash;&amp;gt; &lt;code&gt;View&lt;/code&gt; &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Two Way: 从模型到视图和视图到模型的双向绑定，如果视图中的某个字段的值变更了，模型会自动更新，同时，这个模型所绑定到视图的其他控件数据。 &lt;!-- raw HTML omitted --&gt;
+&lt;code&gt;View(UI: input box value)&lt;/code&gt; &amp;ndash;automatically&amp;ndash;&amp;gt; &lt;code&gt;Model&lt;/code&gt; &amp;ndash;automatically&amp;ndash;&amp;gt; &lt;code&gt;View&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;One Time: 一次性绑定，有些类似单向绑定，但是如果模型有变更的话，系统不会自动刷新数据，所以一般用来绑定静态文本。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Model&lt;/th&gt;
+&lt;th&gt;One-way&lt;/th&gt;
+&lt;th&gt;Two-way&lt;/th&gt;
+&lt;th&gt;One-time&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Resource model&lt;/td&gt;
+&lt;td&gt;&amp;ndash;&lt;/td&gt;
+&lt;td&gt;&amp;ndash;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;JSON model&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;XML model&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;OData model&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;绑定类型&#34;&gt;绑定类型&lt;/h3&gt;
+&lt;p&gt;了解了绑定模式，我们再来看绑定类型(Binding Type)，简单的说绑定模式要处理的是怎么绑定的问题，绑定类型要处理的是绑定到哪的问题。
+UI5中提供了三种绑定类型。&lt;/p&gt;
+&lt;h4 id=&#34;property-binding&#34;&gt;Property Binding&lt;/h4&gt;
+&lt;p&gt;Property Binding允许控件的某些属性直接绑定到模型的数据从而可以自动初始化以及当后台数据变动时可以自动刷新。&lt;/p&gt;
+&lt;p&gt;定义property Binding有两种方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过控件的构造器在 &lt;code&gt;seetings&lt;/code&gt; 对象中绑定&lt;/li&gt;
+&lt;li&gt;通过控件的 &lt;code&gt;bindProperty&lt;/code&gt; 方法绑定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一般最常见的方式就是直接利用构造器的settings对象来直接绑定模型，比如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;     &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oTextField&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;commons&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;TextField&lt;/span&gt;({
+         &lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{/company/name}&amp;#34;&lt;/span&gt;
+     });
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;稍稍做一点说明，当有多个数据模型绑定到当前控件以及祖先控件时，需要用在绑定的字段之前加上模型名称，比如 &amp;ldquo;{mymodel&amp;gt;/company/name}&amp;rdquo; 。 &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;如果需要对这个绑定做更多的定义，可以跟进一步，用以下的扩展语法格式：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;     &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oTextField&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;commons&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;TextField&lt;/span&gt;({
+     &lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;path&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/company/name&amp;#34;&lt;/span&gt;,
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;mode&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;model&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;BindingMode&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;OneWay&lt;/span&gt;
+	}
+     });
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里显式的把绑定的模型字段赋给 &lt;code&gt;path&lt;/code&gt; ，注意这里就不需要套上大括号了。 &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;通过控件的 &lt;code&gt;bindProperty&lt;/code&gt; 方法则提供了更多的选项，可以让用户在稍后而不是初始化的时候来绑定。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;     &lt;span style=&#34;color:#a6e22e&#34;&gt;oTextField&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;bindProperty&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;value&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/company/name&amp;#34;&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;以及类似的&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;     &lt;span style=&#34;color:#a6e22e&#34;&gt;oTextField&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;bindProperty&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;value&amp;#34;&lt;/span&gt;, {
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;path&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;value&amp;#34;&lt;/span&gt;,
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;model&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Integer&lt;/span&gt;()
+     });
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;有一些控件做了进一步的封装，比如文本框，由于 &lt;code&gt;value&lt;/code&gt; 是经常需要用来绑定模型的属性，所以直接提供了 &lt;code&gt;bindValue&lt;/code&gt; 方法以方便使用。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;     &lt;span style=&#34;color:#a6e22e&#34;&gt;oTextField&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;bindValue&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/company/name&amp;#34;&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;当需要对绑定的字段做更多的处理，而不是简单的一对一绑定时，UI5还提供了 &lt;code&gt;formatter&lt;/code&gt; 这个属性方法，用法如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;oTextField&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;bindProperty&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;value&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/company/title&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;sValue&lt;/span&gt;) {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sValue&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sValue&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;toUpperCase&lt;/span&gt;();
+});
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;oControl&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;commons&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;TextField&lt;/span&gt;({
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;path&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/company/revenue&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;formatter&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;fValue&lt;/span&gt;) {
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;fValue&lt;/span&gt;) {
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;gt; &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; Math.&lt;span style=&#34;color:#a6e22e&#34;&gt;floor&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;fValue&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1000000&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;M&amp;#34;&lt;/span&gt;;
+            }
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt;;
+        }
+    }
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;例子中分别提供了用构造器的方法和用 &lt;code&gt;bindProperty&lt;/code&gt; 的方法来对要绑定的字段做format的示例。&lt;/p&gt;
+&lt;h4 id=&#34;aggregation-binding&#34;&gt;Aggregation Binding&lt;/h4&gt;
+&lt;p&gt;Aggregation binding主要是用来绑定子控件，对应的模型数据的结构也必须符合一定的树状结构关系。&lt;/p&gt;
+&lt;p&gt;同样，和Property Binding类似，可以通过控件构造器的 &lt;code&gt;settings&lt;/code&gt; 对象或者是 &lt;code&gt;bindAggregation&lt;/code&gt; 方法来绑定模型，
+但是有一点不同的是，Aggregation Binding需要指定所谓的 &lt;code&gt;template&lt;/code&gt; ，这是因为Property Binding是一个数据条目绑定到一个控件的字段，属于一对一的绑定，而Aggregation Binding，则是一组数据绑定到一组控件，比如将多个销售订单绑定到一个表控件的多个item中，属于一个数组到另一个数组的绑定。
+这个所谓的 &lt;code&gt;template&lt;/code&gt; 其实就是我们创建一个item，然后系统在render的时候会参照我们创建的这个item，拷贝多个相同的items并绑定对应的数据。可以想象成两个数组，一个是数据数组，一个是Item控件数组，数据已经确定了，但是系统不知道需要创建哪个Item来绑定数据，需要我们帮它创建一个，接下来，系统就会创建和数据数组相同数量的Item控件，并且绑定和数据数组相同索引的数据。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oItemTemplate&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;core&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ListItem&lt;/span&gt;({&lt;span style=&#34;color:#a6e22e&#34;&gt;text&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{name}&amp;#34;&lt;/span&gt;});
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oComboBox&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;commons&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ComboBox&lt;/span&gt;({
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;items&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;path&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/company/contacts&amp;#34;&lt;/span&gt;,
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;template&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oItemTemplate&lt;/span&gt;
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或者通过方法调用来绑定：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;oComboBox&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;bindAggregation&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;items&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/company/contacts&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;core&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ListItem&lt;/span&gt;({&lt;span style=&#34;color:#a6e22e&#34;&gt;text&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{name}&amp;#34;&lt;/span&gt;}));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;element-binding&#34;&gt;Element Binding&lt;/h4&gt;
+&lt;p&gt;Element Binding可以允许我们把模型数据的某个特定的对象绑定到一个控件上（不是控件的某个属性），从而我们可以在控件的 &lt;code&gt;property&lt;/code&gt; 或者 &lt;code&gt;aggregation&lt;/code&gt; 中直接使用绑定到这一级的模型的下级对象，换句话说，允许我们在绑定数据的时候使用相对路径的方式。&lt;/p&gt;
+&lt;p&gt;譬如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;oControl&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;bindElement&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/company&amp;#34;&lt;/span&gt;);
+&lt;span style=&#34;color:#a6e22e&#34;&gt;oControl&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;bindProperty&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;value&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Element Binding使用场景比较简单，这里就不多说了。&lt;/p&gt;
+&lt;h2 id=&#34;分析与总结&#34;&gt;分析与总结&lt;/h2&gt;
+&lt;p&gt;本次我们学习了UI5中的模型的概念、类型以及如何使用。
+作为一套前端UI库，SAP的重点其实还是在于企业级的数据交互与展示，所以数据模型以及数据绑定就显得尤为重要，后面希望有机会可以一起探讨后端模型的输出，比如Netweaver以及HANA中是如何提供这些数据模型的。&lt;/p&gt;
+&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;Refer to &lt;a href=&#34;https://www.youtube.com/watch?v=vY5%5FifnvDa8&#34;&gt;https://www.youtube.com/watch?v=vY5%5FifnvDa8&lt;/a&gt; at 7:02. &lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>UI5入门系列之二： 最佳实践练习（下）</title>
+      <link>http://blog.qianmarv.xyz/post/openui5-starter2-part2/</link>
+      <pubDate>Tue, 25 Aug 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/openui5-starter2-part2/</guid>
+      
+        <description>&lt;p&gt;上期我们完成了一个简单的主从页面，但是页面是静态的，不能交互，功能也很简单，只有一个销售订单的列表。
+我们今天就一鼓作气把代码全都写完，由于本次的代码量较大，所以只对重点代码部分进行讲解。
+具体每个文件和代码就不一一贴出来了，代码都放在github中，需要的自行&lt;a href=&#34;https://github.com/qianmarv/ui5tutorial/tree/master/ui5bp%5F2&#34;&gt;下载&lt;/a&gt;吧。&lt;/p&gt;
+&lt;h2 id=&#34;页面导航&#34;&gt;页面导航&lt;/h2&gt;
+&lt;p&gt;可以先把代码下载到本地并跑起来，这样可以对这个最佳实践的程序有一个直观的了解。&lt;/p&gt;
+&lt;p&gt;页面导航如下： &lt;!-- raw HTML omitted --&gt;
+销售订单列表(Master) -&amp;gt; 销售订单明细(Detail) -&amp;gt; 行项目明细(LineItem),在每个明细页面都可以返回到上一层。&lt;/p&gt;
+&lt;p&gt;具体页面之间的导航是如何实现的呢？ &lt;!-- raw HTML omitted --&gt;
+我们从页面的入口 &lt;code&gt;index.html&lt;/code&gt; 开始&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;         &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oView&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;view&lt;/span&gt;({
+             &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;,
+             &lt;span style=&#34;color:#a6e22e&#34;&gt;viewName&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ui5.tutorial.bp.view.App&amp;#34;&lt;/span&gt;,
+             &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;JS&amp;#34;&lt;/span&gt;,
+         });
+         &lt;span style=&#34;color:#75715e&#34;&gt;//...
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;         &lt;span style=&#34;color:#a6e22e&#34;&gt;oView&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;placeAt&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;content&amp;#39;&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这一段代码初始化了一个叫做App的JS view，那我们就来看 &lt;code&gt;App.view.js&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// create app
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;m&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;SplitApp&lt;/span&gt;();
+
+	&lt;span style=&#34;color:#75715e&#34;&gt;// load the master page
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;master&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;xmlview&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Master&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ui5.tutorial.bp.view.Master&amp;#34;&lt;/span&gt;);
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;master&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getController&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;nav&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getController&lt;/span&gt;();
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;addPage&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;master&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;);
+
+	&lt;span style=&#34;color:#75715e&#34;&gt;// load the empty page
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;empty&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;xmlview&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Empty&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ui5.tutorial.bp.view.Empty&amp;#34;&lt;/span&gt;);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;addPage&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;empty&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;App view中在 &lt;code&gt;createContent&lt;/code&gt; 中创建了一个SplitApp，稍微说下SplitApp这个控件，当宿主是PC或者平台的时候这个控件默认包含两个页面容器，而当宿主是手机的时候又可以只包含一个页面，所以一般主从结构的页面可以用这个控件。&lt;!-- raw HTML omitted --&gt;
+随后，分别创建了两个页面，一个是Master页面，另一个页面是空白页——作为没有选中任何Master页面中的数据时的默认页面，最后把两个页面都加入到了SplitApp中。&lt;!-- raw HTML omitted --&gt;
+到目前为止都是在上一篇中已经做过的，到这里，页面已经可以展示了。但是我们今天要研究的是导航，所以接着往下。&lt;!-- raw HTML omitted --&gt;
+SplitApp本身带有 &lt;code&gt;to()&lt;/code&gt; 这个函数，可以在已经加入其容器的页面之间导航，但是我们现在的功能稍稍有点复杂，当点击Master页面的时候，要求导航到详细页面，
+点击详细页面的行项目可以进入到行项目的详细页面，对应每个详细页面可以返回至上一级页面，同时可能还需要做一些其他逻辑上的处理，比如判断和绑定数据，因此我们需要在原有的 &lt;code&gt;to()&lt;/code&gt; 上增强一些功能并封装给其他的控制器使用。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;这些功能都集中定义在 &lt;code&gt;App.controller.js&lt;/code&gt; 这个控制器中&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;to&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;pageId&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;context&lt;/span&gt;) {
+
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getView&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;;
+
+	&lt;span style=&#34;color:#75715e&#34;&gt;// load page on demand
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;master&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Master&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;pageId&lt;/span&gt;);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getPage&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;pageId&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;master&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;) {
+	    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;page&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;view&lt;/span&gt;({
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;pageId&lt;/span&gt;,
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;viewName&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ui5.tutorial.bp.view.&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;pageId&lt;/span&gt;,
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;XML&amp;#34;&lt;/span&gt;
+	    });
+	    &lt;span style=&#34;color:#a6e22e&#34;&gt;page&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getController&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;nav&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;;
+	    &lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;addPage&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;page&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;master&lt;/span&gt;);
+	    &lt;span style=&#34;color:#a6e22e&#34;&gt;jQuery&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;info&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;app controller &amp;gt; loaded page: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;pageId&lt;/span&gt;);
+	}
+
+	&lt;span style=&#34;color:#75715e&#34;&gt;// show the page
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;to&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;pageId&lt;/span&gt;);
+
+	&lt;span style=&#34;color:#75715e&#34;&gt;// set data context on the page
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;context&lt;/span&gt;) {
+	    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;page&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getPage&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;pageId&lt;/span&gt;);
+	    &lt;span style=&#34;color:#a6e22e&#34;&gt;page&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;setBindingContext&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;context&lt;/span&gt;);
+	}
+    },
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;/**
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;     * Navigates back to a previous page
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;     * @param {string} pageId The id of the next page
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;     */&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;back&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;pageId&lt;/span&gt;) {
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getView&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;backToPage&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;pageId&lt;/span&gt;);
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重新封装后的 &lt;code&gt;to()&lt;/code&gt; 有两个参数，一个是页面id，另一个是上下文，当传入的页面不存在的时候，系统会首先初始化这个页面并加入到当前的SplitApp中，随后直接调用SplitApp的 &lt;code&gt;to()&lt;/code&gt; 完成导航动作。
+最后，如果上下文不为空的话，把这个上下文绑定到新的页面中，这对于一个新页面来说是非常有意义的。&lt;!-- raw HTML omitted --&gt;
+back则直接复用SplitApp的 &lt;code&gt;backToPage()&lt;/code&gt; 函数。&lt;/p&gt;
+&lt;p&gt;接下来我们再看其他的页面如何复用定义在这里的导航函数的。&lt;!-- raw HTML omitted --&gt;
+我们回过头来再看 &lt;code&gt;App.view.js&lt;/code&gt; , 其中在初始化Master页面之后，有这么一条语句 &lt;!-- raw HTML omitted --&gt;
+&lt;code&gt;master.getController().nav = this.getController();&lt;/code&gt; &lt;!-- raw HTML omitted --&gt;
+这条语句把当前的控制器赋给Master页面的控制器的nav，这个nav只是用来存放App控制器的一个key，叫什么名字都行，这样在Master页面中就可以通过nav来调用App控制器的所有函数了。&lt;/p&gt;
+&lt;p&gt;同样的，再回到 &lt;code&gt;App.controller.js&lt;/code&gt; 中，看到这条语句 &lt;code&gt;page.getController().nav = this;&lt;/code&gt; 也是类似的作用。&lt;/p&gt;
+&lt;p&gt;在首页面刚刚初始化时，Detail页面是没有加载的，当点击Master页面中的某个SalesOrder的时候，Master页面中的 &lt;code&gt;handleListItemPress&lt;/code&gt; 被调用：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;handleListItemPress&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;evt&lt;/span&gt;) {
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;context&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;evt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getSource&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;getBindingContext&lt;/span&gt;();
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;nav&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;to&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Detail&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;context&lt;/span&gt;);
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;首先获得被点击的item上绑定的上下文信息（数据），然后调用App的 &lt;code&gt;to()&lt;/code&gt; 方法并传入 &lt;code&gt;Detail&lt;/code&gt; 告诉页面要加载Detail这个页面，同时把上下文数据传递过去，
+接下来又回到了 &lt;code&gt;to()&lt;/code&gt; ， Detail页面被初始化，绑定上下文数据，加载到SplitApp中，然后导航成为当前显示页面。&lt;/p&gt;
+&lt;p&gt;以上，就完成了这个App的导航，可以看到有些繁琐，并且需要显式的初始化子页面的时候获得并共享App的控制器，另外，页面之间的跳转不会修改URL，无法将某个中间页面存为bookmark，所以这种方式并不是UI5所推荐的，
+但是作为初学者了解UI5的页面导航机制还是非常的直观，另外对于简单的应用来说，如果页面较少也未尝不可以考虑。&lt;!-- raw HTML omitted --&gt;
+作为稍大型的web应用，UI5在早期的版本中推荐使用EventBus通过Event的传递来实现复杂的页面导航，从1.6开始引入了新的导航机制，就是Routing，可以将页面之间的导航关系定义在component中，在最新的1.30版本中，导航定义则可以直接写在App的说明文件 &lt;code&gt;manifest.jso&lt;/code&gt; 中。&lt;!-- raw HTML omitted --&gt;
+导航就介绍到这里，Component和Routing是一个比较复杂但是非常强大的工具，我们可以在后续接着探讨。&lt;/p&gt;
+&lt;h2 id=&#34;数据绑定&#34;&gt;数据绑定&lt;/h2&gt;
+&lt;p&gt;在我们的代码中，数据绑定也是做了简化处理，都直接写在 &lt;code&gt;index.html&lt;/code&gt; 中了。&lt;/p&gt;
+&lt;p&gt;一共绑定了三个模型： &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;业务数据模型：&lt;!-- raw HTML omitted --&gt;
+因为我们使用的是离线的json格式数据，所以可以直接把相对路径传递给 &lt;code&gt;sap.ui.model.json.JSONModel&lt;/code&gt; 来初始化这个模型，并绑定到App这个根视图上。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;           &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oModel&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;model&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;json&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;JSONModel&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;model/mock.json&amp;#34;&lt;/span&gt;);
+           &lt;span style=&#34;color:#a6e22e&#34;&gt;oView&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;setModel&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;oModel&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;随后在这个视图及其子视图中，都可以直接通过类似 &lt;code&gt;{SoId}&lt;/code&gt; 这种语法格式来使用这个模型的数据字段，需要注意的是，如果需要绑定的字段是这个模型的根节点，需要在前面加一个 &lt;code&gt;/&lt;/code&gt; ，譬如在Master视图中绑定到列表的aggregate字段 &lt;code&gt;items&lt;/code&gt; ，是这样的语法格式：items=&amp;rdquo;{/SalesOrderCollection}&amp;rdquo; 。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;多语言模型：&lt;!-- raw HTML omitted --&gt;
+UI5中使用了 &lt;code&gt;i18n&lt;/code&gt; 机制来处理多语言问题。i18n是 internationalization的简称，在首位两个字母之间有18个字母……&lt;/p&gt;
+&lt;p&gt;具体如何使用非常的简单，&lt;!-- raw HTML omitted --&gt;
+首先创建一个资源文件 &lt;code&gt;messageBundle.properties&lt;/code&gt; ，这里我们在根目录创建了一个 &lt;code&gt;i18n&lt;/code&gt; 目录，在这里目录中集中存放相关的i18n文件。&lt;!-- raw HTML omitted --&gt;
+在这个资源文件里我们定义如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;      MasterTitle=Sales Orders \\
+      DetailTitle=Sales Order \\
+      StatusTextN=New \\
+      StatusTextP=In Process \\
+      ApproveButtonText=Approve \\
+      ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;左边的是KEY，右边的是对应的语言描述，如果我们需要定义一个中文的语言文件，那么只需要拷贝这个文件并重命名为 &lt;code&gt;messageBundle_zh-CN.properties&lt;/code&gt; ，并将对应的描述改为中文如下：&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;      MasterTitle=销售订单列表
+      DetailTitle=销售订单
+      StatusTextN=新建
+      StatusTextP=处理中
+      ApproveButtonText=批准
+      ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;系统会根据用户设定的浏览器语言顺序依次查找对应的语言资源文件，如果都找不到的话，就会找默认的 &lt;code&gt;messageBundle.properties&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;定义好了资源文件，我们接下来就在 &lt;code&gt;index.html&lt;/code&gt; 中通过 &lt;code&gt;sap.ui.model.resource.ResourceModel&lt;/code&gt; 来初始化这个资源模型，接着就可以把它绑定到视图或者控件中使用了。&lt;!-- raw HTML omitted --&gt;
+怎么使用呢？在视图中通过类似 &lt;code&gt;{i18n&amp;gt;MasterTiel}&lt;/code&gt; 这种语法格式来绑定到对应的空间的文本项上，实际使用中需要用引号把这个串包含进去。这个串中前面的 &lt;code&gt;i18n&amp;gt;&lt;/code&gt; 指的是引用绑定到本视图的叫做i18n的模型，这里的i18n是绑定时起的名字， &lt;code&gt;oView.setModel(i18nModel, &amp;quot;i18n&amp;quot;);&lt;/code&gt;  可以是任意符合格式的字符串。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;设备模型
+设备模型通过查询jQuery的device来获悉宿主是否手机，并设定相应的不同显示选项，然后将结果存为Json格式并初始化为一个JSON模型，最后绑定到模型中。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;工具方法&#34;&gt;工具方法&lt;/h2&gt;
+&lt;p&gt;大多数情况下，我们可以直接把业务数据直接绑定到控件中显示，但是在一些情况下，我们可能需要对其中的一些格式做一些调整，或者根据一些字段做一些简单的逻辑处理，
+这个时候，我们就需要用到大多数控件中的某些属性的 &lt;code&gt;formatter&lt;/code&gt; 方法。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-XML&#34; data-lang=&#34;XML&#34;&gt;	  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;ObjectStatus&lt;/span&gt;
+	      &lt;span style=&#34;color:#a6e22e&#34;&gt;text=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;		    path: &amp;#39;LifecycleStatus&amp;#39;,
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;		    formatter: &amp;#39;ui5.tutorial.bp.util.Formatter.statusText&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;		    }&amp;#34;&lt;/span&gt;
+	      &lt;span style=&#34;color:#a6e22e&#34;&gt;state=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;		     path: &amp;#39;LifecycleStatus&amp;#39;,
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;		     formatter: &amp;#39;ui5.tutorial.bp.util.Formatter.statusState&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;		     }&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;上面这个例子中，我们来看 &lt;code&gt;text&lt;/code&gt; 属性，如果我们希望直接把业务数据绑定到text中，我们这样定义 text=&amp;rdquo;{LifecycleStatus}&amp;quot;，但是我们知道这个字段可能是后台定义的技术字段，我们需要把它转化的比较有业务意义。
+所以这个时候，我们就需要用到 &lt;code&gt;formatter&lt;/code&gt; 了，首先定义 &lt;code&gt;path&lt;/code&gt; 告之需要绑定的字段，这里不需要用大括号，随后给 &lt;code&gt;formatter&lt;/code&gt; 赋予一个处理方法，这个方法可以定义在任何地方，我们这里是在util下单独定义了一个 &lt;code&gt;Fomatter.js&lt;/code&gt; 来集中处理这类需求。&lt;!-- raw HTML omitted --&gt;
+来看 &lt;code&gt;Formatter.js&lt;/code&gt; ，我们就看 &lt;code&gt;statusText&lt;/code&gt; 这个方法：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;statusText&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt;) {
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;bundle&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getModel&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;i18n&amp;#34;&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;getResourceBundle&lt;/span&gt;();
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;bundle&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getText&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;StatusText&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;?&amp;#34;&lt;/span&gt;);
+	},
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;path&lt;/code&gt; 中绑定的字段对应的值会作为参数传入，然后用这个值结合StatusText生成一个KEY，并在 &lt;code&gt;i18n&lt;/code&gt; 中取出相应的描述。&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;基本上这个最佳实践应用已经被剖析完成了，通过这样一个最佳实践 &lt;code&gt;Best Practice&lt;/code&gt; 的练习，我们学习到了一般的UI5应用的整体结构以及大多数重要控件的使用方法。&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>UI5入门系列之二： 最佳实践练习（上）</title>
+      <link>http://blog.qianmarv.xyz/post/openui5-starter2-part1/</link>
+      <pubDate>Thu, 13 Aug 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/openui5-starter2-part1/</guid>
+      
+        <description>&lt;p&gt;这个最佳实践练习的子系列又会分为若干篇，但是不会完全按照Tutorial里面的章节来分，因为我希望每一篇都是都是一个完整的练习，都能跑出来，而不仅仅是一个片段。&lt;/p&gt;
+&lt;p&gt;最后做出来的App是这样的。&lt;/p&gt;
+
+&lt;link rel=&#34;stylesheet&#34; href=&#34;http://blog.qianmarv.xyz/css/hugo-easy-gallery.css&#34; /&gt;
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;http://blog.qianmarv.xyz/ox-hugo/starter_2_1_1.png&#34; alt=&#34;SAP UI5最佳实践练习的最终界面&#34;/&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;http://blog.qianmarv.xyz/ox-hugo/starter_2_1_1.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&#34;首页&#34;&gt;首页&lt;/h2&gt;
+&lt;p&gt;我们先把首页做出来，还是以之前Hello World的代码框架开始吧。
+首先在 &lt;code&gt;&amp;lt;tomcat&amp;gt;/webapps/&lt;/code&gt; 下新建一个目录就叫 &lt;code&gt;ui5bp&lt;/code&gt; 吧，创建 &lt;code&gt;index.html&lt;/code&gt; ，代码如下：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;index.html&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;http-equiv&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;X-UA-Compatible&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;IE=edge&amp;#34;&lt;/span&gt; /&amp;gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!--&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;meta http&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;equiv=&amp;#34;Content&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;Type&amp;#34; content=&amp;#34;text/html;charset=UTF&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;8&amp;#34;/&amp;gt; &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;--&amp;gt;&lt;/span&gt;
+
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;charset&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;UTF-8&amp;#34;&lt;/span&gt;&amp;gt;
+
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;SAPUI5 Best Practice&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;
+
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap-ui-bootstrap&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;http://localhost:8080/openui5/resources/sap-ui-core.js&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-theme&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap_bluecrystal&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-libs&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.m&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-xx-bindingSyntax&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;complex&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-resourceroots&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;{
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        &amp;#34;ui5.tutorial.bp&amp;#34;: &amp;#34;./&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;    }&amp;#39;&lt;/span&gt; &amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+
+    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sapUiBody&amp;#34;&lt;/span&gt;&amp;gt;
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!--&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; This is where you place the UI5 button &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;--&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;打开浏览器，输入 &lt;code&gt;http://localhost:8080/ui5bp/&lt;/code&gt; 你应该可以看到淡蓝色的背景，除此以外，啥都没有。 &lt;!-- raw HTML omitted --&gt;
+这里要提一下，我们定义了一个命名空间 &lt;code&gt;ui5.tutorial.bp&lt;/code&gt; 把这个命名空间注册到根目录。后续我们定义或者引用资源都需要加上这个命名空间前缀。 &lt;!-- raw HTML omitted --&gt;
+打开开发者选项，也没有任何错误，那就成功了，继续下一步。&lt;/p&gt;
+&lt;h2 id=&#34;mvc框架&#34;&gt;MVC框架&lt;/h2&gt;
+&lt;p&gt;我们暂时不用Component来做模块化，我们先用最快最简单的方法让程序可以跑出个样子来，然后再慢慢的添加功能。 &lt;!-- raw HTML omitted --&gt;
+所以，我们先直接加入MVC。&lt;!-- raw HTML omitted --&gt;
+简单介绍下，MVC就是模型、视图和控制器的简称，一般的Web开发都会用到这种架构用来把前端的UI和业务逻辑分离。具体先不多介绍，直接做吧。&lt;/p&gt;
+&lt;p&gt;我们先大致规划一下，我们的应用是一个主从页面结构，会有一个Master的页面和Detail的页面，我们今天先创建一个Empty页面来替代Detail。
+我们会创建如下文件以及对应的目录：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;  ui5bp/
+  +-- view/
+  |     |
+  |     +-- App.view.js
+  |     +-- App.controller.js
+  |     +-- Empty.view.xml
+  |     +-- Master.controller.js
+  |     +-- Master.view.xml
+  |
+  +-- model/
+  |     |
+  |     +-- mock.json
+  +-- index.html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;我们最后把App放入到index的content中，把Master和Detail放到App中去，其中包含 &lt;code&gt;.view.&lt;/code&gt; 的文件是视图，用来定义UI，包含 &lt;code&gt;.controller.&lt;/code&gt; 的文件是控制器，用来处理逻辑。
+为了简化应用，我们暂时不使用在线的数据而是用一个json格式的文件数据作为我们的数据模型。这个文件你可以从这里&lt;a href=&#34;./attachment/mock.json&#34;&gt;下载&lt;/a&gt;。&lt;!-- raw HTML omitted --&gt;
+简单提一下，视图可以用html、xml、js、json这四种文件形式来定义，控制器一般则只能用js。&lt;/p&gt;
+&lt;p&gt;好了，那我们来看每一个文件的代码。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;view/App.view.js&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;jsview&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ui5.tutorial.bp.view.App&amp;#34;&lt;/span&gt;, {
+
+  &lt;span style=&#34;color:#a6e22e&#34;&gt;getControllerName&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; () {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ui5.tutorial.bp.view.App&amp;#34;&lt;/span&gt;;
+  },
+
+  &lt;span style=&#34;color:#a6e22e&#34;&gt;createContent&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;oController&lt;/span&gt;) {
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;// to avoid scroll bars on desktop the root view must be set to block display
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;setDisplayBlock&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;);
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;// create app
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;m&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;SplitApp&lt;/span&gt;();
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;// load the master page
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;master&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;xmlview&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Master&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ui5.tutorial.bp.view.Master&amp;#34;&lt;/span&gt;);
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;master&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getController&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;nav&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getController&lt;/span&gt;();
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;addPage&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;master&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;);
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;// load the empty page
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;empty&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;xmlview&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Empty&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ui5.tutorial.bp.view.Empty&amp;#34;&lt;/span&gt;);
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;addPage&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;empty&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;);
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;;
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;view/App.controller.js&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;controller&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ui5.tutorial.bp.view.App&amp;#34;&lt;/span&gt;, {
+
+  &lt;span style=&#34;color:#75715e&#34;&gt;/**
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;   * Navigates to another page
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;   * @param {string} pageId The id of the next page
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;   * @param {sap.ui.model.Context} context The data context to be applied to the next page (optional)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;   */&lt;/span&gt;
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;view/Master.view.xml&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;core:View&lt;/span&gt;
+  &lt;span style=&#34;color:#a6e22e&#34;&gt;controllerName=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ui5.tutorial.bp.view.Master&amp;#34;&lt;/span&gt;
+  &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.m&amp;#34;&lt;/span&gt;
+  &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns:core=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.core&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;Page&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;title=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Product List&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;subHeader&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;Bar&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;contentLeft&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;SearchField&lt;/span&gt;
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;search=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;handleSearch&amp;#34;&lt;/span&gt;
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;width=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;100%&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/SearchField&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/contentLeft&amp;gt;&lt;/span&gt;
+      &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/Bar&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/subHeader&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;List&lt;/span&gt;
+      &lt;span style=&#34;color:#a6e22e&#34;&gt;id=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;list&amp;#34;&lt;/span&gt;
+      &lt;span style=&#34;color:#a6e22e&#34;&gt;items=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{/SalesOrderCollection}&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;ObjectListItem&lt;/span&gt;
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;type=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Active&amp;#34;&lt;/span&gt;
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;press=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;handleListItemPress&amp;#34;&lt;/span&gt;
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;title=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{SoId}&amp;#34;&lt;/span&gt;
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;number=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{GrossAmount}&amp;#34;&lt;/span&gt;
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;numberUnit=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{CurrencyCode}&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;attributes&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;ObjectAttribute&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;text=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{BuyerName}&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/attributes&amp;gt;&lt;/span&gt;
+
+      &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/ObjectListItem&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/List&amp;gt;&lt;/span&gt;
+  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/Page&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/core:View&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;view/Master.controller.js&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;controller&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ui5.tutorial.bp.view.Master&amp;#34;&lt;/span&gt;, {
+
+  &lt;span style=&#34;color:#a6e22e&#34;&gt;handleSearch&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;evt&lt;/span&gt;) {
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;// create model filter
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;filters&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [];
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;query&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;evt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getParameter&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;query&amp;#34;&lt;/span&gt;);
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;query&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;query&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;) {
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;filter&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;model&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Filter&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SoId&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;model&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;FilterOperator&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Contains&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;query&lt;/span&gt;);
+      &lt;span style=&#34;color:#a6e22e&#34;&gt;filters&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;push&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;filter&lt;/span&gt;);
+    }
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;// update list binding
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getView&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;byId&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;list&amp;#34;&lt;/span&gt;);
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;binding&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getBinding&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;items&amp;#34;&lt;/span&gt;);
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;binding&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;filter&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;filters&lt;/span&gt;);
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;view/Empty.view.xml&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;core:View&lt;/span&gt;
+  &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.m&amp;#34;&lt;/span&gt;
+  &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns:core=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.core&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;Page&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/Page&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/core:View&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;最后我们需要把这些文件和首页关联起来。
+&lt;code&gt;index.html&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;http-equiv&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;X-UA-Compatible&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;IE=edge&amp;#34;&lt;/span&gt; /&amp;gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!--&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;meta http&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;equiv=&amp;#34;Content&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;Type&amp;#34; content=&amp;#34;text/html;charset=UTF&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;8&amp;#34;/&amp;gt; &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;--&amp;gt;&lt;/span&gt;
+
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;charset&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;UTF-8&amp;#34;&lt;/span&gt;&amp;gt;
+
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;SAPUI5 Best Practice&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;
+
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap-ui-bootstrap&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;http://localhost:8080/openui5/resources/sap-ui-core.js&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-theme&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap_bluecrystal&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-libs&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.m&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-xx-bindingSyntax&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;complex&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-resourceroots&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;{
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        &amp;#34;ui5.tutorial.bp&amp;#34;: &amp;#34;./&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;    }&amp;#39;&lt;/span&gt; &amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oView&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;view&lt;/span&gt;({
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;viewName&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ui5.tutorial.bp.view.App&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;JS&amp;#34;&lt;/span&gt;,
+    });
+    &lt;span style=&#34;color:#75715e&#34;&gt;// Using a local model for offline development
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oModel&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;model&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;json&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;JSONModel&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;model/mock.json&amp;#34;&lt;/span&gt;);
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;oView&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;setModel&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;oModel&lt;/span&gt;);
+
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;oView&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;placeAt&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;content&amp;#39;&lt;/span&gt;);
+    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sapUiBody&amp;#34;&lt;/span&gt;&amp;gt;
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!--&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; This is where you place the UI5 button &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;--&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;完工，打开 &lt;code&gt;http://localhost:8080/ui5bp/&lt;/code&gt; ，可以看到下图：&lt;/p&gt;
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;./images/starter_2_1_2.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;./images/starter_2_1_2.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Master.view.xml: &lt;!-- raw HTML omitted --&gt;
+这个页面大概是我们这次教程中最复杂的一个了，其中用到了这些控件：
+&lt;ul&gt;
+&lt;li&gt;Page&lt;/li&gt;
+&lt;li&gt;Bar&lt;/li&gt;
+&lt;li&gt;List&lt;/li&gt;
+&lt;li&gt;ObjectListItem&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Master.controler.js: &lt;!-- raw HTML omitted --&gt;
+目前我们只定义了一个方法 - 搜索。&lt;/li&gt;
+&lt;li&gt;Empty.view.xml: &lt;!-- raw HTML omitted --&gt;
+只是一个placeholder，因为Detail页面我们还没有创建，所以是一个空页面。&lt;/li&gt;
+&lt;li&gt;App.view.js: &lt;!-- raw HTML omitted --&gt;
+容纳Master和Detail页面的容器。&lt;/li&gt;
+&lt;li&gt;App.controller.js &lt;!-- raw HTML omitted --&gt;
+之后会在这里定义Master和Detail页面之间的导航功能&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>UI5入门系列之一：扫盲与热身（下）</title>
+      <link>http://blog.qianmarv.xyz/post/openui5-starter1-part2/</link>
+      <pubDate>Sat, 25 Jul 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/openui5-starter1-part2/</guid>
+      
+        <description>&lt;p&gt;介绍UI5代码结构以及一个重要的库 &lt;code&gt;sap.m&lt;/code&gt; .&lt;/p&gt;
+&lt;h2 id=&#34;ui5代码结构&#34;&gt;UI5代码结构&lt;/h2&gt;
+&lt;p&gt;上一次我们一起用了20秒的时间完成一个UI5版的Hello World。应用打开后有一个按钮，按钮的文字是Hello World，点击这个按钮之后，按钮会慢慢的消失掉(Fade out)。&lt;/p&gt;
+&lt;p&gt;那我们这次就来看一看为了实现这么一个简单的功能，OpenUI5框架至少需要提供哪些内容，或者说我们通过这么一个简单的应用来看一下一个最简单的UI5的应用程序的结构。&lt;/p&gt;
+&lt;p&gt;HTML部分应该不用多说，我们只看和UI5相关的代码，第一部分我们称为Bootstrap，包含以下代码段：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-HTML&#34; data-lang=&#34;HTML&#34;&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!--&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; 1.) Load SAPUI5 (from a remote server), select theme and control library &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;--&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap-ui-bootstrap&amp;#34;&lt;/span&gt;
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;http://localhost:8080/openui5/resources/sap-ui-core.js&amp;#34;&lt;/span&gt;
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-theme&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap_bluecrystal&amp;#34;&lt;/span&gt;
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-libs&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.commons&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这是一段嵌入的javascript代码，首先引入了UI5的核心运行时库sap-ui-core.js，接下来代码通过标签设定了两个属性，分别是主题： &lt;code&gt;data-sap-ui-theme&lt;/code&gt; ，以及在应用中将会引用到的UI库： &lt;code&gt;data-sap-ui-lib&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;接下来这一段我们称为Application，我们的应用的主体就在这里了，包含的是如下代码段：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;      &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!--&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2.&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;Create&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;UI5&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;button&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;and&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;place&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;it&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;onto&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;the&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;page&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;script&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color:#75715e&#34;&gt;// create the button instance
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;Var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;myButton&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;commons&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Button&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;btn&amp;#34;&lt;/span&gt;);
+
+        &lt;span style=&#34;color:#75715e&#34;&gt;// set properties, e.g. the text (there is also a shorter way of setting several properties)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;myButton&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;setText&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello World!&amp;#34;&lt;/span&gt;);
+
+        &lt;span style=&#34;color:#75715e&#34;&gt;// attach an action to the button&amp;#39;s &amp;#34;press&amp;#34; event (use jQuery to fade out the button)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;myButton&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;attachPress&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){&lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#btn&amp;#34;&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;fadeOut&lt;/span&gt;()});
+
+        &lt;span style=&#34;color:#75715e&#34;&gt;// place the button into the HTML element defined below
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;myButton&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;placeAt&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;uiArea&amp;#34;&lt;/span&gt;);
+
+        &lt;span style=&#34;color:#75715e&#34;&gt;// an alternative, more jQuery-like notation for the same is:
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;/*
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;        $(function(){
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;            $(&amp;#34;#uiArea&amp;#34;).sapui(&amp;#34;Button&amp;#34;, &amp;#34;btn&amp;#34;, {
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;                text:&amp;#34;Hello World!&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;                press:function(){$(&amp;#34;#btn&amp;#34;).fadeOut();}
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;            });
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;         });
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;         */&lt;/span&gt;
+     &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;s&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;c&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;r&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;p&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;t&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这段代码也很容易理解，首先创建一个button的对象，然后设置button对象显示的文本为&amp;quot;Hello World!&amp;quot;，接着为这个按钮注册一个点击事件——按下去的时候按钮自己会消失，最后把这个按钮放在一个叫做uiArea的地方。
+uiArea在哪里呢？接下来看第三段代码。&lt;/p&gt;
+&lt;p&gt;第三段代码就称之为UI-AREA：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-HTML&#34; data-lang=&#34;HTML&#34;&gt;  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;uiArea&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;一个div，并将其id设置为我们之前所用到的uiArea。&lt;/p&gt;
+&lt;p&gt;简单吗？非常简单，第一部分Bootstrap引入运行环境以及一些常用配置文件，第二部分Application中加入HTML控件以及相应的后台数据和业务逻辑，并将其放入到第三部分UI-AREA中。&lt;/p&gt;
+&lt;p&gt;最后还是再看一下，有些啰嗦，熟悉UI5开发的可以直接无视，但是对于UI5开的新手来说，掌握了这个基本结构，就清楚了UI5程序的最基本的脉络。&lt;/p&gt;
+
+&lt;link rel=&#34;stylesheet&#34; href=&#34;http://blog.qianmarv.xyz/css/hugo-easy-gallery.css&#34; /&gt;
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;http://blog.qianmarv.xyz/ox-hugo/ui5_app.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;http://blog.qianmarv.xyz/ox-hugo/ui5_app.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&#34;ui5-mobile&#34;&gt;UI5 Mobile&lt;/h2&gt;
+&lt;p&gt;UI5中最重要的库是sap.m，目前大多数SAP Fiori的应用都是基于这个库来开发，使用这个库可以让应用在不同的终端、平台之前无缝切换，响应式的设计可以让应用的UI在不同分辨率的设备上呈现出最适合的界面。&lt;/p&gt;
+&lt;h3 id=&#34;一个简单的例子&#34;&gt;一个简单的例子&lt;/h3&gt;
+&lt;p&gt;下面我们用sap.m库来开发一个典型的移动端网页应用，这个应用由两个页面组成，两个页面可以自由切换，第二页面有一个按钮，点击可以显示当前客户端的设备信息。&lt;/p&gt;
+&lt;p&gt;直接上代码如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!DOCTYPE HTML&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;http-equiv&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;X-UA-Compatible&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;IE=edge&amp;#34;&lt;/span&gt; /&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;http-equiv&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Content-Type&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text/html;charset=UTF-8&amp;#34;&lt;/span&gt;/&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;Mobile App Example&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;
+  &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!--&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; only load the mobile lib &amp;#34;sap.m&amp;#34; and the &amp;#34;sap_bluecrystal&amp;#34; theme &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;--&amp;gt;&lt;/span&gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap-ui-bootstrap&amp;#34;&lt;/span&gt;
+          &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;http://localhost:8080/openui5/resources/sap-ui-core.js&amp;#34;&lt;/span&gt;
+          &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-libs&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.m&amp;#34;&lt;/span&gt;
+          &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-theme&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap_bluecrystal&amp;#34;&lt;/span&gt;&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+      &lt;span style=&#34;color:#75715e&#34;&gt;// create a mobile App
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;m&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;App&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;myApp&amp;#34;&lt;/span&gt;, {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;initialPage&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;page1&amp;#34;&lt;/span&gt;});
+
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;page1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;m&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Page&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;page1&amp;#34;&lt;/span&gt;, {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;title&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Initial Page&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;content&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;m&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Button&lt;/span&gt;({
+          &lt;span style=&#34;color:#a6e22e&#34;&gt;text&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Go to Page 2&amp;#34;&lt;/span&gt;,
+          &lt;span style=&#34;color:#a6e22e&#34;&gt;press&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;to&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;page2&amp;#34;&lt;/span&gt;);
+          }
+        })
+      });
+
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;page2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;m&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Page&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;page2&amp;#34;&lt;/span&gt;, {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;title&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Page 2&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;showNavButton&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;navButtonPress&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){
+          &lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;back&lt;/span&gt;();
+        }
+      });
+
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oTextarea&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;m&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;TextArea&lt;/span&gt;({
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;output area&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;width&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;100%&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;rows&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt;
+      });
+
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oButton&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;m&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Button&lt;/span&gt;({
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;text&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Click to get Device Information&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;enabled&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;press&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;output&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;;
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;property&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Device&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;system&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;SYSTEMTYPE&lt;/span&gt;) {
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;systemtype&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Device&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;system&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;SYSTEMTYPE&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;property&lt;/span&gt;];
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;output&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;systemtype&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;: &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Device&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;system&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;systemtype&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;;\n&amp;#39;&lt;/span&gt;;
+          }
+          &lt;span style=&#34;color:#a6e22e&#34;&gt;oTextarea&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;setValue&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;output&lt;/span&gt;);
+        }
+      });
+
+      &lt;span style=&#34;color:#a6e22e&#34;&gt;page2&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;addContent&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;oButton&lt;/span&gt;);
+      &lt;span style=&#34;color:#a6e22e&#34;&gt;page2&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;addContent&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;oTextarea&lt;/span&gt;);
+
+      &lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;addPage&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;page1&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;addPage&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;page2&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// add both pages to the App
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;placeAt&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// place the App into the HTML document
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sapUiBody&amp;#34;&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在tomcat下的webapps/ex1下新建一个文件叫做index2.html，把上面的代码贴入，保存后直接打开浏览器运行：&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;a href=&#34;http://localhost:8080/ex1/index2.html&#34;&gt;http://localhost:8080/ex1/index2.html&lt;/a&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;打开浏览器的开发者工具，以Chrome为例，按F12，选择Device为 Apple iPhone 6,并按F5刷新，你应该可以看到如下界面：
+点击Go to Page2，切换到第二个页面，然后点击Click to get Device Information，可以得到当前设备的信息。&lt;/p&gt;
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;http://blog.qianmarv.xyz/ox-hugo/ui5_mobile_app_1.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;http://blog.qianmarv.xyz/ox-hugo/ui5_mobile_app_1.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;用到的控件&#34;&gt;用到的控件&lt;/h3&gt;
+&lt;p&gt;以上是一个很简单的例子，从中我们用到了这么几个控件：&lt;/p&gt;
+&lt;h4 id=&#34;sap-dot-m-dot-app&#34;&gt;sap.m.App&lt;/h4&gt;
+&lt;p&gt;一般而言sap.m.App (以下简称App)是作为UI5移动应用的根节点元素(root element)，所以在一个UI5 移动应用的一开始，我们就创建一个App对象，并把这个App置入UI Area中。&lt;/p&gt;
+&lt;p&gt;我们可以对这个控件做一些定制化，查看这个控件的API Reference，看到它有这么几个属性：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;homeIcon&lt;/li&gt;
+&lt;li&gt;backgroundColor&lt;/li&gt;
+&lt;li&gt;backgroundImage&lt;/li&gt;
+&lt;li&gt;backgroundRepeat&lt;/li&gt;
+&lt;li&gt;backgroundOpacity&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们随便挑一个属性来看一下怎么用，就设置背景颜色吧，使用 &lt;code&gt;backgroundColor&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;找到如下代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;m&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;App&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;myApp&amp;#34;&lt;/span&gt;, {&lt;span style=&#34;color:#a6e22e&#34;&gt;initialPage&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;page1&amp;#34;&lt;/span&gt;});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;改为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;      &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;m&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;App&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;myApp&amp;#34;&lt;/span&gt;, {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;backgroundColor&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;,
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;initialPage&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;page1&amp;#34;&lt;/span&gt;});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重新打开应用的url，显示效果如下：&lt;/p&gt;
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;http://blog.qianmarv.xyz/ox-hugo/ui5_mobile_app_2.png&#34; /&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;http://blog.qianmarv.xyz/ox-hugo/ui5_mobile_app_2.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;好吧，很难看不是吗，所以尽量不要去修改背景、前景之类的，因为我们有指定主题，所以如果你需要定制不同的界面风格，尽量通过定制主题来实现，这个我们在之后会一起来探讨。&lt;/p&gt;
+&lt;h4 id=&#34;sap-dot-m-dot-page&#34;&gt;sap.m.Page&lt;/h4&gt;
+&lt;p&gt;App是应用的主容器，但是一个应用会有多个页面，每一个页面就是一个Page。对一个Mobile来说，一个应用每次只能显示一个Page到当前屏幕。如果是一个Tablet或者Desktop，可以显示一个作为导航的 Page和一个详细信息的Page，比如典型的Master Detail应用。&lt;/p&gt;
+&lt;p&gt;在上面的例子中，我们创建了两个Page，并通过App的addPage方法把两个Page都添加到App中，同时指定page1作为初始页面。&lt;/p&gt;
+&lt;p&gt;页面的导航或者说路由如何实现？可以看到UI5中很大程度上封装并简化了导航的操作，通过App的实例对象的to方法和back方法可以方便的在Page之间进行切换，当然前提是你已经把Page添加到App中。如果你想在运行时动态添加页面的话，在添加页面之前是不能通过to方法来导航的。当然了，因为这个例子只有两个页面，所以相对来说页面导航比较简单，如果是一个复杂的应用，页面深度在两层以上，简单的通过App的to和back就无法满足需求了，这就需要用到component和route来实现了，这里先简单的提一下，以后应该会有专题来介绍的。&lt;/p&gt;
+&lt;p&gt;总的来说，Page是一个移动应用显示屏幕的最基本(Fundamental)容器，屏幕上的其他控件都需要放在Page的content下，或者通过Page的AddContent方法来逐个加入。&lt;/p&gt;
+&lt;h4 id=&#34;sap-dot-m-dot-textarea&#34;&gt;sap.m.TextArea&lt;/h4&gt;
+&lt;p&gt;这个不要多介绍了，多行文本框，可以显示多行文本，例子中展示了一个最基本的用法。&lt;/p&gt;
+&lt;h4 id=&#34;sap-dot-m-dot-button&#34;&gt;sap.m.Button&lt;/h4&gt;
+&lt;p&gt;按钮，也无需多介绍，按钮作为网页中最常见的控件在UI5中有很多种样式和用法，我们这里用的是一个最基本的按钮控件。这里给按钮添加了一个方法，通过sap.ui.Device类让其可以显示当前设备的类型。&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;UI5学习入门系列的第一篇：扫盲与热身到这里就结束了，我们从中了解了UI5的起源、和SAP Fiori的关系，并且做了两个小练习，一个用了UI5通用控件库，另一个用了UI5的移动库，代码本身的功能不重要，最主要的是对UI5的应用有一个直观的感受，大体知道UI5的应用的结构，在后续的文章中我会一一介绍一些重要的控件及其用法，最后我们通过一个综合的练习来结束入门系列，这是我目前的想法。&lt;/p&gt;
+&lt;p&gt;要说明的是，在以后的系列博文中我们基本上都会使用移动库 &lt;code&gt;sap.m&lt;/code&gt; 来进行开发，这也是最符合SAP的Best Practice。&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>UI5入门系列之一：扫盲与热身（上）</title>
+      <link>http://blog.qianmarv.xyz/post/openui5-starter1-part1/</link>
+      <pubDate>Thu, 23 Jul 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/openui5-starter1-part1/</guid>
+      
+        <description>&lt;p&gt;什么是SAP Fiori？
+了解SAP UI5必须要从SAP Fiori开始，两者概念经常被混淆，而两者也确实有着非常紧密的关系。&lt;/p&gt;
+&lt;h2 id=&#34;扫盲&#34;&gt;扫盲&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;什么是SAP Fiori？&lt;/p&gt;
+&lt;p&gt;了解SAP UI5必须要从SAP Fiori开始，两者概念经常被混淆，而两者也确实有着非常紧密的关系。
+用过SAP的同学们都对SAP的传统的界面（SAP GUI）表示“呵呵”，其实传统的SAP GUI的界面功能还是很强大的，但是对于一个新用户来说，学会使用这套界面就需要花上一两
+周的时间，所以SAP入门的第一步就是学会使用SAP GUI。此外，传统的SAP GUI只能在Windows和Mac上使用，对于移动端用户没有直接的解决方案，WEBGUI的体验也非常不好。&lt;/p&gt;
+
+&lt;link rel=&#34;stylesheet&#34; href=&#34;http://blog.qianmarv.xyz/css/hugo-easy-gallery.css&#34; /&gt;
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;http://blog.qianmarv.xyz/ox-hugo/sapgui_va01.png&#34; alt=&#34;SAP GUI创建销售订单的界面&#34;/&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;http://blog.qianmarv.xyz/ox-hugo/sapgui_va01.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;鉴于此，SAP开发了一整套新的用户交互系统（UX)，叫做SAP Fiori。SAP Fiori的官方定义如下:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SAP Fiori is the new user experience (UX) for SAP software that applies
+modern design principles. SAP solutions, such as the SAP Business Suite
+powered by SAP HANA, are using the SAP Fiori UX to provide a personalized,
+responsive, and simple user experience.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;抓住几个关键字， &lt;code&gt;modern design principles&lt;/code&gt; 就是符合当前的前端设计潮流，比如简洁化、平面化， &lt;code&gt;personalized&lt;/code&gt; 就是更个性化，更以用户为中心，每个用户的界面都
+是不一样的， &lt;code&gt;responsive&lt;/code&gt; 可以自适应不同的终端， &lt;code&gt;simple user experience&lt;/code&gt; 也是最终目的，让用户使用起来最简单，一目了然。现在最新发布的SAP第四代ERP产品SAP S/4 HANA就是完全基于SAP Fiori。&lt;/p&gt;
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;http://blog.qianmarv.xyz/ox-hugo/sap_fiori_overview.png&#34; alt=&#34;SAP Fiori界面&#34;/&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;http://blog.qianmarv.xyz/ox-hugo/sap_fiori_overview.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如果想了解更多SAP Fiori的信息可以查看&lt;a href=&#34;http://experience.sap.com/fiori/#overview&#34;&gt;官网&lt;/a&gt; 以及 &lt;a href=&#34;http://scn.sap.com/docs/DOC-41598&#34;&gt;All Things SAP Fiori&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么SAP UI5、OPEN UI5？&lt;/p&gt;
+&lt;p&gt;SAP UI5是SAP UI Development Toolkit for HTML5的简称，它是一套基于HTML5的UI开发组件，是SAP为了快速开发前述的Fiori风格的UI、构建企业级产品的javascript框架，
+拥有丰富的界面控件、CSS页面展示模板、上百个工业图标，同时支持控件的扩展。&lt;/p&gt;
+&lt;p&gt;那什么又是OPEN UI5？SAP基于Apache 2.0协议将这套控件贡献给开源社区，形成的开源版本叫做OPEN UI5，基本上这套版本主要还是由SAP更新，而SAP UI5和OPEN UI5的功能是
+比较接近的，或者说OPEN UI5相比于SAP UI5来说，重要功能基本没有减少。&lt;/p&gt;
+&lt;p&gt;我们接下来不做区分，统称UI5，而由于OPEN UI5是开源的，所以基本上以后用到的库都会是基于OPEN UI5。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;UI5和SAP Fiori是什么关系？&lt;/p&gt;
+&lt;p&gt;从两者的定义可以看出来，UI5是一个具体的前端框架，而SAP Fiori是一个前端交互标准，SAP官方基于UI5框架开发符合Fiori风格的App的合集一般称为SAP Fiori Apps。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;搭建环境&#34;&gt;搭建环境&lt;/h2&gt;
+&lt;p&gt;简单的扫盲之后，我们来亲自创建一个UI5的应用吧。
+工欲善其事必先利其器，首先我们要搭建UI5的开发和运行环境。&lt;/p&gt;
+&lt;h3 id=&#34;openui5运行库&#34;&gt;OpenUI5运行库&lt;/h3&gt;
+&lt;p&gt;截止到今天（2015-07-23），OpenUI5的最新文档版本是1.28.12，官网(&lt;a href=&#34;http://openui5.org/download.html&#34;&gt;Download&lt;/a&gt;)提供了运行时环境以及带完整文档的SDK版本下载，由于我们经常需要查询API文档，所以下载SDK版本是
+一个更好的选择。&lt;/p&gt;
+&lt;h3 id=&#34;运行环境&#34;&gt;运行环境&lt;/h3&gt;
+&lt;p&gt;目前企业级的UI5产品一般运行在SAP HANA或者SAP NetWeaver下，我们由于是做练习，而且目前的练习还不需要用到后台数据，所以Tomcat就可以满足我们需求了。
+下载tomcat地址：&lt;a href=&#34;http://tomcat.apache.org/&#34;&gt;http://tomcat.apache.org/&lt;/a&gt;
+7.0或者8.0都可以，当然不管哪个版本，JDK都是需要的，自行下载并配置好环境，启动tomcat。
+如果一切运行正常的话，本地浏览器打开 &lt;a href=&#34;http://localhost:8080&#34;&gt;http://localhost:8080&lt;/a&gt; 应该可以看到tomcat的界面。&lt;/p&gt;
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;http://blog.qianmarv.xyz/ox-hugo/tomcat.png&#34; alt=&#34;Tomcat Web界面首页&#34;/&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;http://blog.qianmarv.xyz/ox-hugo/tomcat.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在tomcat的webapps目录下创建一个目录，比如openui5，然后把之前下载的OPENUI5的SDK解压，扔到openui5目录下，目录结构类似 &lt;code&gt;&amp;lt;tomcat path&amp;gt;/webapps/openui5&lt;/code&gt; ，此时打开 &lt;a href=&#34;http://localhost:8080/openui5&#34;&gt;http://localhost:8080/openui5&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;http://blog.qianmarv.xyz/ox-hugo/openui5.png&#34; alt=&#34;OpenUI5 SDK首页&#34;/&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;http://blog.qianmarv.xyz/ox-hugo/openui5.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;有了这个文档，基本上你就可以跟着上面的例子一步一步去练习了。在之后准备的一系列的入门教程中，很多内容也是来自于这份SDK文档。&lt;/p&gt;
+&lt;p&gt;怎么使用这份文档？我个人觉得非常有用的是这里 &lt;a href=&#34;http://localhost:8080/openui5/explored.html&#34;&gt;http://localhost:8080/openui5/explored.html&lt;/a&gt;
+从中你基本上可以找到所有的控件，长什么样以及怎么使用都有详细的例子。&lt;/p&gt;
+&lt;h3 id=&#34;开发环境&#34;&gt;开发环境&lt;/h3&gt;
+&lt;p&gt;SAP UI5有Eclipse的插件，我不太清楚对于OpenUI5这个插件是不是也可以使用。同时，我觉得手工来建立文件目录更有助于对UI5项目的结构的理解。所以我的建议是任意一种
+带语法高亮的文本编辑器即可。推荐的有EditPlus++，Sublime Text或者Emacs、VIM。&lt;/p&gt;
+&lt;h2 id=&#34;创建第一个ui5应用&#34;&gt;创建第一个UI5应用&lt;/h2&gt;
+&lt;p&gt;按照传统，我们需要写一个能够输出 &lt;strong&gt;Hello World&lt;/strong&gt; 的应用作为第一个应用。&lt;/p&gt;
+&lt;p&gt;在&lt;!-- raw HTML omitted --&gt;/webapps/下新建一个目录，叫ex1或者任意你喜欢的名字，然后新建一个文件index.html，把下面的代码贴入。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+      &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;http-equiv&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;X-UA-Compatible&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;IE=edge&amp;#34;&lt;/span&gt; /&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;http-equiv&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Content-Type&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text/html;charset=UTF-8&amp;#34;&lt;/span&gt;/&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;SAPUI5 in 20 Seconds&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;&amp;gt;
+        &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!--&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; 1.) Load SAPUI5 (from a remote server), select theme and control library &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;--&amp;gt;&lt;/span&gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap-ui-bootstrap&amp;#34;&lt;/span&gt;
+                &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;http://localhost:8080/openui5/resources/sap-ui-core.js&amp;#34;&lt;/span&gt;
+                &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-theme&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap_bluecrystal&amp;#34;&lt;/span&gt;
+                &lt;span style=&#34;color:#a6e22e&#34;&gt;data-sap-ui-libs&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sap.ui.commons&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+
+        &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!--&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; 2.) Create a UI5 button and place it onto the page &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;--&amp;gt;&lt;/span&gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+          &lt;span style=&#34;color:#75715e&#34;&gt;// create the button instance
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;          &lt;span style=&#34;color:#a6e22e&#34;&gt;Var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;myButton&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ui&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;commons&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Button&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;btn&amp;#34;&lt;/span&gt;);
+
+          &lt;span style=&#34;color:#75715e&#34;&gt;// set properties, e.g. the text (there is also a shorter way of setting several properties)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;          &lt;span style=&#34;color:#a6e22e&#34;&gt;myButton&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;setText&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello World!&amp;#34;&lt;/span&gt;);
+
+          &lt;span style=&#34;color:#75715e&#34;&gt;// attach an action to the button&amp;#39;s &amp;#34;press&amp;#34; event (use jQuery to fade out the button)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;          &lt;span style=&#34;color:#a6e22e&#34;&gt;myButton&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;attachPress&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){&lt;span style=&#34;color:#a6e22e&#34;&gt;$&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#btn&amp;#34;&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;fadeOut&lt;/span&gt;()});
+
+          &lt;span style=&#34;color:#75715e&#34;&gt;// place the button into the HTML element defined below
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;          &lt;span style=&#34;color:#a6e22e&#34;&gt;myButton&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;placeAt&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;uiArea&amp;#34;&lt;/span&gt;);
+
+          &lt;span style=&#34;color:#75715e&#34;&gt;// an alternative, more jQuery-like notation for the same is:
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;          &lt;span style=&#34;color:#75715e&#34;&gt;/*
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;          $(function(){
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;          $(&amp;#34;#uiArea&amp;#34;).sapui(&amp;#34;Button&amp;#34;, &amp;#34;btn&amp;#34;, {
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;          text:&amp;#34;Hello World!&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;          press:function(){$(&amp;#34;#btn&amp;#34;).fadeOut();}
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;          });
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;          });
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;          */&lt;/span&gt;
+        &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+      &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+      &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sapUiBody&amp;#34;&lt;/span&gt;&amp;gt;
+
+        &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!--&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; This is where you place the UI5 button &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;--&amp;gt;&lt;/span&gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;uiArea&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+      &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;html&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个例子在SDK文档中在UI Development Toolkit for HTML(OpenUI5) -&amp;gt; Get Started -&amp;gt; Tutorials -&amp;gt; Create Your First OpenUI5 Application。这里是相同的拷贝，只是对于  UI5库的定位稍作改动，定位到我们自己的本地资源中。如果你之前没有下载完整的SDK，  而是只下载了运行时环境，那么只要把resource这个目录放在当前的项目目录中，比如ex1/resources，然后把以上这段代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;http://localhost:8080/openui5/resources/sap-ui-core.js&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;换成下面的即可。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;./resources/sap-ui-core.js&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;好了，现在我们打开 &lt;a href=&#34;http://localhost:8080/ex1&#34;&gt;http://localhost:8080/ex1&lt;/a&gt; 你将会看到以下：&lt;/p&gt;
+
+
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure  itemprop=&#34;associatedMedia&#34;
+  itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;http://blog.qianmarv.xyz/ox-hugo/ex1.png&#34; alt=&#34;第一个练习Hello World&#34;/&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;http://blog.qianmarv.xyz/ox-hugo/ex1.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如果你看到上面的界面，恭喜你，我们完成了这趟UI5之旅的第一步。&lt;/p&gt;
+&lt;p&gt;今天就到这里吧，在下篇中，我们将会探究我们写的这段短短的代码具体是什么意思。&lt;/p&gt;</description>
       
     </item>
     

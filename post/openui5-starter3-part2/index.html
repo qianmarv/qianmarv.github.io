@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>UI5入门系列之三：MVC （下） - 视图与控制器 - 知行合一</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="qianmarv" />
+  <meta name="description" content="继续来学习UI5的MVC模型吧，这次我们来探讨视图与控制器。
+" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.63.1" />
+
+
+<link rel="canonical" href="http://blog.qianmarv.xyz/post/openui5-starter3-part2/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css" integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="UI5入门系列之三：MVC （下） - 视图与控制器" />
+<meta property="og:description" content="继续来学习UI5的MVC模型吧，这次我们来探讨视图与控制器。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.qianmarv.xyz/post/openui5-starter3-part2/" />
+<meta property="article:published_time" content="2015-09-15T00:00:00+08:00" />
+<meta property="article:modified_time" content="2015-09-15T00:00:00+08:00" />
+<meta itemprop="name" content="UI5入门系列之三：MVC （下） - 视图与控制器">
+<meta itemprop="description" content="继续来学习UI5的MVC模型吧，这次我们来探讨视图与控制器。">
+<meta itemprop="datePublished" content="2015-09-15T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2015-09-15T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="2520">
+
+
+
+<meta itemprop="keywords" content="SAPUI5," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="UI5入门系列之三：MVC （下） - 视图与控制器"/>
+<meta name="twitter:description" content="继续来学习UI5的MVC模型吧，这次我们来探讨视图与控制器。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">知行合一</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/">首页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/post/">全部</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/about/">关于</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      知行合一
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/">首页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/post/">全部</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/about/">关于</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">UI5入门系列之三：MVC （下） - 视图与控制器</h1>
+      
+      <div class="post-meta">
+        <time datetime="2015-09-15" class="post-time">
+          2015-09-15
+        </time>
+        <div class="post-category">
+            <a href="http://blog.qianmarv.xyz/categories/%E7%BC%96%E7%A8%8B/"> 编程 </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#视图">视图</a>
+      <ul>
+        <li><a href="#视图的加载">视图的加载</a></li>
+        <li><a href="#视图的实例化">视图的实例化</a></li>
+        <li><a href="#预定义的视图类型">预定义的视图类型</a></li>
+      </ul>
+    </li>
+    <li><a href="#控制器">控制器</a>
+      <ul>
+        <li><a href="#生命周期--lifecyle-hooks">生命周期 (Lifecyle Hooks)</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p>继续来学习UI5的MVC模型吧，这次我们来探讨视图与控制器。</p>
+<h2 id="视图">视图</h2>
+<p>在MVC中，视图用来定义和渲染UI。在UI5中，视图的类型是可以自定义的，除了以下预定义的四种视图类型之外，你也可以定制自己的视图类型。
+预定的四种视图类型如下：<!-- raw HTML omitted --></p>
+<ul>
+<li>XML view</li>
+<li>JSON view</li>
+<li>JS view</li>
+<li>HTML view</li>
+</ul>
+<p>如果你想定义自己的视图类型，可以通过扩展 <code>sap.ui.core.mvc.View</code> 这个基类来实现。</p>
+<h3 id="视图的加载">视图的加载</h3>
+<p>视图可以通过异步或者同步的方式加载，默认是同步的方式。视图的工厂函数通过同步的方式请求并传入视图定义的源代码并返回一个视图的实例。但是这种方式会导致在加载视图的时候UI界面卡住，而且也有可能会导致视图在初始化期间一些函数不能够被正常调用。
+所以，为了避免这种情况，可以通过异步（asynchronous）的方式来加载视图，所有的视图类型都支持异步的方式。</p>
+<p>以下是一个同步加载视图，视图实例被创建之后放到id为uiArea的DOM元素中，随后视图会被渲染。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">oView</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sap</span>.<span style="color:#a6e22e">ui</span>.<span style="color:#a6e22e">xmlview</span>({ <span style="color:#a6e22e">viewName</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">“</span><span style="color:#a6e22e">sample</span>.<span style="color:#a6e22e">view</span><span style="color:#960050;background-color:#1e0010">”</span> });
+<span style="color:#75715e">// the instance is available now
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">oView</span>.<span style="color:#a6e22e">placeAt</span>(<span style="color:#960050;background-color:#1e0010">“</span><span style="color:#a6e22e">uiArea</span><span style="color:#960050;background-color:#1e0010">”</span>);
+</code></pre></div><p>以下的代码片段是一个异步模式加载视图的例子，请求视图工厂函数创建视图实例，但是此时由于这个请求是一个异步的模式，视图实例还没有ready，所以我们不能马上用 <code>placeAt</code> 来把它放到DOM元素中，我们必须等待View.prototype.loaded()执行完毕之后发出的Promise之后，在 <code>then()</code> 中才能真正操作已经实例化完毕的视图。
+如果对于 <code>jQuery</code> 的递延、回调等等异步概念不太了解的，可以阅读这篇文章<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，如果英文不错的可以直接看jQuery的官方API<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。</p>
+<h3 id="视图的实例化">视图的实例化</h3>
+<p>其实前面也已经提到了，UI5通过 <code>sap.ui.view</code> 这个工厂函数来实例化视图。<!-- raw HTML omitted -->
+这个工厂函数可以接受如下参数：<!-- raw HTML omitted --></p>
+<ul>
+<li><code>type</code> : <!-- raw HTML omitted -->
+类型可以是预定义的 <code>JSON</code>, <code>JS</code>, <code>XML</code>, 或者 <code>HTML</code> ， 这些类型都被定义成了枚举类型，所以在引用的时候可以直接用 <code>sap.ui.core.mvc.ViewType</code> 下面的这四个类型的大写字符串就可以，比如 <code>sap.ui.core.mvc.ViewType.XML</code> 就是代表XML视图，当然直接用字符串 &ldquo;XML&rdquo; 也是可以的，规范化起见最好还是使用枚举类型而不是直接使用字符串字面量。</li>
+<li><code>viewName</code> : <!-- raw HTML omitted -->
+视图的名字，工厂函数通过这个名字去找到视图的源码。</li>
+<li><code>viewContent</code> : <!-- raw HTML omitted -->
+仅仅和XML视图以及JSON视图相关，如果一个视图很简单（比如就一两个控件），可以通过这个属性来定义视图的内容，当 <code>viewName</code> 和 <code>viewContent</code> 同时定义的话，只有viewName会起作用，而viewContent会被忽略。</li>
+<li><code>Controller</code> :<!-- raw HTML omitted -->
+可以是任意控制器的实例，如果这里给定了控制器，则视图中定义的控制器会被覆盖。</li>
+<li><code>viewData</code> : <!-- raw HTML omitted -->
+仅JS视图可以使用这个属性，viewData可以用来保存一些用户自定义的数据，并且在整个视图及对应的控制器的生命周期中这些数据都是可用的。</li>
+</ul>
+<h3 id="预定义的视图类型">预定义的视图类型</h3>
+<h4 id="js-view">JS View</h4>
+<p>定一个JS view文件只需要把文件名命为类似xxx.view.js的形式就可以了，其中xxx就是视图的名字，在实例化视图的时候，这个名字就是需要传给工厂函数的viewName，当然，记得加上命名空间。</p>
+<p>我们需要实现以下两个方法来完成JS视图的定义：</p>
+<ul>
+<li><code>getControllerName()</code> : <!-- raw HTML omitted -->
+指定属于该视图的控制器，如果该方法没有实现，或者返回空，则这个视图就没有控制器</li>
+<li><code>createContent()</code> : <!-- raw HTML omitted -->
+当对应的控制器被初始化之后，这个方法会被而且仅会被调用一次来初始化UI。</li>
+</ul>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">   <span style="color:#a6e22e">sap</span>.<span style="color:#a6e22e">ui</span>.<span style="color:#a6e22e">jsview</span>(<span style="color:#e6db74">&#34;sap.hcm.Address&#34;</span>, {  <span style="color:#75715e">// this View file is called Address.view.js
+</span><span style="color:#75715e"></span>
+   <span style="color:#a6e22e">getControllerName</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>() {
+      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;sap.hcm.Address&#34;</span>;     <span style="color:#75715e">// the Controller lives in Address.controller.js
+</span><span style="color:#75715e"></span>   },
+
+   <span style="color:#a6e22e">createContent</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">oController</span>) {
+      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">oButton</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">sap</span>.<span style="color:#a6e22e">ui</span>.<span style="color:#a6e22e">commons</span>.<span style="color:#a6e22e">Button</span>({<span style="color:#a6e22e">text</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;Hello JS View&#34;</span>});
+      <span style="color:#a6e22e">oButton</span>.<span style="color:#a6e22e">attachPress</span>(<span style="color:#a6e22e">oController</span>.<span style="color:#a6e22e">handleButtonClicked</span>);
+      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">oButton</span>;
+   }
+
+});
+</code></pre></div><p>这里要提到一个要注意的地方，就是当我们在JS view中定义一个控件的时候，有时候我们需要同时定义一个id以方便之后引用，这时需要注意的是，我们不能直接给一个字符串字面量，我们通过类的实例方法 <code>View.createId('idstring')</code> 来实现，通过这种方式返回的id会在我们定义的idstring之前加上所在的类实例id作为前缀以保证唯一性。
+但是如果是申明式的视图类型，就无需使用这个createId方法了，视图解析器会自动来帮我们做这个事情。</p>
+<h4 id="xml-view">XML View</h4>
+<p>XML view文件以xxx.view.xml作为文件名。一个XML view定义的示例如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;mvc:View</span> <span style="color:#a6e22e">controllerName=</span><span style="color:#e6db74">&#34;sap.hcm.Address&#34;</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;sap.ui.commons&#34;</span> <span style="color:#a6e22e">xmlns:mvc=</span><span style="color:#e6db74">&#34;sap.ui.core.mvc&#34;</span><span style="color:#f92672">&gt;</span>
+   <span style="color:#f92672">&lt;Panel</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;Image</span> <span style="color:#a6e22e">src=</span><span style="color:#e6db74">&#34;http://www.sap.com/global/ui/images/global/sap-logo.png&#34;</span><span style="color:#f92672">/&gt;</span>
+      <span style="color:#f92672">&lt;Button</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Press Me!&#34;</span><span style="color:#f92672">/&gt;</span>
+   <span style="color:#f92672">&lt;/Panel&gt;</span>
+<span style="color:#f92672">&lt;/mvc:View&gt;</span>
+</code></pre></div><p>XML view中需要注意的一个问题是命名空间，在XML中定义任何一个控件的时候，都需要加上命名空间。</p>
+<h4 id="json-view">JSON View</h4>
+<p>JSON view以xxx.view.json作为文件名。一个JSON view定义的示例如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">{
+   <span style="color:#e6db74">&#34;Type&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;sap.ui.core.mvc.JSONView&#34;</span>,
+   <span style="color:#e6db74">&#34;controllerName&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;sap.hcm.Address&#34;</span>,
+   <span style="color:#e6db74">&#34;content&#34;</span><span style="color:#f92672">:</span> [{
+      <span style="color:#e6db74">&#34;Type&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;sap.ui.commons.Image&#34;</span>,
+      <span style="color:#e6db74">&#34;id&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;MyImage&#34;</span>,
+      <span style="color:#e6db74">&#34;src&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;http://www.sap.com/global/ui/images/global/sap-logo.png&#34;</span>
+   },
+   {
+      <span style="color:#e6db74">&#34;Type&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;sap.ui.commons.Button&#34;</span>,
+      <span style="color:#e6db74">&#34;id&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;MyButton&#34;</span>,
+      <span style="color:#e6db74">&#34;text&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;Press Me&#34;</span>
+
+   }]
+
+}
+</code></pre></div><p>在JSON view中可以使用字符串、布尔值以及null。</p>
+<h4 id="html-view">HTML View</h4>
+<p>HTML view就是通过HTML标签来定义的视图，文件名类似 xxx.view.html。样例如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-HTML" data-lang="HTML">  &lt;<span style="color:#f92672">template</span> <span style="color:#a6e22e">data-controller-name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;example.mvc.test&#34;</span>&gt;
+   Hello
+  &lt;<span style="color:#f92672">h1</span>&gt;Title&lt;/<span style="color:#f92672">h1</span>&gt;
+  &lt;<span style="color:#f92672">div</span>&gt;Embedded HTML&lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;test test2 test3&#34;</span> <span style="color:#a6e22e">data-sap-ui-type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sap.ui.commons.Panel&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myPanel&#34;</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;test test2 test3&#34;</span> <span style="color:#a6e22e">data-sap-ui-type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sap.ui.commons.Button&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Button1&#34;</span> <span style="color:#a6e22e">data-text</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Hello World&#34;</span> <span style="color:#a6e22e">data-press</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;doIt&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">data-sap-ui-type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sap.ui.commons.Button&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Button2&#34;</span> <span style="color:#a6e22e">data-text</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Hello&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">data-sap-ui-type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sap.ui.core.mvc.HTMLView&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;MyHTMLView&#34;</span> <span style="color:#a6e22e">data-view-name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;example.mvc.test2&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">data-sap-ui-type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sap.ui.core.mvc.JSView&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;MyJSView&#34;</span> <span style="color:#a6e22e">data-view-name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;example.mvc.test2&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">data-sap-ui-type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sap.ui.core.mvc.JSONView&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;MyJSONView&#34;</span> <span style="color:#a6e22e">data-view-name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;example.mvc.test2&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">data-sap-ui-type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sap.ui.core.mvc.XMLView&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;MyXMLView&#34;</span> <span style="color:#a6e22e">data-view-name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;example.mvc.test2&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>所有视图相关的属性都可以通过用data-<!-- raw HTML omitted -->的方式在tag <!-- raw HTML omitted -->中定义。</p>
+<h2 id="控制器">控制器</h2>
+<p>控制器用来定义业务或者页面的逻辑。控制器文件必须命名为xxx.controller.js。定义一个控制器的样例如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">	<span style="color:#a6e22e">sap</span>.<span style="color:#a6e22e">ui</span>.<span style="color:#a6e22e">controller</span>(<span style="color:#e6db74">&#34;sap.hcm.Address&#34;</span>, {
+   <span style="color:#75715e">// controller logic goes here
+</span><span style="color:#75715e"></span>});
+</code></pre></div><h3 id="生命周期--lifecyle-hooks">生命周期 (Lifecyle Hooks)</h3>
+<p>对于视图的不同生命周期状态，在控制器中有对应的钩子 （Hooks） 可以让我们对应于不同的状态实现一些特定的功能。
+UI5提供了下面这些Hooks：</p>
+<ul>
+<li><code>onInit()</code> <!-- raw HTML omitted -->
+视图被实例化时，当所有的控件已经被创建完成的时候被触发。<!-- raw HTML omitted -->
+可以在视图显示之前做一些修改，或者做一些其他的一次性初始化工作。</li>
+<li><code>onExit()</code> <!-- raw HTML omitted -->
+当视图被销毁的时候被触发。<!-- raw HTML omitted -->
+一般可以用来释放资源或者最终确定一些活动的状态。</li>
+<li><code>onAfterRendering()</code> <!-- raw HTML omitted -->
+当视图被完全渲染的时候被触发。<!-- raw HTML omitted -->
+此时视图已经出现在DOM中了，可以用来操作DOM元素，修改一些HTML。</li>
+<li><code>onBeforeRendering()</code> <!-- raw HTML omitted -->
+当视图被重新渲染的时候被调用，注意在视图第一次渲染的时候是不会被调用的。<!-- raw HTML omitted --></li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>MVC是UI5的基础开发模型，不管你有没有去刻意的了解它，但是只要你开发UI5，你肯定已经在使用它了。我个人觉得M和C应该还是比较容易理解的，按照API去定义或者用系统生成的文件框架基本上都不会有什么问题。
+而问题一般都会出现在V，因为UI5里的控件太多，我们不可能掌握所有控件的用法，即使对于一些熟悉的控件，也没有机会在所有四种预定义的视图模型中都去实践一遍用法，所以很多时候，我们不知道一个控件该怎么用。
+这个时候，UI5的帮助文档中的Explorer会是我们的好朋友，里面列了绝大多数常用控件的用法示例。但也有问题，这就是Explorer中基本上所有的视图都是用的XML类型定义的，所以我们还需要掌握API的阅读方法，如何转换成对应于不同视图的用法，这就需要
+多多实践了。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="http://www.cnblogs.com/yangjunhua/p/3508502.html">jQuery回调、递延对象总结（上篇）—— jQuery.Callbacks</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://api.jquery.com/category/deferred-object/">Category: Deferred Object</a> <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">qianmarv</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+      2015-09-15
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="http://blog.qianmarv.xyz/tags/sapui5/">SAPUI5</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/openui5-starter4/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">UI5入门系列之四：更好的入门系列-官方Walkthrough</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/openui5-starter3-part1/">
+            <span class="next-text nav-default">UI5入门系列之三：MVC （上） - 模型</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:qianmarv@gmail.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://www.linkedin.com/in/marvin-qian-11404017" rel="me noopener" class="iconfont"
+      title="linkedin"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="33" height="33">
+  <path d="M872.405333 872.618667h-151.637333v-237.610667c0-56.661333-1.152-129.578667-79.018667-129.578667-79.061333 0-91.136 61.653333-91.136 125.397334v241.792H398.976V384h145.664v66.602667h1.962667c20.352-38.4 69.845333-78.933333 143.786666-78.933334 153.642667 0 182.058667 101.12 182.058667 232.746667v268.202667zM227.712 317.141333a87.978667 87.978667 0 0 1-88.021333-88.106666 88.064 88.064 0 1 1 88.021333 88.106666z m76.032 555.477334H151.68V384h152.064v488.618667zM948.266667 0H75.562667C33.792 0 0 33.024 0 73.770667v876.458666C0 991.018667 33.792 1024 75.562667 1024h872.576C989.866667 1024 1024 991.018667 1024 950.229333V73.770667C1024 33.024 989.866667 0 948.138667 0h0.128z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/qianmarv" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="http://blog.qianmarv.xyz/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2015 -
+    2020
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        qianmarv
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>UI5入门系列之二： 最佳实践练习（下） - 知行合一</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="qianmarv" />
+  <meta name="description" content="上期我们完成了一个简单的主从页面，但是页面是静态的，不能交互，功能也很简单，只有一个销售订单的列表。 我们今天就一鼓作气把代码全都写完，由于本次的代码量较大，所以只对重点代码部分进行讲解。 具体每个文件和代码就不一一贴出来了，代码都放在github中，需要的自行下载吧。
+" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.63.1" />
+
+
+<link rel="canonical" href="http://blog.qianmarv.xyz/post/openui5-starter2-part2/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css" integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="UI5入门系列之二： 最佳实践练习（下）" />
+<meta property="og:description" content="上期我们完成了一个简单的主从页面，但是页面是静态的，不能交互，功能也很简单，只有一个销售订单的列表。
+我们今天就一鼓作气把代码全都写完，由于本次的代码量较大，所以只对重点代码部分进行讲解。
+具体每个文件和代码就不一一贴出来了，代码都放在github中，需要的自行下载吧。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.qianmarv.xyz/post/openui5-starter2-part2/" />
+<meta property="article:published_time" content="2015-08-25T00:00:00+08:00" />
+<meta property="article:modified_time" content="2015-08-25T00:00:00+08:00" />
+<meta itemprop="name" content="UI5入门系列之二： 最佳实践练习（下）">
+<meta itemprop="description" content="上期我们完成了一个简单的主从页面，但是页面是静态的，不能交互，功能也很简单，只有一个销售订单的列表。
+我们今天就一鼓作气把代码全都写完，由于本次的代码量较大，所以只对重点代码部分进行讲解。
+具体每个文件和代码就不一一贴出来了，代码都放在github中，需要的自行下载吧。">
+<meta itemprop="datePublished" content="2015-08-25T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2015-08-25T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="3235">
+
+
+
+<meta itemprop="keywords" content="SAPUI5," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="UI5入门系列之二： 最佳实践练习（下）"/>
+<meta name="twitter:description" content="上期我们完成了一个简单的主从页面，但是页面是静态的，不能交互，功能也很简单，只有一个销售订单的列表。
+我们今天就一鼓作气把代码全都写完，由于本次的代码量较大，所以只对重点代码部分进行讲解。
+具体每个文件和代码就不一一贴出来了，代码都放在github中，需要的自行下载吧。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">知行合一</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/">首页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/post/">全部</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/about/">关于</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      知行合一
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/">首页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/post/">全部</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://blog.qianmarv.xyz/about/">关于</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">UI5入门系列之二： 最佳实践练习（下）</h1>
+      
+      <div class="post-meta">
+        <time datetime="2015-08-25" class="post-time">
+          2015-08-25
+        </time>
+        <div class="post-category">
+            <a href="http://blog.qianmarv.xyz/categories/%E7%BC%96%E7%A8%8B/"> 编程 </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#页面导航">页面导航</a></li>
+    <li><a href="#数据绑定">数据绑定</a></li>
+    <li><a href="#工具方法">工具方法</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p>上期我们完成了一个简单的主从页面，但是页面是静态的，不能交互，功能也很简单，只有一个销售订单的列表。
+我们今天就一鼓作气把代码全都写完，由于本次的代码量较大，所以只对重点代码部分进行讲解。
+具体每个文件和代码就不一一贴出来了，代码都放在github中，需要的自行<a href="https://github.com/qianmarv/ui5tutorial/tree/master/ui5bp%5F2">下载</a>吧。</p>
+<h2 id="页面导航">页面导航</h2>
+<p>可以先把代码下载到本地并跑起来，这样可以对这个最佳实践的程序有一个直观的了解。</p>
+<p>页面导航如下： <!-- raw HTML omitted -->
+销售订单列表(Master) -&gt; 销售订单明细(Detail) -&gt; 行项目明细(LineItem),在每个明细页面都可以返回到上一层。</p>
+<p>具体页面之间的导航是如何实现的呢？ <!-- raw HTML omitted -->
+我们从页面的入口 <code>index.html</code> 开始</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">         <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">oView</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sap</span>.<span style="color:#a6e22e">ui</span>.<span style="color:#a6e22e">view</span>({
+             <span style="color:#a6e22e">id</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;app&#34;</span>,
+             <span style="color:#a6e22e">viewName</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ui5.tutorial.bp.view.App&#34;</span>,
+             <span style="color:#a6e22e">type</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;JS&#34;</span>,
+         });
+         <span style="color:#75715e">//...
+</span><span style="color:#75715e"></span>         <span style="color:#a6e22e">oView</span>.<span style="color:#a6e22e">placeAt</span>(<span style="color:#e6db74">&#39;content&#39;</span>);
+</code></pre></div><p>这一段代码初始化了一个叫做App的JS view，那我们就来看 <code>App.view.js</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">	<span style="color:#75715e">// create app
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">sap</span>.<span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">SplitApp</span>();
+
+	<span style="color:#75715e">// load the master page
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">master</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sap</span>.<span style="color:#a6e22e">ui</span>.<span style="color:#a6e22e">xmlview</span>(<span style="color:#e6db74">&#34;Master&#34;</span>, <span style="color:#e6db74">&#34;ui5.tutorial.bp.view.Master&#34;</span>);
+	<span style="color:#a6e22e">master</span>.<span style="color:#a6e22e">getController</span>().<span style="color:#a6e22e">nav</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getController</span>();
+	<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">addPage</span>(<span style="color:#a6e22e">master</span>, <span style="color:#66d9ef">true</span>);
+
+	<span style="color:#75715e">// load the empty page
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">empty</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sap</span>.<span style="color:#a6e22e">ui</span>.<span style="color:#a6e22e">xmlview</span>(<span style="color:#e6db74">&#34;Empty&#34;</span>, <span style="color:#e6db74">&#34;ui5.tutorial.bp.view.Empty&#34;</span>);
+	<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">addPage</span>(<span style="color:#a6e22e">empty</span>, <span style="color:#66d9ef">false</span>);
+</code></pre></div><p>App view中在 <code>createContent</code> 中创建了一个SplitApp，稍微说下SplitApp这个控件，当宿主是PC或者平台的时候这个控件默认包含两个页面容器，而当宿主是手机的时候又可以只包含一个页面，所以一般主从结构的页面可以用这个控件。<!-- raw HTML omitted -->
+随后，分别创建了两个页面，一个是Master页面，另一个页面是空白页——作为没有选中任何Master页面中的数据时的默认页面，最后把两个页面都加入到了SplitApp中。<!-- raw HTML omitted -->
+到目前为止都是在上一篇中已经做过的，到这里，页面已经可以展示了。但是我们今天要研究的是导航，所以接着往下。<!-- raw HTML omitted -->
+SplitApp本身带有 <code>to()</code> 这个函数，可以在已经加入其容器的页面之间导航，但是我们现在的功能稍稍有点复杂，当点击Master页面的时候，要求导航到详细页面，
+点击详细页面的行项目可以进入到行项目的详细页面，对应每个详细页面可以返回至上一级页面，同时可能还需要做一些其他逻辑上的处理，比如判断和绑定数据，因此我们需要在原有的 <code>to()</code> 上增强一些功能并封装给其他的控制器使用。<!-- raw HTML omitted --></p>
+<p>这些功能都集中定义在 <code>App.controller.js</code> 这个控制器中<!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#a6e22e">to</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">pageId</span>, <span style="color:#a6e22e">context</span>) {
+
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getView</span>().<span style="color:#a6e22e">app</span>;
+
+	<span style="color:#75715e">// load page on demand
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">master</span> <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#34;Master&#34;</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">pageId</span>);
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">getPage</span>(<span style="color:#a6e22e">pageId</span>, <span style="color:#a6e22e">master</span>) <span style="color:#f92672">===</span> <span style="color:#66d9ef">null</span>) {
+	    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">page</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sap</span>.<span style="color:#a6e22e">ui</span>.<span style="color:#a6e22e">view</span>({
+		<span style="color:#a6e22e">id</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">pageId</span>,
+		<span style="color:#a6e22e">viewName</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ui5.tutorial.bp.view.&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">pageId</span>,
+		<span style="color:#a6e22e">type</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;XML&#34;</span>
+	    });
+	    <span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">getController</span>().<span style="color:#a6e22e">nav</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>;
+	    <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">addPage</span>(<span style="color:#a6e22e">page</span>, <span style="color:#a6e22e">master</span>);
+	    <span style="color:#a6e22e">jQuery</span>.<span style="color:#a6e22e">sap</span>.<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;app controller &gt; loaded page: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">pageId</span>);
+	}
+
+	<span style="color:#75715e">// show the page
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">to</span>(<span style="color:#a6e22e">pageId</span>);
+
+	<span style="color:#75715e">// set data context on the page
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">context</span>) {
+	    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">page</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">getPage</span>(<span style="color:#a6e22e">pageId</span>);
+	    <span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">setBindingContext</span>(<span style="color:#a6e22e">context</span>);
+	}
+    },
+
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * Navigates back to a previous page
+</span><span style="color:#75715e">     * @param {string} pageId The id of the next page
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#a6e22e">back</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">pageId</span>) {
+	<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getView</span>().<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">backToPage</span>(<span style="color:#a6e22e">pageId</span>);
+    }
+</code></pre></div><p>重新封装后的 <code>to()</code> 有两个参数，一个是页面id，另一个是上下文，当传入的页面不存在的时候，系统会首先初始化这个页面并加入到当前的SplitApp中，随后直接调用SplitApp的 <code>to()</code> 完成导航动作。
+最后，如果上下文不为空的话，把这个上下文绑定到新的页面中，这对于一个新页面来说是非常有意义的。<!-- raw HTML omitted -->
+back则直接复用SplitApp的 <code>backToPage()</code> 函数。</p>
+<p>接下来我们再看其他的页面如何复用定义在这里的导航函数的。<!-- raw HTML omitted -->
+我们回过头来再看 <code>App.view.js</code> , 其中在初始化Master页面之后，有这么一条语句 <!-- raw HTML omitted -->
+<code>master.getController().nav = this.getController();</code> <!-- raw HTML omitted -->
+这条语句把当前的控制器赋给Master页面的控制器的nav，这个nav只是用来存放App控制器的一个key，叫什么名字都行，这样在Master页面中就可以通过nav来调用App控制器的所有函数了。</p>
+<p>同样的，再回到 <code>App.controller.js</code> 中，看到这条语句 <code>page.getController().nav = this;</code> 也是类似的作用。</p>
+<p>在首页面刚刚初始化时，Detail页面是没有加载的，当点击Master页面中的某个SalesOrder的时候，Master页面中的 <code>handleListItemPress</code> 被调用：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#a6e22e">handleListItemPress</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">evt</span>) {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">context</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">getSource</span>().<span style="color:#a6e22e">getBindingContext</span>();
+	<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nav</span>.<span style="color:#a6e22e">to</span>(<span style="color:#e6db74">&#34;Detail&#34;</span>, <span style="color:#a6e22e">context</span>);
+    }
+</code></pre></div><p>首先获得被点击的item上绑定的上下文信息（数据），然后调用App的 <code>to()</code> 方法并传入 <code>Detail</code> 告诉页面要加载Detail这个页面，同时把上下文数据传递过去，
+接下来又回到了 <code>to()</code> ， Detail页面被初始化，绑定上下文数据，加载到SplitApp中，然后导航成为当前显示页面。</p>
+<p>以上，就完成了这个App的导航，可以看到有些繁琐，并且需要显式的初始化子页面的时候获得并共享App的控制器，另外，页面之间的跳转不会修改URL，无法将某个中间页面存为bookmark，所以这种方式并不是UI5所推荐的，
+但是作为初学者了解UI5的页面导航机制还是非常的直观，另外对于简单的应用来说，如果页面较少也未尝不可以考虑。<!-- raw HTML omitted -->
+作为稍大型的web应用，UI5在早期的版本中推荐使用EventBus通过Event的传递来实现复杂的页面导航，从1.6开始引入了新的导航机制，就是Routing，可以将页面之间的导航关系定义在component中，在最新的1.30版本中，导航定义则可以直接写在App的说明文件 <code>manifest.jso</code> 中。<!-- raw HTML omitted -->
+导航就介绍到这里，Component和Routing是一个比较复杂但是非常强大的工具，我们可以在后续接着探讨。</p>
+<h2 id="数据绑定">数据绑定</h2>
+<p>在我们的代码中，数据绑定也是做了简化处理，都直接写在 <code>index.html</code> 中了。</p>
+<p>一共绑定了三个模型： <!-- raw HTML omitted --></p>
+<ul>
+<li>
+<p>业务数据模型：<!-- raw HTML omitted -->
+因为我们使用的是离线的json格式数据，所以可以直接把相对路径传递给 <code>sap.ui.model.json.JSONModel</code> 来初始化这个模型，并绑定到App这个根视图上。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">           <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">oModel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">sap</span>.<span style="color:#a6e22e">ui</span>.<span style="color:#a6e22e">model</span>.<span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">JSONModel</span>(<span style="color:#e6db74">&#34;model/mock.json&#34;</span>);
+           <span style="color:#a6e22e">oView</span>.<span style="color:#a6e22e">setModel</span>(<span style="color:#a6e22e">oModel</span>);
+</code></pre></div><p>随后在这个视图及其子视图中，都可以直接通过类似 <code>{SoId}</code> 这种语法格式来使用这个模型的数据字段，需要注意的是，如果需要绑定的字段是这个模型的根节点，需要在前面加一个 <code>/</code> ，譬如在Master视图中绑定到列表的aggregate字段 <code>items</code> ，是这样的语法格式：items=&rdquo;{/SalesOrderCollection}&rdquo; 。</p>
+</li>
+<li>
+<p>多语言模型：<!-- raw HTML omitted -->
+UI5中使用了 <code>i18n</code> 机制来处理多语言问题。i18n是 internationalization的简称，在首位两个字母之间有18个字母……</p>
+<p>具体如何使用非常的简单，<!-- raw HTML omitted -->
+首先创建一个资源文件 <code>messageBundle.properties</code> ，这里我们在根目录创建了一个 <code>i18n</code> 目录，在这里目录中集中存放相关的i18n文件。<!-- raw HTML omitted -->
+在这个资源文件里我们定义如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">      MasterTitle=Sales Orders \\
+      DetailTitle=Sales Order \\
+      StatusTextN=New \\
+      StatusTextP=In Process \\
+      ApproveButtonText=Approve \\
+      ...
+</code></pre></div><p>左边的是KEY，右边的是对应的语言描述，如果我们需要定义一个中文的语言文件，那么只需要拷贝这个文件并重命名为 <code>messageBundle_zh-CN.properties</code> ，并将对应的描述改为中文如下：<!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">      MasterTitle=销售订单列表
+      DetailTitle=销售订单
+      StatusTextN=新建
+      StatusTextP=处理中
+      ApproveButtonText=批准
+      ...
+</code></pre></div><p>系统会根据用户设定的浏览器语言顺序依次查找对应的语言资源文件，如果都找不到的话，就会找默认的 <code>messageBundle.properties</code> 。</p>
+<p>定义好了资源文件，我们接下来就在 <code>index.html</code> 中通过 <code>sap.ui.model.resource.ResourceModel</code> 来初始化这个资源模型，接着就可以把它绑定到视图或者控件中使用了。<!-- raw HTML omitted -->
+怎么使用呢？在视图中通过类似 <code>{i18n&gt;MasterTiel}</code> 这种语法格式来绑定到对应的空间的文本项上，实际使用中需要用引号把这个串包含进去。这个串中前面的 <code>i18n&gt;</code> 指的是引用绑定到本视图的叫做i18n的模型，这里的i18n是绑定时起的名字， <code>oView.setModel(i18nModel, &quot;i18n&quot;);</code>  可以是任意符合格式的字符串。<!-- raw HTML omitted --></p>
+</li>
+<li>
+<p>设备模型
+设备模型通过查询jQuery的device来获悉宿主是否手机，并设定相应的不同显示选项，然后将结果存为Json格式并初始化为一个JSON模型，最后绑定到模型中。</p>
+</li>
+</ul>
+<h2 id="工具方法">工具方法</h2>
+<p>大多数情况下，我们可以直接把业务数据直接绑定到控件中显示，但是在一些情况下，我们可能需要对其中的一些格式做一些调整，或者根据一些字段做一些简单的逻辑处理，
+这个时候，我们就需要用到大多数控件中的某些属性的 <code>formatter</code> 方法。<!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-XML" data-lang="XML">	  <span style="color:#f92672">&lt;ObjectStatus</span>
+	      <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;{
+</span><span style="color:#e6db74">		    path: &#39;LifecycleStatus&#39;,
+</span><span style="color:#e6db74">		    formatter: &#39;ui5.tutorial.bp.util.Formatter.statusText&#39;
+</span><span style="color:#e6db74">		    }&#34;</span>
+	      <span style="color:#a6e22e">state=</span><span style="color:#e6db74">&#34;{
+</span><span style="color:#e6db74">		     path: &#39;LifecycleStatus&#39;,
+</span><span style="color:#e6db74">		     formatter: &#39;ui5.tutorial.bp.util.Formatter.statusState&#39;
+</span><span style="color:#e6db74">		     }&#34;</span> <span style="color:#f92672">/&gt;</span>
+</code></pre></div><p>上面这个例子中，我们来看 <code>text</code> 属性，如果我们希望直接把业务数据绑定到text中，我们这样定义 text=&rdquo;{LifecycleStatus}&quot;，但是我们知道这个字段可能是后台定义的技术字段，我们需要把它转化的比较有业务意义。
+所以这个时候，我们就需要用到 <code>formatter</code> 了，首先定义 <code>path</code> 告之需要绑定的字段，这里不需要用大括号，随后给 <code>formatter</code> 赋予一个处理方法，这个方法可以定义在任何地方，我们这里是在util下单独定义了一个 <code>Fomatter.js</code> 来集中处理这类需求。<!-- raw HTML omitted -->
+来看 <code>Formatter.js</code> ，我们就看 <code>statusText</code> 这个方法：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">	<span style="color:#a6e22e">statusText</span> <span style="color:#f92672">:</span>  <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">value</span>) {
+		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">bundle</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getModel</span>(<span style="color:#e6db74">&#34;i18n&#34;</span>).<span style="color:#a6e22e">getResourceBundle</span>();
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">bundle</span>.<span style="color:#a6e22e">getText</span>(<span style="color:#e6db74">&#34;StatusText&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">value</span>, <span style="color:#e6db74">&#34;?&#34;</span>);
+	},
+</code></pre></div><p><code>path</code> 中绑定的字段对应的值会作为参数传入，然后用这个值结合StatusText生成一个KEY，并在 <code>i18n</code> 中取出相应的描述。</p>
+<h2 id="总结">总结</h2>
+<p>基本上这个最佳实践应用已经被剖析完成了，通过这样一个最佳实践 <code>Best Practice</code> 的练习，我们学习到了一般的UI5应用的整体结构以及大多数重要控件的使用方法。</p>
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">qianmarv</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+      2015-08-25
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="http://blog.qianmarv.xyz/tags/sapui5/">SAPUI5</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/openui5-starter3-part1/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">UI5入门系列之三：MVC （上） - 模型</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/openui5-starter2-part1/">
+            <span class="next-text nav-default">UI5入门系列之二： 最佳实践练习（上）</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:qianmarv@gmail.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://www.linkedin.com/in/marvin-qian-11404017" rel="me noopener" class="iconfont"
+      title="linkedin"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="33" height="33">
+  <path d="M872.405333 872.618667h-151.637333v-237.610667c0-56.661333-1.152-129.578667-79.018667-129.578667-79.061333 0-91.136 61.653333-91.136 125.397334v241.792H398.976V384h145.664v66.602667h1.962667c20.352-38.4 69.845333-78.933333 143.786666-78.933334 153.642667 0 182.058667 101.12 182.058667 232.746667v268.202667zM227.712 317.141333a87.978667 87.978667 0 0 1-88.021333-88.106666 88.064 88.064 0 1 1 88.021333 88.106666z m76.032 555.477334H151.68V384h152.064v488.618667zM948.266667 0H75.562667C33.792 0 0 33.024 0 73.770667v876.458666C0 991.018667 33.792 1024 75.562667 1024h872.576C989.866667 1024 1024 991.018667 1024 950.229333V73.770667C1024 33.024 989.866667 0 948.138667 0h0.128z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/qianmarv" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="http://blog.qianmarv.xyz/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2015 -
+    2020
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        qianmarv
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
