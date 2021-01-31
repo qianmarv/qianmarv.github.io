@@ -5,18 +5,23 @@
     <link>http://blog.qianmarv.xyz/</link>
     <description>Recent content on 知行合一</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 10 Jan 2018 00:00:00 +0800</lastBuildDate>
-    
-	<atom:link href="http://blog.qianmarv.xyz/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0800</lastBuildDate><atom:link href="http://blog.qianmarv.xyz/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>关于</title>
       <link>http://blog.qianmarv.xyz/about/</link>
       <pubDate>Thu, 01 Jan 2015 15:10:20 +0800</pubDate>
       
       <guid>http://blog.qianmarv.xyz/about/</guid>
-      <description>80后非主流挨踢男，思爱普从业人员 性孤僻，少言语 喜静，热爱运动、阅读、影视、音乐</description>
+      <description>80后非主流挨踢男 喜静，热爱运动、阅读、影视、音乐</description>
+    </item>
+    
+    <item>
+      <title>Linux英文环境下在Emacs中使用中文输入法</title>
+      <link>http://blog.qianmarv.xyz/post/linux-en-emacs-chinese/</link>
+      <pubDate>Sun, 31 Jan 2021 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/linux-en-emacs-chinese/</guid>
+      <description>&lt;p&gt;记录在linux英文环境下设置在Emacs中通过fctix来切换中文输入法。&lt;/p&gt;</description>
     </item>
     
     <item>

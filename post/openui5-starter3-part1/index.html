@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
 
 
 <link rel="canonical" href="http://blog.qianmarv.xyz/post/openui5-starter3-part1/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.d9b409b7.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -47,13 +48,14 @@
 <meta property="article:modified_time" content="2015-09-04T00:00:00+08:00" />
 <meta itemprop="name" content="UI5入门系列之三：MVC （上） - 模型">
 <meta itemprop="description" content="这次我们来一起学习MVC，这个专题分为两个小节，本次主要是总览以及模型，下一次着重会介绍视图以及控制器，因为控制器其实没有太多可以讲的，所以和视图合并在一块。">
-<meta itemprop="datePublished" content="2015-09-04T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2015-09-04T00:00:00&#43;08:00" />
+<meta itemprop="datePublished" content="2015-09-04T00:00:00+08:00" />
+<meta itemprop="dateModified" content="2015-09-04T00:00:00+08:00" />
 <meta itemprop="wordCount" content="2597">
 
 
 
-<meta itemprop="keywords" content="SAPUI5," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="SAPUI5," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="UI5入门系列之三：MVC （上） - 模型"/>
 <meta name="twitter:description" content="这次我们来一起学习MVC，这个专题分为两个小节，本次主要是总览以及模型，下一次着重会介绍视图以及控制器，因为控制器其实没有太多可以讲的，所以和视图合并在一块。"/>
 
@@ -92,12 +94,21 @@
         <li class="mobile-menu-item">关于</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">马文的博客</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -114,6 +125,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -269,9 +281,9 @@ UI5中提供了三种绑定类型。</p>
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript">     <span class="kd">var</span> <span class="nx">oTextField</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">TextField</span><span class="p">(</span><span class="p">{</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">     <span class="kd">var</span> <span class="nx">oTextField</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">TextField</span><span class="p">({</span>
          <span class="nx">value</span><span class="o">:</span> <span class="s2">&#34;{/company/name}&#34;</span>
-     <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+     <span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>稍稍做一点说明，当有多个数据模型绑定到当前控件以及祖先控件时，需要用在绑定的字段之前加上模型名称，比如 &ldquo;{mymodel&gt;/company/name}&rdquo; 。 <!-- raw HTML omitted --></p>
@@ -286,12 +298,12 @@ UI5中提供了三种绑定类型。</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript">     <span class="kd">var</span> <span class="nx">oTextField</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">TextField</span><span class="p">(</span><span class="p">{</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">     <span class="kd">var</span> <span class="nx">oTextField</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">TextField</span><span class="p">({</span>
      <span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
 		<span class="nx">path</span><span class="o">:</span> <span class="s2">&#34;/company/name&#34;</span><span class="p">,</span>
 		<span class="nx">mode</span><span class="o">:</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">BindingMode</span><span class="p">.</span><span class="nx">OneWay</span>
 	<span class="p">}</span>
-     <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+     <span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>这里显式的把绑定的模型字段赋给 <code>path</code> ，注意这里就不需要套上大括号了。 <!-- raw HTML omitted --></p>
@@ -301,7 +313,7 @@ UI5中提供了三种绑定类型。</p>
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript">     <span class="nx">oTextField</span><span class="p">.</span><span class="nx">bindProperty</span><span class="p">(</span><span class="s2">&#34;value&#34;</span><span class="p">,</span> <span class="s2">&#34;/company/name&#34;</span><span class="p">)</span><span class="p">;</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">     <span class="nx">oTextField</span><span class="p">.</span><span class="nx">bindProperty</span><span class="p">(</span><span class="s2">&#34;value&#34;</span><span class="p">,</span> <span class="s2">&#34;/company/name&#34;</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>以及类似的</p>
@@ -315,8 +327,8 @@ UI5中提供了三种绑定类型。</p>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript">     <span class="nx">oTextField</span><span class="p">.</span><span class="nx">bindProperty</span><span class="p">(</span><span class="s2">&#34;value&#34;</span><span class="p">,</span> <span class="p">{</span>
 	<span class="nx">path</span><span class="o">:</span> <span class="s2">&#34;value&#34;</span><span class="p">,</span>
-	<span class="nx">type</span><span class="o">:</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">Integer</span><span class="p">(</span><span class="p">)</span>
-     <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">Integer</span><span class="p">()</span>
+     <span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>有一些控件做了进一步的封装，比如文本框，由于 <code>value</code> 是经常需要用来绑定模型的属性，所以直接提供了 <code>bindValue</code> 方法以方便使用。</p>
@@ -325,7 +337,7 @@ UI5中提供了三种绑定类型。</p>
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript">     <span class="nx">oTextField</span><span class="p">.</span><span class="nx">bindValue</span><span class="p">(</span><span class="s2">&#34;/company/name&#34;</span><span class="p">)</span><span class="p">;</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">     <span class="nx">oTextField</span><span class="p">.</span><span class="nx">bindValue</span><span class="p">(</span><span class="s2">&#34;/company/name&#34;</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>当需要对绑定的字段做更多的处理，而不是简单的一对一绑定时，UI5还提供了 <code>formatter</code> 这个属性方法，用法如下：</p>
@@ -349,10 +361,10 @@ UI5中提供了三种绑定类型。</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">oTextField</span><span class="p">.</span><span class="nx">bindProperty</span><span class="p">(</span><span class="s2">&#34;value&#34;</span><span class="p">,</span> <span class="s2">&#34;/company/title&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">sValue</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">sValue</span> <span class="o">&amp;&amp;</span> <span class="nx">sValue</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">sValue</span> <span class="o">&amp;&amp;</span> <span class="nx">sValue</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+<span class="p">});</span>
 
-<span class="nx">oControl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">TextField</span><span class="p">(</span><span class="p">{</span>
+<span class="nx">oControl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">TextField</span><span class="p">({</span>
     <span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">path</span><span class="o">:</span><span class="s2">&#34;/company/revenue&#34;</span><span class="p">,</span>
         <span class="nx">formatter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fValue</span><span class="p">)</span> <span class="p">{</span>
@@ -362,7 +374,7 @@ UI5中提供了三种绑定类型。</p>
             <span class="k">return</span> <span class="s2">&#34;0&#34;</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span><span class="p">)</span>
+<span class="p">})</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>例子中分别提供了用构造器的方法和用 <code>bindProperty</code> 的方法来对要绑定的字段做format的示例。</p>
@@ -382,13 +394,13 @@ UI5中提供了三种绑定类型。</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">oItemTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">ListItem</span><span class="p">(</span><span class="p">{</span><span class="nx">text</span><span class="o">:</span><span class="s2">&#34;{name}&#34;</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">oComboBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">ComboBox</span><span class="p">(</span><span class="p">{</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">oItemTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">ListItem</span><span class="p">({</span><span class="nx">text</span><span class="o">:</span><span class="s2">&#34;{name}&#34;</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">oComboBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">ComboBox</span><span class="p">({</span>
     <span class="nx">items</span><span class="o">:</span> <span class="p">{</span>
 		<span class="nx">path</span><span class="o">:</span> <span class="s2">&#34;/company/contacts&#34;</span><span class="p">,</span>
 		<span class="nx">template</span><span class="o">:</span> <span class="nx">oItemTemplate</span>
 	<span class="p">}</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>或者通过方法调用来绑定：</p>
@@ -397,7 +409,7 @@ UI5中提供了三种绑定类型。</p>
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">oComboBox</span><span class="p">.</span><span class="nx">bindAggregation</span><span class="p">(</span><span class="s2">&#34;items&#34;</span><span class="p">,</span> <span class="s2">&#34;/company/contacts&#34;</span><span class="p">,</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">ListItem</span><span class="p">(</span><span class="p">{</span><span class="nx">text</span><span class="o">:</span><span class="s2">&#34;{name}&#34;</span><span class="p">}</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">oComboBox</span><span class="p">.</span><span class="nx">bindAggregation</span><span class="p">(</span><span class="s2">&#34;items&#34;</span><span class="p">,</span> <span class="s2">&#34;/company/contacts&#34;</span><span class="p">,</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">ListItem</span><span class="p">({</span><span class="nx">text</span><span class="o">:</span><span class="s2">&#34;{name}&#34;</span><span class="p">}));</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="element-binding">Element Binding</h4>
@@ -409,8 +421,8 @@ UI5中提供了三种绑定类型。</p>
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">oControl</span><span class="p">.</span><span class="nx">bindElement</span><span class="p">(</span><span class="s2">&#34;/company&#34;</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">oControl</span><span class="p">.</span><span class="nx">bindProperty</span><span class="p">(</span><span class="s2">&#34;value&#34;</span><span class="p">,</span> <span class="s2">&#34;name&#34;</span><span class="p">)</span><span class="p">;</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">oControl</span><span class="p">.</span><span class="nx">bindElement</span><span class="p">(</span><span class="s2">&#34;/company&#34;</span><span class="p">);</span>
+<span class="nx">oControl</span><span class="p">.</span><span class="nx">bindProperty</span><span class="p">(</span><span class="s2">&#34;value&#34;</span><span class="p">,</span> <span class="s2">&#34;name&#34;</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Element Binding使用场景比较简单，这里就不多说了。</p>
@@ -505,13 +517,10 @@ UI5中提供了三种绑定类型。</p>
   <span class="copyright-year">
     &copy; 
     2015 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">qianmarv</span>
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>qianmarv</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -522,7 +531,10 @@ UI5中提供了三种绑定类型。</p>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

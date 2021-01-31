@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
 
 
 <link rel="canonical" href="http://blog.qianmarv.xyz/post/orgmode-desktop-notifier/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.d9b409b7.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -47,13 +48,14 @@
 <meta property="article:modified_time" content="2018-01-10T00:00:00+08:00" />
 <meta itemprop="name" content="Setup Desktop Notifier For Org-Mode">
 <meta itemprop="description" content="介绍如何为Emacs中特别是Orgmode中的定时任务建立桌面提醒。">
-<meta itemprop="datePublished" content="2018-01-10T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2018-01-10T00:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="1126">
+<meta itemprop="datePublished" content="2018-01-10T00:00:00+08:00" />
+<meta itemprop="dateModified" content="2018-01-10T00:00:00+08:00" />
+<meta itemprop="wordCount" content="1127">
 
 
 
-<meta itemprop="keywords" content="emacs," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="emacs," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Setup Desktop Notifier For Org-Mode"/>
 <meta name="twitter:description" content="介绍如何为Emacs中特别是Orgmode中的定时任务建立桌面提醒。"/>
 
@@ -92,12 +94,21 @@
         <li class="mobile-menu-item">关于</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">马文的博客</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -114,6 +125,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -214,13 +226,13 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp">     <span class="p">(</span><span class="nb">defun</span> <span class="nv">qianmarv-org/show-alarm</span> <span class="p">(</span><span class="nv">min-to-app</span> <span class="nv">new-time</span> <span class="nf">message</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">cond</span> <span class="p">(</span><span class="p">(</span><span class="nf">string-equal</span> <span class="nv">system-type</span> <span class="s">&#34;</span><span class="s">windows-nt</span><span class="s">&#34;</span><span class="p">)</span>
-              <span class="p">(</span><span class="nf">call-process</span> <span class="s">&#34;</span><span class="s">powershell</span><span class="s">&#34;</span>
+       <span class="p">(</span><span class="nb">cond</span> <span class="p">((</span><span class="nf">string-equal</span> <span class="nv">system-type</span> <span class="s">&#34;windows-nt&#34;</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">call-process</span> <span class="s">&#34;powershell&#34;</span>
                             <span class="no">nil</span>
                             <span class="no">t</span>
                             <span class="no">nil</span>
-                            <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;</span><span class="s"> New-BurntToastNotification -Text &#39;%s&#39; -Sound &#39;Alarm2&#39; -SnoozeAndDismiss</span><span class="s">&#34;</span> <span class="nf">message</span><span class="p">)</span>
-                            <span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+                            <span class="p">(</span><span class="nf">format</span> <span class="s">&#34; New-BurntToastNotification -Text &#39;%s&#39; -Sound &#39;Alarm2&#39; -SnoozeAndDismiss&#34;</span> <span class="nf">message</span><span class="p">)</span>
+                            <span class="p">))))</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>接下来我们要告诉 <code>appt</code> 要发送桌面提醒，设置如下：</p>
@@ -261,20 +273,20 @@ org-pomodoro的提醒改为桌面提醒。</p>
 <td class="lntd">
 <pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp">    <span class="c1">;; Refer to https://gist.github.com/jstewart/7664823</span>
     <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;org-pomodoro-finished-hook</span>
-              <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="p">)</span>
-                <span class="p">(</span><span class="nv">qianmarv-org/show-alarm</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s">&#34;</span><span class="s">Pomodoro completed! - Time for a break.</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+              <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
+                <span class="p">(</span><span class="nv">qianmarv-org/show-alarm</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s">&#34;Pomodoro completed! - Time for a break.&#34;</span><span class="p">)))</span>
 
     <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;org-pomodoro-break-finished-hook</span>
-              <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="p">)</span>
-                <span class="p">(</span><span class="nv">qianmarv-org/show-alarm</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s">&#34;</span><span class="s">Pomodoro Short Break Finished - Ready for Another?</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+              <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
+                <span class="p">(</span><span class="nv">qianmarv-org/show-alarm</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s">&#34;Pomodoro Short Break Finished - Ready for Another?&#34;</span><span class="p">)))</span>
 
     <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;org-pomodoro-long-break-finished-hook</span>
-              <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="p">)</span>
-                <span class="p">(</span><span class="nv">qianmarv-org/show-alarm</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s">&#34;</span><span class="s">Pomodoro Long Break Finished - Ready for Another?</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+              <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
+                <span class="p">(</span><span class="nv">qianmarv-org/show-alarm</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s">&#34;Pomodoro Long Break Finished - Ready for Another?&#34;</span><span class="p">)))</span>
 
     <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;org-pomodoro-killed-hook</span>
-              <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="p">)</span>
-                <span class="p">(</span><span class="nv">qianmarv-org/show-alarm</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s">&#34;</span><span class="s">Pomodoro Killed - One does not simply kill a pomodoro!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+              <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
+                <span class="p">(</span><span class="nv">qianmarv-org/show-alarm</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s">&#34;Pomodoro Killed - One does not simply kill a pomodoro!&#34;</span><span class="p">)))</span>
 </code></pre></td></tr></table>
 </div>
 </div>
@@ -300,7 +312,11 @@ org-pomodoro的提醒改为桌面提醒。</p>
           <a href="/tags/emacs/">emacs</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/linux-en-emacs-chinese/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux英文环境下在Emacs中使用中文输入法</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/setup-blog-with-hexo/">
             <span class="next-text nav-default">通过 Hexo &#43; Git Page 搭建静态博客</span>
             <span class="next-text nav-mobile">下一篇</span>
@@ -354,13 +370,10 @@ org-pomodoro的提醒改为桌面提醒。</p>
   <span class="copyright-year">
     &copy; 
     2015 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">qianmarv</span>
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>qianmarv</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -371,7 +384,10 @@ org-pomodoro的提醒改为桌面提醒。</p>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

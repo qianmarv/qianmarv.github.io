@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
 
 
 <link rel="canonical" href="http://blog.qianmarv.xyz/post/openui5-starter2-part1/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.d9b409b7.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -47,13 +48,14 @@
 <meta property="article:modified_time" content="2015-08-13T00:00:00+08:00" />
 <meta itemprop="name" content="UI5入门系列之二： 最佳实践练习（上）">
 <meta itemprop="description" content="这个最佳实践练习的子系列又会分为若干篇，但是不会完全按照Tutorial里面的章节来分，因为我希望每一篇都是都是一个完整的练习，都能跑出来，而不仅仅是一个片段。">
-<meta itemprop="datePublished" content="2015-08-13T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2015-08-13T00:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="1438">
+<meta itemprop="datePublished" content="2015-08-13T00:00:00+08:00" />
+<meta itemprop="dateModified" content="2015-08-13T00:00:00+08:00" />
+<meta itemprop="wordCount" content="1440">
 
 
 
-<meta itemprop="keywords" content="SAPUI5," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="SAPUI5," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="UI5入门系列之二： 最佳实践练习（上）"/>
 <meta name="twitter:description" content="这个最佳实践练习的子系列又会分为若干篇，但是不会完全按照Tutorial里面的章节来分，因为我希望每一篇都是都是一个完整的练习，都能跑出来，而不仅仅是一个片段。"/>
 
@@ -92,12 +94,21 @@
         <li class="mobile-menu-item">关于</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">马文的博客</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -114,6 +125,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -193,14 +205,14 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span><span class="p"></span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p"></span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;X-UA-Compatible&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;IE=edge&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
-    <span class="c">&lt;!--</span><span class="c">&lt;meta http</span><span class="c">-</span><span class="c">equiv=&#34;Content</span><span class="c">-</span><span class="c">Type&#34; content=&#34;text/html;charset=UTF</span><span class="c">-</span><span class="c">8&#34;/&gt; </span><span class="c">--&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;X-UA-Compatible&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;IE=edge&#34;</span> <span class="p">/&gt;</span>
+    <span class="c">&lt;!--&lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html;charset=UTF-8&#34;/&gt; --&gt;</span>
 
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
 
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p"></span><span class="p">&gt;</span>SAPUI5 Best Practice<span class="p">&lt;</span><span class="p">/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>SAPUI5 Best Practice<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
 
     <span class="p">&lt;</span><span class="nt">script</span>
     <span class="na">id</span><span class="o">=</span><span class="s">&#34;sap-ui-bootstrap&#34;</span>
@@ -210,18 +222,18 @@
     <span class="na">data-sap-ui-xx-bindingSyntax</span><span class="o">=</span><span class="s">&#34;complex&#34;</span>
     <span class="na">data-sap-ui-resourceroots</span><span class="o">=</span><span class="s">&#39;{
 </span><span class="s">        &#34;ui5.tutorial.bp&#34;: &#34;./&#34;
-</span><span class="s">    }&#39;</span> <span class="p"></span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span class="s">    }&#39;</span> <span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
-    <span class="p">&lt;</span><span class="nt">script</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
 
-    <span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;sapUiBody&#34;</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;sapUiBody&#34;</span><span class="p">&gt;</span>
 
-    <span class="c">&lt;!--</span><span class="c"> This is where you place the UI5 button </span><span class="c">--&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;content&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- This is where you place the UI5 button --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;content&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>打开浏览器，输入 <code>http://localhost:8080/ui5bp/</code> 你应该可以看到淡蓝色的背景，除此以外，啥都没有。 <!-- raw HTML omitted -->
@@ -303,30 +315,30 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">jsview</span><span class="p">(</span><span class="s2">&#34;ui5.tutorial.bp.view.App&#34;</span><span class="p">,</span> <span class="p">{</span>
 
-  <span class="nx">getControllerName</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">getControllerName</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="s2">&#34;ui5.tutorial.bp.view.App&#34;</span><span class="p">;</span>
-  <span class="p">}</span><span class="p">,</span>
+  <span class="p">},</span>
 
   <span class="nx">createContent</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">oController</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="c1">// to avoid scroll bars on desktop the root view must be set to block display
-</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">setDisplayBlock</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">setDisplayBlock</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 
     <span class="c1">// create app
-</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">m</span><span class="p">.</span><span class="nx">SplitApp</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">m</span><span class="p">.</span><span class="nx">SplitApp</span><span class="p">();</span>
 
     <span class="c1">// load the master page
-</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">master</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">xmlview</span><span class="p">(</span><span class="s2">&#34;Master&#34;</span><span class="p">,</span> <span class="s2">&#34;ui5.tutorial.bp.view.Master&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="nx">master</span><span class="p">.</span><span class="nx">getController</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">nav</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getController</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">addPage</span><span class="p">(</span><span class="nx">master</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">master</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">xmlview</span><span class="p">(</span><span class="s2">&#34;Master&#34;</span><span class="p">,</span> <span class="s2">&#34;ui5.tutorial.bp.view.Master&#34;</span><span class="p">);</span>
+    <span class="nx">master</span><span class="p">.</span><span class="nx">getController</span><span class="p">().</span><span class="nx">nav</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getController</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">addPage</span><span class="p">(</span><span class="nx">master</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
 
     <span class="c1">// load the empty page
-</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">empty</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">xmlview</span><span class="p">(</span><span class="s2">&#34;Empty&#34;</span><span class="p">,</span> <span class="s2">&#34;ui5.tutorial.bp.view.Empty&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">addPage</span><span class="p">(</span><span class="nx">empty</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">empty</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">xmlview</span><span class="p">(</span><span class="s2">&#34;Empty&#34;</span><span class="p">,</span> <span class="s2">&#34;ui5.tutorial.bp.view.Empty&#34;</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">addPage</span><span class="p">(</span><span class="nx">empty</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">;</span>
   <span class="p">}</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><code>view/App.controller.js</code></p>
@@ -350,7 +362,7 @@
 </span><span class="cm">   * @param {string} pageId The id of the next page
 </span><span class="cm">   * @param {sap.ui.model.Context} context The data context to be applied to the next page (optional)
 </span><span class="cm">   */</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><code>view/Master.view.xml</code></p>
@@ -398,9 +410,9 @@
   <span class="na">xmlns:core=</span><span class="s">&#34;sap.ui.core&#34;</span> <span class="nt">&gt;</span>
   <span class="nt">&lt;Page</span>
     <span class="na">title=</span><span class="s">&#34;Product List&#34;</span> <span class="nt">&gt;</span>
-    <span class="nt">&lt;subHeader</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;Bar</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;contentLeft</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;subHeader&gt;</span>
+      <span class="nt">&lt;Bar&gt;</span>
+        <span class="nt">&lt;contentLeft&gt;</span>
           <span class="nt">&lt;SearchField</span>
             <span class="na">search=</span><span class="s">&#34;handleSearch&#34;</span>
             <span class="na">width=</span><span class="s">&#34;100%&#34;</span> <span class="nt">&gt;</span>
@@ -417,7 +429,7 @@
         <span class="na">title=</span><span class="s">&#34;{SoId}&#34;</span>
         <span class="na">number=</span><span class="s">&#34;{GrossAmount}&#34;</span>
         <span class="na">numberUnit=</span><span class="s">&#34;{CurrencyCode}&#34;</span> <span class="nt">&gt;</span>
-        <span class="nt">&lt;attributes</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;attributes&gt;</span>
           <span class="nt">&lt;ObjectAttribute</span> <span class="na">text=</span><span class="s">&#34;{BuyerName}&#34;</span> <span class="nt">/&gt;</span>
         <span class="nt">&lt;/attributes&gt;</span>
 
@@ -456,19 +468,19 @@
   <span class="nx">handleSearch</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="c1">// create model filter
-</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">filters</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">getParameter</span><span class="p">(</span><span class="s2">&#34;query&#34;</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">filters</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">getParameter</span><span class="p">(</span><span class="s2">&#34;query&#34;</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">query</span> <span class="o">&amp;&amp;</span> <span class="nx">query</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">Filter</span><span class="p">(</span><span class="s2">&#34;SoId&#34;</span><span class="p">,</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">FilterOperator</span><span class="p">.</span><span class="nx">Contains</span><span class="p">,</span> <span class="nx">query</span><span class="p">)</span><span class="p">;</span>
-      <span class="nx">filters</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">filter</span><span class="p">)</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">Filter</span><span class="p">(</span><span class="s2">&#34;SoId&#34;</span><span class="p">,</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">FilterOperator</span><span class="p">.</span><span class="nx">Contains</span><span class="p">,</span> <span class="nx">query</span><span class="p">);</span>
+      <span class="nx">filters</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">filter</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="c1">// update list binding
-</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">byId</span><span class="p">(</span><span class="s2">&#34;list&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">binding</span> <span class="o">=</span> <span class="nx">list</span><span class="p">.</span><span class="nx">getBinding</span><span class="p">(</span><span class="s2">&#34;items&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="nx">binding</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">filters</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">byId</span><span class="p">(</span><span class="s2">&#34;list&#34;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">binding</span> <span class="o">=</span> <span class="nx">list</span><span class="p">.</span><span class="nx">getBinding</span><span class="p">(</span><span class="s2">&#34;items&#34;</span><span class="p">);</span>
+    <span class="nx">binding</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">filters</span><span class="p">);</span>
   <span class="p">}</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><code>view/Empty.view.xml</code></p>
@@ -486,7 +498,7 @@
 <pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;core:View</span>
   <span class="na">xmlns=</span><span class="s">&#34;sap.m&#34;</span>
   <span class="na">xmlns:core=</span><span class="s">&#34;sap.ui.core&#34;</span> <span class="nt">&gt;</span>
-  <span class="nt">&lt;Page</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;Page&gt;</span>
   <span class="nt">&lt;/Page&gt;</span>
 <span class="nt">&lt;/core:View&gt;</span>
 </code></pre></td></tr></table>
@@ -538,14 +550,14 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span><span class="p"></span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p"></span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;X-UA-Compatible&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;IE=edge&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
-    <span class="c">&lt;!--</span><span class="c">&lt;meta http</span><span class="c">-</span><span class="c">equiv=&#34;Content</span><span class="c">-</span><span class="c">Type&#34; content=&#34;text/html;charset=UTF</span><span class="c">-</span><span class="c">8&#34;/&gt; </span><span class="c">--&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;X-UA-Compatible&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;IE=edge&#34;</span> <span class="p">/&gt;</span>
+    <span class="c">&lt;!--&lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html;charset=UTF-8&#34;/&gt; --&gt;</span>
 
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
 
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p"></span><span class="p">&gt;</span>SAPUI5 Best Practice<span class="p">&lt;</span><span class="p">/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>SAPUI5 Best Practice<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
 
     <span class="p">&lt;</span><span class="nt">script</span>
     <span class="na">id</span><span class="o">=</span><span class="s">&#34;sap-ui-bootstrap&#34;</span>
@@ -555,27 +567,27 @@
     <span class="na">data-sap-ui-xx-bindingSyntax</span><span class="o">=</span><span class="s">&#34;complex&#34;</span>
     <span class="na">data-sap-ui-resourceroots</span><span class="o">=</span><span class="s">&#39;{
 </span><span class="s">        &#34;ui5.tutorial.bp&#34;: &#34;./&#34;
-</span><span class="s">    }&#39;</span> <span class="p"></span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span class="s">    }&#39;</span> <span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
-    <span class="p">&lt;</span><span class="nt">script</span><span class="p"></span><span class="p">&gt;</span>
-    <span class="kd">var</span> <span class="nx">oView</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">view</span><span class="p">(</span><span class="p">{</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="kd">var</span> <span class="nx">oView</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">view</span><span class="p">({</span>
         <span class="nx">id</span> <span class="o">:</span> <span class="s2">&#34;app&#34;</span><span class="p">,</span>
         <span class="nx">viewName</span> <span class="o">:</span> <span class="s2">&#34;ui5.tutorial.bp.view.App&#34;</span><span class="p">,</span>
         <span class="nx">type</span> <span class="o">:</span> <span class="s2">&#34;JS&#34;</span><span class="p">,</span>
-    <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+    <span class="p">});</span>
     <span class="c1">// Using a local model for offline development
-</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">oModel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">json</span><span class="p">.</span><span class="nx">JSONModel</span><span class="p">(</span><span class="s2">&#34;model/mock.json&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="nx">oView</span><span class="p">.</span><span class="nx">setModel</span><span class="p">(</span><span class="nx">oModel</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">oModel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">json</span><span class="p">.</span><span class="nx">JSONModel</span><span class="p">(</span><span class="s2">&#34;model/mock.json&#34;</span><span class="p">);</span>
+    <span class="nx">oView</span><span class="p">.</span><span class="nx">setModel</span><span class="p">(</span><span class="nx">oModel</span><span class="p">);</span>
 
-    <span class="nx">oView</span><span class="p">.</span><span class="nx">placeAt</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">)</span><span class="p">;</span>
-    <span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;sapUiBody&#34;</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="nx">oView</span><span class="p">.</span><span class="nx">placeAt</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">);</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;sapUiBody&#34;</span><span class="p">&gt;</span>
 
-    <span class="c">&lt;!--</span><span class="c"> This is where you place the UI5 button </span><span class="c">--&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;content&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- This is where you place the UI5 button --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;content&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>完工，打开 <code>http://localhost:8080/ui5bp/</code> ，可以看到下图：</p>
@@ -683,13 +695,10 @@
   <span class="copyright-year">
     &copy; 
     2015 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">qianmarv</span>
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>qianmarv</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -700,7 +709,10 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

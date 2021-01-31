@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
 
 
 <link rel="canonical" href="http://blog.qianmarv.xyz/post/openui5-starter1-part1/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.d9b409b7.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -49,13 +50,14 @@
 <meta itemprop="name" content="UI5入门系列之一：扫盲与热身（上）">
 <meta itemprop="description" content="什么是SAP Fiori？
 了解SAP UI5必须要从SAP Fiori开始，两者概念经常被混淆，而两者也确实有着非常紧密的关系。">
-<meta itemprop="datePublished" content="2015-07-23T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2015-07-23T00:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="2285">
+<meta itemprop="datePublished" content="2015-07-23T00:00:00+08:00" />
+<meta itemprop="dateModified" content="2015-07-23T00:00:00+08:00" />
+<meta itemprop="wordCount" content="2288">
 
 
 
-<meta itemprop="keywords" content="SAPUI5," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="SAPUI5," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="UI5入门系列之一：扫盲与热身（上）"/>
 <meta name="twitter:description" content="什么是SAP Fiori？
 了解SAP UI5必须要从SAP Fiori开始，两者概念经常被混淆，而两者也确实有着非常紧密的关系。"/>
@@ -95,12 +97,21 @@
         <li class="mobile-menu-item">关于</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">马文的博客</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -117,6 +128,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -280,30 +292,30 @@ responsive, and simple user experience.</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-html" data-lang="html">    <span class="cp">&lt;!DOCTYPE html&gt;</span>
-    <span class="p">&lt;</span><span class="nt">html</span><span class="p"></span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">head</span><span class="p"></span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;X-UA-Compatible&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;IE=edge&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;Content-Type&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;text/html;charset=UTF-8&#34;</span><span class="p">/</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">title</span><span class="p"></span><span class="p">&gt;</span>SAPUI5 in 20 Seconds<span class="p">&lt;</span><span class="p">/</span><span class="nt">title</span><span class="p">&gt;</span>
-        <span class="c">&lt;!--</span><span class="c"> 1.) Load SAPUI5 (from a remote server), select theme and control library </span><span class="c">--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;X-UA-Compatible&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;IE=edge&#34;</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;Content-Type&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;text/html;charset=UTF-8&#34;</span><span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>SAPUI5 in 20 Seconds<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+        <span class="c">&lt;!-- 1.) Load SAPUI5 (from a remote server), select theme and control library --&gt;</span>
         <span class="p">&lt;</span><span class="nt">script</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;sap-ui-bootstrap&#34;</span>
                 <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://localhost:8080/openui5/resources/sap-ui-core.js&#34;</span>
                 <span class="na">data-sap-ui-theme</span><span class="o">=</span><span class="s">&#34;sap_bluecrystal&#34;</span>
-                <span class="na">data-sap-ui-libs</span><span class="o">=</span><span class="s">&#34;sap.ui.commons&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+                <span class="na">data-sap-ui-libs</span><span class="o">=</span><span class="s">&#34;sap.ui.commons&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
-        <span class="c">&lt;!--</span><span class="c"> 2.) Create a UI5 button and place it onto the page </span><span class="c">--&gt;</span>
-        <span class="p">&lt;</span><span class="nt">script</span><span class="p"></span><span class="p">&gt;</span>
+        <span class="c">&lt;!-- 2.) Create a UI5 button and place it onto the page --&gt;</span>
+        <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
           <span class="c1">// create the button instance
-</span><span class="c1"></span>          <span class="nx">Var</span> <span class="nx">myButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">Button</span><span class="p">(</span><span class="s2">&#34;btn&#34;</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>          <span class="nx">Var</span> <span class="nx">myButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">Button</span><span class="p">(</span><span class="s2">&#34;btn&#34;</span><span class="p">);</span>
 
           <span class="c1">// set properties, e.g. the text (there is also a shorter way of setting several properties)
-</span><span class="c1"></span>          <span class="nx">myButton</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="s2">&#34;Hello World!&#34;</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>          <span class="nx">myButton</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="s2">&#34;Hello World!&#34;</span><span class="p">);</span>
 
           <span class="c1">// attach an action to the button&#39;s &#34;press&#34; event (use jQuery to fade out the button)
-</span><span class="c1"></span>          <span class="nx">myButton</span><span class="p">.</span><span class="nx">attachPress</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#btn&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">fadeOut</span><span class="p">(</span><span class="p">)</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>          <span class="nx">myButton</span><span class="p">.</span><span class="nx">attachPress</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#btn&#34;</span><span class="p">).</span><span class="nx">fadeOut</span><span class="p">()});</span>
 
           <span class="c1">// place the button into the HTML element defined below
-</span><span class="c1"></span>          <span class="nx">myButton</span><span class="p">.</span><span class="nx">placeAt</span><span class="p">(</span><span class="s2">&#34;uiArea&#34;</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>          <span class="nx">myButton</span><span class="p">.</span><span class="nx">placeAt</span><span class="p">(</span><span class="s2">&#34;uiArea&#34;</span><span class="p">);</span>
 
           <span class="c1">// an alternative, more jQuery-like notation for the same is:
 </span><span class="c1"></span>          <span class="cm">/*
@@ -314,14 +326,14 @@ responsive, and simple user experience.</p>
 </span><span class="cm">          });
 </span><span class="cm">          });
 </span><span class="cm">          */</span>
-        <span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="p">/</span><span class="nt">head</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">body</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;sapUiBody&#34;</span><span class="p"></span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">body</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;sapUiBody&#34;</span><span class="p">&gt;</span>
 
-        <span class="c">&lt;!--</span><span class="c"> This is where you place the UI5 button </span><span class="c">--&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;uiArea&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="p">/</span><span class="nt">html</span><span class="p">&gt;</span>
+        <span class="c">&lt;!-- This is where you place the UI5 button --&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;uiArea&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>这个例子在SDK文档中在UI Development Toolkit for HTML(OpenUI5) -&gt; Get Started -&gt; Tutorials -&gt; Create Your First OpenUI5 Application。这里是相同的拷贝，只是对于  UI5库的定位稍作改动，定位到我们自己的本地资源中。如果你之前没有下载完整的SDK，  而是只下载了运行时环境，那么只要把resource这个目录放在当前的项目目录中，比如ex1/resources，然后把以上这段代码</p>
@@ -426,13 +438,10 @@ responsive, and simple user experience.</p>
   <span class="copyright-year">
     &copy; 
     2015 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">qianmarv</span>
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>qianmarv</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -443,7 +452,10 @@ responsive, and simple user experience.</p>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

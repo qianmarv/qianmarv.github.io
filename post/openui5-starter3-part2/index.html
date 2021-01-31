@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
 
 
 <link rel="canonical" href="http://blog.qianmarv.xyz/post/openui5-starter3-part2/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.d9b409b7.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -47,13 +48,14 @@
 <meta property="article:modified_time" content="2015-09-15T00:00:00+08:00" />
 <meta itemprop="name" content="UI5入门系列之三：MVC （下） - 视图与控制器">
 <meta itemprop="description" content="继续来学习UI5的MVC模型吧，这次我们来探讨视图与控制器。">
-<meta itemprop="datePublished" content="2015-09-15T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2015-09-15T00:00:00&#43;08:00" />
+<meta itemprop="datePublished" content="2015-09-15T00:00:00+08:00" />
+<meta itemprop="dateModified" content="2015-09-15T00:00:00+08:00" />
 <meta itemprop="wordCount" content="2573">
 
 
 
-<meta itemprop="keywords" content="SAPUI5," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="SAPUI5," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="UI5入门系列之三：MVC （下） - 视图与控制器"/>
 <meta name="twitter:description" content="继续来学习UI5的MVC模型吧，这次我们来探讨视图与控制器。"/>
 
@@ -92,12 +94,21 @@
         <li class="mobile-menu-item">关于</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">马文的博客</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -114,6 +125,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -178,9 +190,9 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">oView</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">xmlview</span><span class="p">(</span><span class="p">{</span> <span class="nx">viewName</span><span class="o">:</span> <span class="err">“</span><span class="nx">sample</span><span class="p">.</span><span class="nx">view</span><span class="err">”</span> <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">oView</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">xmlview</span><span class="p">({</span> <span class="nx">viewName</span><span class="o">:</span> <span class="err">“</span><span class="nx">sample</span><span class="p">.</span><span class="nx">view</span><span class="err">”</span> <span class="p">});</span>
 <span class="c1">// the instance is available now
-</span><span class="c1"></span><span class="nx">oView</span><span class="p">.</span><span class="nx">placeAt</span><span class="p">(</span><span class="err">“</span><span class="nx">uiArea</span><span class="err">”</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span><span class="nx">oView</span><span class="p">.</span><span class="nx">placeAt</span><span class="p">(</span><span class="err">“</span><span class="nx">uiArea</span><span class="err">”</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>以下的代码片段是一个异步模式加载视图的例子，请求视图工厂函数创建视图实例，但是此时由于这个请求是一个异步的模式，视图实例还没有ready，所以我们不能马上用 <code>placeAt</code> 来把它放到DOM元素中，我们必须等待View.prototype.loaded()执行完毕之后发出的Promise之后，在 <code>then()</code> 中才能真正操作已经实例化完毕的视图。
@@ -230,17 +242,17 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript">   <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">jsview</span><span class="p">(</span><span class="s2">&#34;sap.hcm.Address&#34;</span><span class="p">,</span> <span class="p">{</span>  <span class="c1">// this View file is called Address.view.js
 </span><span class="c1"></span>
-   <span class="nx">getControllerName</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">getControllerName</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">return</span> <span class="s2">&#34;sap.hcm.Address&#34;</span><span class="p">;</span>     <span class="c1">// the Controller lives in Address.controller.js
-</span><span class="c1"></span>   <span class="p">}</span><span class="p">,</span>
+</span><span class="c1"></span>   <span class="p">},</span>
 
    <span class="nx">createContent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">oController</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">Button</span><span class="p">(</span><span class="p">{</span><span class="nx">text</span><span class="o">:</span><span class="s2">&#34;Hello JS View&#34;</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
-      <span class="nx">oButton</span><span class="p">.</span><span class="nx">attachPress</span><span class="p">(</span><span class="nx">oController</span><span class="p">.</span><span class="nx">handleButtonClicked</span><span class="p">)</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">oButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">commons</span><span class="p">.</span><span class="nx">Button</span><span class="p">({</span><span class="nx">text</span><span class="o">:</span><span class="s2">&#34;Hello JS View&#34;</span><span class="p">});</span>
+      <span class="nx">oButton</span><span class="p">.</span><span class="nx">attachPress</span><span class="p">(</span><span class="nx">oController</span><span class="p">.</span><span class="nx">handleButtonClicked</span><span class="p">);</span>
       <span class="k">return</span> <span class="nx">oButton</span><span class="p">;</span>
    <span class="p">}</span>
 
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>这里要提到一个要注意的地方，就是当我们在JS view中定义一个控件的时候，有时候我们需要同时定义一个id以方便之后引用，这时需要注意的是，我们不能直接给一个字符串字面量，我们通过类的实例方法 <code>View.createId('idstring')</code> 来实现，通过这种方式返回的id会在我们定义的idstring之前加上所在的类实例id作为前缀以保证唯一性。
@@ -258,7 +270,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;mvc:View</span> <span class="na">controllerName=</span><span class="s">&#34;sap.hcm.Address&#34;</span> <span class="na">xmlns=</span><span class="s">&#34;sap.ui.commons&#34;</span> <span class="na">xmlns:mvc=</span><span class="s">&#34;sap.ui.core.mvc&#34;</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;Panel</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;Panel&gt;</span>
       <span class="nt">&lt;Image</span> <span class="na">src=</span><span class="s">&#34;http://www.sap.com/global/ui/images/global/sap-logo.png&#34;</span><span class="nt">/&gt;</span>
       <span class="nt">&lt;Button</span> <span class="na">text=</span><span class="s">&#34;Press Me!&#34;</span><span class="nt">/&gt;</span>
    <span class="nt">&lt;/Panel&gt;</span>
@@ -291,17 +303,17 @@
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
    <span class="s2">&#34;Type&#34;</span><span class="o">:</span><span class="s2">&#34;sap.ui.core.mvc.JSONView&#34;</span><span class="p">,</span>
    <span class="s2">&#34;controllerName&#34;</span><span class="o">:</span><span class="s2">&#34;sap.hcm.Address&#34;</span><span class="p">,</span>
-   <span class="s2">&#34;content&#34;</span><span class="o">:</span> <span class="p">[</span><span class="p">{</span>
+   <span class="s2">&#34;content&#34;</span><span class="o">:</span> <span class="p">[{</span>
       <span class="s2">&#34;Type&#34;</span><span class="o">:</span><span class="s2">&#34;sap.ui.commons.Image&#34;</span><span class="p">,</span>
       <span class="s2">&#34;id&#34;</span><span class="o">:</span><span class="s2">&#34;MyImage&#34;</span><span class="p">,</span>
       <span class="s2">&#34;src&#34;</span><span class="o">:</span><span class="s2">&#34;http://www.sap.com/global/ui/images/global/sap-logo.png&#34;</span>
-   <span class="p">}</span><span class="p">,</span>
+   <span class="p">},</span>
    <span class="p">{</span>
       <span class="s2">&#34;Type&#34;</span><span class="o">:</span><span class="s2">&#34;sap.ui.commons.Button&#34;</span><span class="p">,</span>
       <span class="s2">&#34;id&#34;</span><span class="o">:</span><span class="s2">&#34;MyButton&#34;</span><span class="p">,</span>
       <span class="s2">&#34;text&#34;</span><span class="o">:</span><span class="s2">&#34;Press Me&#34;</span>
 
-   <span class="p">}</span><span class="p">]</span>
+   <span class="p">}]</span>
 
 <span class="p">}</span>
 </code></pre></td></tr></table>
@@ -325,18 +337,18 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-HTML" data-lang="HTML">  <span class="p">&lt;</span><span class="nt">template</span> <span class="na">data-controller-name</span><span class="o">=</span><span class="s">&#34;example.mvc.test&#34;</span><span class="p"></span><span class="p">&gt;</span>
+<pre class="chroma"><code class="language-HTML" data-lang="HTML">  <span class="p">&lt;</span><span class="nt">template</span> <span class="na">data-controller-name</span><span class="o">=</span><span class="s">&#34;example.mvc.test&#34;</span><span class="p">&gt;</span>
    Hello
-  <span class="p">&lt;</span><span class="nt">h1</span><span class="p"></span><span class="p">&gt;</span>Title<span class="p">&lt;</span><span class="p">/</span><span class="nt">h1</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span><span class="p"></span><span class="p">&gt;</span>Embedded HTML<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;test test2 test3&#34;</span> <span class="na">data-sap-ui-type</span><span class="o">=</span><span class="s">&#34;sap.ui.commons.Panel&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;myPanel&#34;</span><span class="p"></span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;test test2 test3&#34;</span> <span class="na">data-sap-ui-type</span><span class="o">=</span><span class="s">&#34;sap.ui.commons.Button&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;Button1&#34;</span> <span class="na">data-text</span><span class="o">=</span><span class="s">&#34;Hello World&#34;</span> <span class="na">data-press</span><span class="o">=</span><span class="s">&#34;doIt&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-sap-ui-type</span><span class="o">=</span><span class="s">&#34;sap.ui.commons.Button&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;Button2&#34;</span> <span class="na">data-text</span><span class="o">=</span><span class="s">&#34;Hello&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-sap-ui-type</span><span class="o">=</span><span class="s">&#34;sap.ui.core.mvc.HTMLView&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;MyHTMLView&#34;</span> <span class="na">data-view-name</span><span class="o">=</span><span class="s">&#34;example.mvc.test2&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-sap-ui-type</span><span class="o">=</span><span class="s">&#34;sap.ui.core.mvc.JSView&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;MyJSView&#34;</span> <span class="na">data-view-name</span><span class="o">=</span><span class="s">&#34;example.mvc.test2&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-sap-ui-type</span><span class="o">=</span><span class="s">&#34;sap.ui.core.mvc.JSONView&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;MyJSONView&#34;</span> <span class="na">data-view-name</span><span class="o">=</span><span class="s">&#34;example.mvc.test2&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-sap-ui-type</span><span class="o">=</span><span class="s">&#34;sap.ui.core.mvc.XMLView&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;MyXMLView&#34;</span> <span class="na">data-view-name</span><span class="o">=</span><span class="s">&#34;example.mvc.test2&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Title<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Embedded HTML<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;test test2 test3&#34;</span> <span class="na">data-sap-ui-type</span><span class="o">=</span><span class="s">&#34;sap.ui.commons.Panel&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;myPanel&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;test test2 test3&#34;</span> <span class="na">data-sap-ui-type</span><span class="o">=</span><span class="s">&#34;sap.ui.commons.Button&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;Button1&#34;</span> <span class="na">data-text</span><span class="o">=</span><span class="s">&#34;Hello World&#34;</span> <span class="na">data-press</span><span class="o">=</span><span class="s">&#34;doIt&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-sap-ui-type</span><span class="o">=</span><span class="s">&#34;sap.ui.commons.Button&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;Button2&#34;</span> <span class="na">data-text</span><span class="o">=</span><span class="s">&#34;Hello&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-sap-ui-type</span><span class="o">=</span><span class="s">&#34;sap.ui.core.mvc.HTMLView&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;MyHTMLView&#34;</span> <span class="na">data-view-name</span><span class="o">=</span><span class="s">&#34;example.mvc.test2&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-sap-ui-type</span><span class="o">=</span><span class="s">&#34;sap.ui.core.mvc.JSView&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;MyJSView&#34;</span> <span class="na">data-view-name</span><span class="o">=</span><span class="s">&#34;example.mvc.test2&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-sap-ui-type</span><span class="o">=</span><span class="s">&#34;sap.ui.core.mvc.JSONView&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;MyJSONView&#34;</span> <span class="na">data-view-name</span><span class="o">=</span><span class="s">&#34;example.mvc.test2&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-sap-ui-type</span><span class="o">=</span><span class="s">&#34;sap.ui.core.mvc.XMLView&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;MyXMLView&#34;</span> <span class="na">data-view-name</span><span class="o">=</span><span class="s">&#34;example.mvc.test2&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>所有视图相关的属性都可以通过用data-<!-- raw HTML omitted -->的方式在tag <!-- raw HTML omitted -->中定义。</p>
@@ -351,7 +363,7 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript">	<span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s2">&#34;sap.hcm.Address&#34;</span><span class="p">,</span> <span class="p">{</span>
    <span class="c1">// controller logic goes here
-</span><span class="c1"></span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span><span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="生命周期--lifecyle-hooks">生命周期 (Lifecyle Hooks)</h3>
@@ -466,13 +478,10 @@ UI5提供了下面这些Hooks：</p>
   <span class="copyright-year">
     &copy; 
     2015 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">qianmarv</span>
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>qianmarv</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -483,7 +492,10 @@ UI5提供了下面这些Hooks：</p>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
 
 
 <link rel="canonical" href="http://blog.qianmarv.xyz/post/openui5-starter2-part2/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<link href="/dist/even.d9b409b7.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -51,13 +52,14 @@
 <meta itemprop="description" content="上期我们完成了一个简单的主从页面，但是页面是静态的，不能交互，功能也很简单，只有一个销售订单的列表。
 我们今天就一鼓作气把代码全都写完，由于本次的代码量较大，所以只对重点代码部分进行讲解。
 具体每个文件和代码就不一一贴出来了，代码都放在github中，需要的自行下载吧。">
-<meta itemprop="datePublished" content="2015-08-25T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2015-08-25T00:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="3302">
+<meta itemprop="datePublished" content="2015-08-25T00:00:00+08:00" />
+<meta itemprop="dateModified" content="2015-08-25T00:00:00+08:00" />
+<meta itemprop="wordCount" content="3299">
 
 
 
-<meta itemprop="keywords" content="SAPUI5," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="SAPUI5," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="UI5入门系列之二： 最佳实践练习（下）"/>
 <meta name="twitter:description" content="上期我们完成了一个简单的主从页面，但是页面是静态的，不能交互，功能也很简单，只有一个销售订单的列表。
 我们今天就一鼓作气把代码全都写完，由于本次的代码量较大，所以只对重点代码部分进行讲解。
@@ -98,12 +100,21 @@
         <li class="mobile-menu-item">关于</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">马文的博客</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -120,6 +131,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -173,13 +185,13 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript">         <span class="kd">var</span> <span class="nx">oView</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">view</span><span class="p">(</span><span class="p">{</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">         <span class="kd">var</span> <span class="nx">oView</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">view</span><span class="p">({</span>
              <span class="nx">id</span> <span class="o">:</span> <span class="s2">&#34;app&#34;</span><span class="p">,</span>
              <span class="nx">viewName</span> <span class="o">:</span> <span class="s2">&#34;ui5.tutorial.bp.view.App&#34;</span><span class="p">,</span>
              <span class="nx">type</span> <span class="o">:</span> <span class="s2">&#34;JS&#34;</span><span class="p">,</span>
-         <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+         <span class="p">});</span>
          <span class="c1">//...
-</span><span class="c1"></span>         <span class="nx">oView</span><span class="p">.</span><span class="nx">placeAt</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>         <span class="nx">oView</span><span class="p">.</span><span class="nx">placeAt</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>这一段代码初始化了一个叫做App的JS view，那我们就来看 <code>App.view.js</code></p>
@@ -199,16 +211,16 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript">	<span class="c1">// create app
-</span><span class="c1"></span>	<span class="k">this</span><span class="p">.</span><span class="nx">app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">m</span><span class="p">.</span><span class="nx">SplitApp</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>	<span class="k">this</span><span class="p">.</span><span class="nx">app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">m</span><span class="p">.</span><span class="nx">SplitApp</span><span class="p">();</span>
 
 	<span class="c1">// load the master page
-</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">master</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">xmlview</span><span class="p">(</span><span class="s2">&#34;Master&#34;</span><span class="p">,</span> <span class="s2">&#34;ui5.tutorial.bp.view.Master&#34;</span><span class="p">)</span><span class="p">;</span>
-	<span class="nx">master</span><span class="p">.</span><span class="nx">getController</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">nav</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getController</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">addPage</span><span class="p">(</span><span class="nx">master</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">master</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">xmlview</span><span class="p">(</span><span class="s2">&#34;Master&#34;</span><span class="p">,</span> <span class="s2">&#34;ui5.tutorial.bp.view.Master&#34;</span><span class="p">);</span>
+	<span class="nx">master</span><span class="p">.</span><span class="nx">getController</span><span class="p">().</span><span class="nx">nav</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getController</span><span class="p">();</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">addPage</span><span class="p">(</span><span class="nx">master</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
 
 	<span class="c1">// load the empty page
-</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">empty</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">xmlview</span><span class="p">(</span><span class="s2">&#34;Empty&#34;</span><span class="p">,</span> <span class="s2">&#34;ui5.tutorial.bp.view.Empty&#34;</span><span class="p">)</span><span class="p">;</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">addPage</span><span class="p">(</span><span class="nx">empty</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">empty</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">xmlview</span><span class="p">(</span><span class="s2">&#34;Empty&#34;</span><span class="p">,</span> <span class="s2">&#34;ui5.tutorial.bp.view.Empty&#34;</span><span class="p">);</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">addPage</span><span class="p">(</span><span class="nx">empty</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>App view中在 <code>createContent</code> 中创建了一个SplitApp，稍微说下SplitApp这个控件，当宿主是PC或者平台的时候这个控件默认包含两个页面容器，而当宿主是手机的时候又可以只包含一个页面，所以一般主从结构的页面可以用这个控件。<!-- raw HTML omitted -->
@@ -257,37 +269,37 @@ SplitApp本身带有 <code>to()</code> 这个函数，可以在已经加入其�
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript">    <span class="nx">to</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">pageId</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
 
-	<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">app</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">app</span><span class="p">;</span>
 
 	<span class="c1">// load page on demand
-</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">master</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&#34;Master&#34;</span> <span class="o">===</span> <span class="nx">pageId</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">master</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&#34;Master&#34;</span> <span class="o">===</span> <span class="nx">pageId</span><span class="p">);</span>
 	<span class="k">if</span> <span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">getPage</span><span class="p">(</span><span class="nx">pageId</span><span class="p">,</span> <span class="nx">master</span><span class="p">)</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-	    <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">view</span><span class="p">(</span><span class="p">{</span>
+	    <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">view</span><span class="p">({</span>
 		<span class="nx">id</span> <span class="o">:</span> <span class="nx">pageId</span><span class="p">,</span>
 		<span class="nx">viewName</span> <span class="o">:</span> <span class="s2">&#34;ui5.tutorial.bp.view.&#34;</span> <span class="o">+</span> <span class="nx">pageId</span><span class="p">,</span>
 		<span class="nx">type</span> <span class="o">:</span> <span class="s2">&#34;XML&#34;</span>
-	    <span class="p">}</span><span class="p">)</span><span class="p">;</span>
-	    <span class="nx">page</span><span class="p">.</span><span class="nx">getController</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">nav</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-	    <span class="nx">app</span><span class="p">.</span><span class="nx">addPage</span><span class="p">(</span><span class="nx">page</span><span class="p">,</span> <span class="nx">master</span><span class="p">)</span><span class="p">;</span>
-	    <span class="nx">jQuery</span><span class="p">.</span><span class="nx">sap</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&#34;app controller &gt; loaded page: &#34;</span> <span class="o">+</span> <span class="nx">pageId</span><span class="p">)</span><span class="p">;</span>
+	    <span class="p">});</span>
+	    <span class="nx">page</span><span class="p">.</span><span class="nx">getController</span><span class="p">().</span><span class="nx">nav</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+	    <span class="nx">app</span><span class="p">.</span><span class="nx">addPage</span><span class="p">(</span><span class="nx">page</span><span class="p">,</span> <span class="nx">master</span><span class="p">);</span>
+	    <span class="nx">jQuery</span><span class="p">.</span><span class="nx">sap</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&#34;app controller &gt; loaded page: &#34;</span> <span class="o">+</span> <span class="nx">pageId</span><span class="p">);</span>
 	<span class="p">}</span>
 
 	<span class="c1">// show the page
-</span><span class="c1"></span>	<span class="nx">app</span><span class="p">.</span><span class="nx">to</span><span class="p">(</span><span class="nx">pageId</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>	<span class="nx">app</span><span class="p">.</span><span class="nx">to</span><span class="p">(</span><span class="nx">pageId</span><span class="p">);</span>
 
 	<span class="c1">// set data context on the page
 </span><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
-	    <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">app</span><span class="p">.</span><span class="nx">getPage</span><span class="p">(</span><span class="nx">pageId</span><span class="p">)</span><span class="p">;</span>
-	    <span class="nx">page</span><span class="p">.</span><span class="nx">setBindingContext</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span><span class="p">;</span>
+	    <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">app</span><span class="p">.</span><span class="nx">getPage</span><span class="p">(</span><span class="nx">pageId</span><span class="p">);</span>
+	    <span class="nx">page</span><span class="p">.</span><span class="nx">setBindingContext</span><span class="p">(</span><span class="nx">context</span><span class="p">);</span>
 	<span class="p">}</span>
-    <span class="p">}</span><span class="p">,</span>
+    <span class="p">},</span>
 
     <span class="cm">/**
 </span><span class="cm">     * Navigates back to a previous page
 </span><span class="cm">     * @param {string} pageId The id of the next page
 </span><span class="cm">     */</span>
     <span class="nx">back</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">pageId</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">backToPage</span><span class="p">(</span><span class="nx">pageId</span><span class="p">)</span><span class="p">;</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">app</span><span class="p">.</span><span class="nx">backToPage</span><span class="p">(</span><span class="nx">pageId</span><span class="p">);</span>
     <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
@@ -309,8 +321,8 @@ back则直接复用SplitApp的 <code>backToPage()</code> 函数。</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript">    <span class="nx">handleListItemPress</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">context</span> <span class="o">=</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">getSource</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">getBindingContext</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">nav</span><span class="p">.</span><span class="nx">to</span><span class="p">(</span><span class="s2">&#34;Detail&#34;</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">context</span> <span class="o">=</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">getSource</span><span class="p">().</span><span class="nx">getBindingContext</span><span class="p">();</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">nav</span><span class="p">.</span><span class="nx">to</span><span class="p">(</span><span class="s2">&#34;Detail&#34;</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
     <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
@@ -333,11 +345,11 @@ back则直接复用SplitApp的 <code>backToPage()</code> 函数。</p>
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript">           <span class="kd">var</span> <span class="nx">oModel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">json</span><span class="p">.</span><span class="nx">JSONModel</span><span class="p">(</span><span class="s2">&#34;model/mock.json&#34;</span><span class="p">)</span><span class="p">;</span>
-           <span class="nx">oView</span><span class="p">.</span><span class="nx">setModel</span><span class="p">(</span><span class="nx">oModel</span><span class="p">)</span><span class="p">;</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">           <span class="kd">var</span> <span class="nx">oModel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">sap</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">json</span><span class="p">.</span><span class="nx">JSONModel</span><span class="p">(</span><span class="s2">&#34;model/mock.json&#34;</span><span class="p">);</span>
+           <span class="nx">oView</span><span class="p">.</span><span class="nx">setModel</span><span class="p">(</span><span class="nx">oModel</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>随后在这个视图及其子视图中，都可以直接通过类似 <code>{SoId}</code> 这种语法格式来使用这个模型的数据字段，需要注意的是，如果需要绑定的字段是这个模型的根节点，需要在前面加一个 <code>/</code> ，譬如在Master视图中绑定到列表的aggregate字段 <code>items</code> ，是这样的语法格式：items=&rdquo;{/SalesOrderCollection}&rdquo; 。</p>
+</div><p>随后在这个视图及其子视图中，都可以直接通过类似 <code>{SoId}</code> 这种语法格式来使用这个模型的数据字段，需要注意的是，如果需要绑定的字段是这个模型的根节点，需要在前面加一个 <code>/</code> ，譬如在Master视图中绑定到列表的aggregate字段 <code>items</code> ，是这样的语法格式：items=&quot;{/SalesOrderCollection}&quot; 。</p>
 </li>
 <li>
 <p>多语言模型：<!-- raw HTML omitted -->
@@ -418,7 +430,7 @@ UI5中使用了 <code>i18n</code> 机制来处理多语言问题。i18n是 inter
 </span><span class="s">		     }&#34;</span> <span class="nt">/&gt;</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>上面这个例子中，我们来看 <code>text</code> 属性，如果我们希望直接把业务数据绑定到text中，我们这样定义 text=&rdquo;{LifecycleStatus}&quot;，但是我们知道这个字段可能是后台定义的技术字段，我们需要把它转化的比较有业务意义。
+</div><p>上面这个例子中，我们来看 <code>text</code> 属性，如果我们希望直接把业务数据绑定到text中，我们这样定义 text=&quot;{LifecycleStatus}&quot;，但是我们知道这个字段可能是后台定义的技术字段，我们需要把它转化的比较有业务意义。
 所以这个时候，我们就需要用到 <code>formatter</code> 了，首先定义 <code>path</code> 告之需要绑定的字段，这里不需要用大括号，随后给 <code>formatter</code> 赋予一个处理方法，这个方法可以定义在任何地方，我们这里是在util下单独定义了一个 <code>Fomatter.js</code> 来集中处理这类需求。<!-- raw HTML omitted -->
 来看 <code>Formatter.js</code> ，我们就看 <code>statusText</code> 这个方法：</p>
 <div class="highlight"><div class="chroma">
@@ -430,9 +442,9 @@ UI5中使用了 <code>i18n</code> 机制来处理多语言问题。i18n是 inter
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript">	<span class="nx">statusText</span> <span class="o">:</span>  <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">bundle</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">(</span><span class="s2">&#34;i18n&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">getResourceBundle</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-		<span class="k">return</span> <span class="nx">bundle</span><span class="p">.</span><span class="nx">getText</span><span class="p">(</span><span class="s2">&#34;StatusText&#34;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">,</span> <span class="s2">&#34;?&#34;</span><span class="p">)</span><span class="p">;</span>
-	<span class="p">}</span><span class="p">,</span>
+		<span class="kd">var</span> <span class="nx">bundle</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getModel</span><span class="p">(</span><span class="s2">&#34;i18n&#34;</span><span class="p">).</span><span class="nx">getResourceBundle</span><span class="p">();</span>
+		<span class="k">return</span> <span class="nx">bundle</span><span class="p">.</span><span class="nx">getText</span><span class="p">(</span><span class="s2">&#34;StatusText&#34;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">,</span> <span class="s2">&#34;?&#34;</span><span class="p">);</span>
+	<span class="p">},</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><code>path</code> 中绑定的字段对应的值会作为参数传入，然后用这个值结合StatusText生成一个KEY，并在 <code>i18n</code> 中取出相应的描述。</p>
@@ -518,13 +530,10 @@ UI5中使用了 <code>i18n</code> 机制来处理多语言问题。i18n是 inter
   <span class="copyright-year">
     &copy; 
     2015 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">qianmarv</span>
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>qianmarv</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -535,7 +544,10 @@ UI5中使用了 <code>i18n</code> 机制来处理多语言问题。i18n是 inter
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 
