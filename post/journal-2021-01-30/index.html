@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Linux英文环境下在Emacs中使用中文输入法 - 知行合一</title>
+  <title>每日晨写@2021-01-30 - 知行合一</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,8 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="qianmarv" /><meta name="description" content="记录在linux英文环境下设置在Emacs中通过fctix来切换中文输入法。
-" /><meta name="keywords" content="programming, SAP" />
+<meta name="author" content="qianmarv" /><meta name="description" content="" /><meta name="keywords" content="programming, SAP" />
 
 
 
@@ -27,7 +26,7 @@
 <meta name="generator" content="Hugo 0.80.0 with theme even" />
 
 
-<link rel="canonical" href="http://blog.qianmarv.xyz/post/linux-en-emacs-chinese/" />
+<link rel="canonical" href="http://blog.qianmarv.xyz/post/journal-2021-01-30/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,24 +39,24 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Linux英文环境下在Emacs中使用中文输入法" />
-<meta property="og:description" content="记录在linux英文环境下设置在Emacs中通过fctix来切换中文输入法。" />
+<meta property="og:title" content="每日晨写@2021-01-30" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://blog.qianmarv.xyz/post/linux-en-emacs-chinese/" />
-<meta property="article:published_time" content="2021-01-31T00:00:00+08:00" />
-<meta property="article:modified_time" content="2021-01-31T00:00:00+08:00" />
-<meta itemprop="name" content="Linux英文环境下在Emacs中使用中文输入法">
-<meta itemprop="description" content="记录在linux英文环境下设置在Emacs中通过fctix来切换中文输入法。">
-<meta itemprop="datePublished" content="2021-01-31T00:00:00+08:00" />
-<meta itemprop="dateModified" content="2021-01-31T00:00:00+08:00" />
-<meta itemprop="wordCount" content="449">
+<meta property="og:url" content="http://blog.qianmarv.xyz/post/journal-2021-01-30/" />
+<meta property="article:published_time" content="2021-01-30T00:00:00+08:00" />
+<meta property="article:modified_time" content="2021-01-30T00:00:00+08:00" />
+<meta itemprop="name" content="每日晨写@2021-01-30">
+<meta itemprop="description" content="">
+<meta itemprop="datePublished" content="2021-01-30T00:00:00+08:00" />
+<meta itemprop="dateModified" content="2021-01-30T00:00:00+08:00" />
+<meta itemprop="wordCount" content="607">
 
 
 
-<meta itemprop="keywords" content="emacs," />
+<meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Linux英文环境下在Emacs中使用中文输入法"/>
-<meta name="twitter:description" content="记录在linux英文环境下设置在Emacs中通过fctix来切换中文输入法。"/>
+<meta name="twitter:title" content="每日晨写@2021-01-30"/>
+<meta name="twitter:description" content=""/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -134,12 +133,12 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Linux英文环境下在Emacs中使用中文输入法</h1>
+      <h1 class="post-title">每日晨写@2021-01-30</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2021-01-31 00:00 </span>
+        <span class="post-time"> 2021-01-30 00:00 </span>
         <div class="post-category">
-            <a href="/categories/%E6%8A%98%E8%85%BE/"> 折腾 </a>
+            <a href="/categories/%E6%97%A5%E5%BF%97/"> 日志 </a>
             </div>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -152,32 +151,10 @@
   </div>
 </div>
     <div class="post-content">
-      <p>记录在linux英文环境下设置在Emacs中通过fctix来切换中文输入法。</p>
-<p>相关索引</p>
-<ul>
-<li><a href="https://github.com/hick/emacs-chinese">https://github.com/hick/emacs-chinese</a></li>
-<li><a href="https://github.com/tumashu/pyim">https://github.com/tumashu/pyim</a></li>
-</ul>
-<p>系统环境是Debian10，emacs27.1，语言环境为英文。</p>
-<p>通过fcitx来切换中文和英文输入，设置快捷键为WIN+SPACE, 其他应用均无问题可以正常切换中文。</p>
-<p>但是在emacs中，win+space会报错说为定义按键，无法切换中文，而内置的拼音输入法相对而言不那么好用。</p>
-<p>经过一番探索和尝试，终于解决。最主要的线索在于emacs需要 <code>LC_CTYPE=zh_CN.UTF-8</code> 才能够正常调用fcitx，参照一些帖子内容将这个变量设置到本地的profile不能生效(<code>/.profile</code>)。可能放到 <code>/etc/profile</code> 中可以生效吧，没有尝试。</p>
-<p>最终我采用的方式按照如下<a href="https://codertw.com/%e8%bb%9f%e9%ab%94%e9%96%8b%e7%99%bc%e5%b7%a5%e5%85%b7/23416/">帖子</a>中介绍的方式通过在加载emacs之前手动设置 <code>LC_CTYPE</code>
-基本步骤为：
-在 <code>/usr/local/bin/</code> 中创建文件为 <code>emacs</code> ，由于我是自己编译的emacs27.1, 在 <code>sudo make install</code> 之后，在该目录下会创建 <code>emacs27-1</code> 的binary以及 <code>emacs</code> 的链接文件，我将链接文件 emacs删除，并创建一个命令文件并添加如下内容：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#! /bin/bash
-</span><span class="cp"></span><span class="nb">export</span> <span class="nv">LC_CTYPE</span><span class="o">=</span>zh_CN.UTF-8<span class="p">;</span>
-/usr/bin/local/emacs27-1 <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>完成之后通过 <code>sudo chmod +x emacs</code> 来设置执行权限即可。</p>
+      <p>想到看的輝哥的文章，每天输出10分钟，正好趁着这次要从头开始学习dynamics AX的机会，把学习的过程记录下来，整理输出，这样也可以同时整理自己的思路，而不是每天稀里糊涂的填鸭式的注入内容，真正转化为自己的内在的东西却不多！</p>
+<p>可能刚开始的时候，会是一些碎碎念的东西，但是也没问题吧，主要是对每天所做的事情的一些记录，当然要做一些整理，但是也不要太过，程度到觉得自然就可以，否则会觉得太麻烦而没有了继续下去的动力。</p>
+<p>大概想法是，个人主页上开一个栏目叫做日志，尽量每天到要发，可以是计划，回顾，周末也可以做计划和总结回顾，甚至月末，年末都可以发表自己的计划和想法，当然了，自己觉得有一些是私人的东西当然不需要发在上面。在这个基础上，可以把一些有价值的内容做一些深度的整理，然后发表在博客的栏目上，这个可以按照实际情况，可以对质量有一定的要求，频率也不用太高。</p>
+<p>信息和日志的采集，主要还是通过Emacs的capture来做，本身一直规划要有每日的晨写，计划，回顾，（虽然没有做到），然后中间可以随时capture一些想法。晚上回顾的时候就可以这些内容收集并发出来，其实回顾是非常重要的，没有反馈的话就不会对自己的行为作出修正，但是自己的意志力不够，到晚上基本上都被消耗完了，所以晚上是自己意志最薄弱的环节，往往就会做一些最不需要费脑子的事情，比如无所事事的看看段视频，刷刷知乎，打打游戏这样子，幸好还没有熬夜的坏习惯，万幸！</p>
     </div>
 
     <div class="post-copyright">
@@ -188,7 +165,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2021-01-31 00:00
+        2021-01-30 00:00
         
     </span>
   </p>
@@ -196,17 +173,15 @@
   
 </div>
 <footer class="post-footer">
-      <div class="post-tags">
-          <a href="/tags/emacs/">emacs</a>
-          </div>
+      
       <nav class="post-nav">
-        <a class="prev" href="/post/journal-2021-02-01/">
+        <a class="prev" href="/post/linux-en-emacs-chinese/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">每日晨写@2021-02-01</span>
+            <span class="prev-text nav-default">Linux英文环境下在Emacs中使用中文输入法</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/journal-2021-01-30/">
-            <span class="next-text nav-default">每日晨写@2021-01-30</span>
+        <a class="next" href="/post/orgmode-desktop-notifier/">
+            <span class="next-text nav-default">Setup Desktop Notifier For Org-Mode</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>

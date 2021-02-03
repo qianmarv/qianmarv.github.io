@@ -10,7 +10,49 @@
   
   <url>
     <loc>http://blog.qianmarv.xyz/categories/</loc>
-    <lastmod>2021-01-31T00:00:00+08:00</lastmod>
+    <lastmod>2021-02-03T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.qianmarv.xyz/post/</loc>
+    <lastmod>2021-02-03T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.qianmarv.xyz/categories/%E6%97%A5%E5%BF%97/</loc>
+    <lastmod>2021-02-03T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.qianmarv.xyz/post/daily-review-2021-02-03/</loc>
+    <lastmod>2021-02-03T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.qianmarv.xyz/post/journal-2021-02-03/</loc>
+    <lastmod>2021-02-03T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.qianmarv.xyz/</loc>
+    <lastmod>2021-02-03T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.qianmarv.xyz/post/journal-2021-02-01/</loc>
+    <lastmod>2021-02-01T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -30,13 +72,6 @@
   </url>
   
   <url>
-    <loc>http://blog.qianmarv.xyz/post/</loc>
-    <lastmod>2021-01-31T00:00:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.qianmarv.xyz/tags/</loc>
     <lastmod>2021-01-31T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -44,15 +79,15 @@
   </url>
   
   <url>
-    <loc>http://blog.qianmarv.xyz/categories/%E6%97%A5%E5%BF%97/</loc>
+    <loc>http://blog.qianmarv.xyz/categories/%E6%8A%98%E8%85%BE/</loc>
     <lastmod>2021-01-31T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://blog.qianmarv.xyz/</loc>
-    <lastmod>2021-01-31T00:00:00+08:00</lastmod>
+    <loc>http://blog.qianmarv.xyz/post/journal-2021-01-30/</loc>
+    <lastmod>2021-01-30T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -73,13 +108,6 @@
   
   <url>
     <loc>http://blog.qianmarv.xyz/tags/blog/</loc>
-    <lastmod>2015-12-30T00:00:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.qianmarv.xyz/categories/%E6%8A%98%E8%85%BE/</loc>
     <lastmod>2015-12-30T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

@@ -5,7 +5,16 @@
     <link>http://blog.qianmarv.xyz/categories/%E6%8A%98%E8%85%BE/</link>
     <description>Recent content in 折腾 on 知行合一</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 30 Dec 2015 00:00:00 +0800</lastBuildDate><atom:link href="http://blog.qianmarv.xyz/categories/%E6%8A%98%E8%85%BE/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0800</lastBuildDate><atom:link href="http://blog.qianmarv.xyz/categories/%E6%8A%98%E8%85%BE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux英文环境下在Emacs中使用中文输入法</title>
+      <link>http://blog.qianmarv.xyz/post/linux-en-emacs-chinese/</link>
+      <pubDate>Sun, 31 Jan 2021 00:00:00 +0800</pubDate>
+      
+      <guid>http://blog.qianmarv.xyz/post/linux-en-emacs-chinese/</guid>
+      <description>&lt;p&gt;记录在linux英文环境下设置在Emacs中通过fctix来切换中文输入法。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>通过 Hexo &#43; Git Page 搭建静态博客</title>
       <link>http://blog.qianmarv.xyz/post/setup-blog-with-hexo/</link>
